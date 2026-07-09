@@ -1,4 +1,10 @@
-import { SEASONS, MANAGERS, type SeasonRow, type PlayoffResult } from '../data/league'
+import {
+  SEASONS,
+  MANAGERS,
+  playoffRecordFor,
+  type SeasonRow,
+  type PlayoffResult,
+} from '../data/league'
 
 /** Standard football Pythagorean exponent (used for expected win %). */
 const PYTH_EXPONENT = 2.37
@@ -41,6 +47,8 @@ export interface CareerStats {
   bestFinish: PlayoffResult
   firstSeason: number
   lastSeason: number
+  playoffWins: number
+  playoffLosses: number
 }
 
 const RESULT_RANK: Record<PlayoffResult, number> = {
@@ -76,6 +84,8 @@ export function careerStats(manager: string): CareerStats {
   let lastPlaceFinishes = 0
   let luckSum = 0
   let bestResult: PlayoffResult = 'Missed Playoffs'
+  let playoffWins = 0
+  let playoffLosses = 0
 
   for (const r of rows) {
     wins += r.w
@@ -89,6 +99,9 @@ export function careerStats(manager: string): CareerStats {
     if (r.reg_season_rank === lastRanks.get(r.season)) lastPlaceFinishes++
     luckSum += luckRating(r)
     if (RESULT_RANK[r.result] > RESULT_RANK[bestResult]) bestResult = r.result
+    const po = playoffRecordFor(r.season, manager)
+    playoffWins += po.wins
+    playoffLosses += po.losses
   }
 
   const seasonYears = rows.map((r) => r.season)
@@ -111,6 +124,8 @@ export function careerStats(manager: string): CareerStats {
     bestFinish: bestResult,
     firstSeason: Math.min(...seasonYears),
     lastSeason: Math.max(...seasonYears),
+    playoffWins,
+    playoffLosses,
   }
 }
 

@@ -27,7 +27,7 @@ export const BADGES: Badge[] = [
   {
     manager: 'thowd',
     badge: 'Big Game Hunter',
-    why: '3 titles (2017, 2019, 2025) in 8 playoff trips — the only manager active in both the ESPN and Sleeper eras to win a championship in each.',
+    why: 'Won titles in 2017, 2019, and 2025 — never back-to-back, but never far from contention either, across 8 playoff trips.',
   },
   {
     manager: 'TylerKeel',
@@ -47,7 +47,7 @@ export const BADGES: Badge[] = [
   {
     manager: 'dnevels8',
     badge: 'Late Arrival, Fast Learner',
-    why: 'Joined as an expansion team in 2015 and already has a title (2020) despite the shortest tenure of the long-time managers.',
+    why: 'Joined as an expansion team in 2015 and already has a title (2020) — one of the shortest tenures of the long-time managers, and already a champion.',
   },
   {
     manager: 'GBClark',
@@ -57,12 +57,12 @@ export const BADGES: Badge[] = [
   {
     manager: 'SeanOMara',
     badge: 'Feast or Famine',
-    why: '11 seasons split between deep playoff runs (a 3rd place finish) and a last-place year — no in-between.',
+    why: 'No middle ground in 11 seasons — a Runner-Up finish (2019) and two 3rd-place runs, bookended by six years missing the playoffs outright. Never technically finished last, though the 11th-of-12 finishes (2018, 2020) came close.',
   },
   {
     manager: 'assif',
     badge: 'Foundational, Fadeless',
-    why: "One of the league's 2012 founders; 11 seasons without a title, but never the league's worst team either.",
+    why: "One of the league's 2012 founders — 11 seasons, no titles, two last-place finishes (2015, 2019), and one shocking 3rd-place run (2016) sandwiched in between.",
   },
   {
     manager: 'amenr5',

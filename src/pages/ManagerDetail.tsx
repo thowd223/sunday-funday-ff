@@ -1,16 +1,20 @@
+import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { StatCard } from '../components/StatCard'
 import { ResultBadge } from '../components/ResultBadge'
 import {
   MANAGER_IDENTITY,
   MANAGERS,
+  MATCHUP_LOG,
   SEASONS,
-  USER_USERNAME,
   displayName,
+  playoffRecordFor,
 } from '../data/league'
 import { BADGE_BY_MANAGER } from '../data/badges'
-import { careerStats, luckRating } from '../lib/stats'
-import { num, pct, signedPct } from '../lib/format'
+import { ManagerLink } from '../components/ManagerLink'
+import { careerStats, luckRating, winPct as winPctOf } from '../lib/stats'
+import { rivalryFor, type RivalryOpponent } from '../lib/h2h'
+import { num, pct, record, signedPct } from '../lib/format'
 
 export function ManagerDetail() {
   const { manager = '' } = useParams()
@@ -30,8 +34,8 @@ export function ManagerDetail() {
   const rows = SEASONS.filter((r) => r.manager === manager).sort((a, b) => b.season - a.season)
   const identity = MANAGER_IDENTITY[manager]
   const badge = BADGE_BY_MANAGER[manager]
-  const isUser = manager === USER_USERNAME
   const initials = displayName(manager).slice(0, 2).toUpperCase()
+  const rivalry = rivalryFor(manager)
 
   return (
     <>
@@ -44,7 +48,6 @@ export function ManagerDetail() {
         <div>
           <h1 className="page-title" style={{ fontSize: 30 }}>
             {displayName(manager)}
-            {isUser && <span className="tag-you">YOU</span>}
           </h1>
           <div className="muted">@{manager}</div>
           {badge && (
@@ -67,6 +70,11 @@ export function ManagerDetail() {
             meta={`${pct(c.winPct)} win rate`}
           />
           <StatCard label="Playoff Appearances" value={c.playoffAppearances} />
+          <StatCard
+            label="Playoff Record"
+            value={`${c.playoffWins}-${c.playoffLosses}`}
+            meta={`${pct(winPctOf(c.playoffWins, c.playoffLosses))} in the postseason`}
+          />
           <StatCard label="Seasons" value={c.seasons} meta={`${c.firstSeason}–${c.lastSeason}`} />
           <StatCard label="Runner-Ups" value={c.runnerUps} />
           <StatCard label="3rd Places" value={c.thirdPlaces} />
@@ -89,6 +97,20 @@ export function ManagerDetail() {
         </div>
       </section>
 
+      {(rivalry.toughest || rivalry.favorite) && (
+        <section className="section">
+          <h2 className="section-title">Rivalries</h2>
+          <div className="grid stat-grid">
+            {rivalry.toughest && (
+              <RivalryCard label="Toughest Opponent" rival={rivalry.toughest} />
+            )}
+            {rivalry.favorite && (
+              <RivalryCard label="Favorite Opponent" rival={rivalry.favorite} />
+            )}
+          </div>
+        </section>
+      )}
+
       <section className="section">
         <h2 className="section-title">Season by Season</h2>
         <div className="table-wrap">
@@ -99,6 +121,7 @@ export function ManagerDetail() {
                 <th>Team</th>
                 <th className="num">Rank</th>
                 <th className="num">W-L</th>
+                <th className="num">Playoffs</th>
                 <th className="num">PF</th>
                 <th className="num">Luck</th>
                 <th>Result</th>
@@ -107,6 +130,7 @@ export function ManagerDetail() {
             <tbody>
               {rows.map((r) => {
                 const luck = luckRating(r)
+                const po = playoffRecordFor(r.season, r.manager)
                 return (
                   <tr key={r.season}>
                     <td style={{ fontWeight: 700 }}>{r.season}</td>
@@ -114,6 +138,9 @@ export function ManagerDetail() {
                     <td className="num">{r.reg_season_rank}</td>
                     <td className="num">
                       {r.w}-{r.l}
+                    </td>
+                    <td className="num muted">
+                      {po.wins + po.losses > 0 ? `${po.wins}-${po.losses}` : '—'}
                     </td>
                     <td className="num">{num(r.pf)}</td>
                     <td className={`num ${luck >= 0 ? 'pos' : 'neg'}`}>{signedPct(luck)}</td>
@@ -127,6 +154,134 @@ export function ManagerDetail() {
           </table>
         </div>
       </section>
+
+      <GameLog manager={manager} />
     </>
+  )
+}
+
+function GameLog({ manager }: { manager: string }) {
+  const games = useMemo(
+    () => MATCHUP_LOG.filter((g) => g.manager === manager),
+    [manager],
+  )
+  const seasonsPlayed = useMemo(
+    () => [...new Set(games.map((g) => g.season))].sort((a, b) => b - a),
+    [games],
+  )
+
+  // Track the selected season alongside the manager it was picked for, so switching
+  // to a manager who never played that season (or has a shorter career) falls back
+  // to their most recent season instead of rendering an empty table.
+  const [picked, setPicked] = useState<{ manager: string; season: number } | null>(null)
+  const selectedSeason =
+    picked && picked.manager === manager && seasonsPlayed.includes(picked.season)
+      ? picked.season
+      : seasonsPlayed[0]
+
+  if (seasonsPlayed.length === 0 || selectedSeason === undefined) {
+    return null
+  }
+
+  // Playoff weeks overlap regular-season week numbers across eras (e.g. week 14 can be
+  // either), so order by phase first and week second rather than sorting on week alone.
+  const seasonGames = games
+    .filter((g) => g.season === selectedSeason)
+    .sort((a, b) => {
+      if (a.phase !== b.phase) return a.phase === 'regular' ? -1 : 1
+      return a.week - b.week
+    })
+
+  const regular = seasonGames.filter((g) => g.phase === 'regular')
+  const playoffs = seasonGames.filter((g) => g.phase === 'playoff' && !g.consolation)
+  const consolation = seasonGames.filter((g) => g.consolation)
+  const recordOf = (list: typeof seasonGames) => {
+    const w = list.filter((g) => g.result === 'W').length
+    const l = list.filter((g) => g.result === 'L').length
+    const t = list.filter((g) => g.result === 'T').length
+    return t > 0 ? `${w}-${l}-${t}` : `${w}-${l}`
+  }
+  const summary = [
+    regular.length > 0 ? `${recordOf(regular)} regular season` : null,
+    playoffs.length > 0 ? `${recordOf(playoffs)} playoffs` : null,
+    consolation.length > 0 ? `${recordOf(consolation)} consolation` : null,
+  ]
+    .filter(Boolean)
+    .join(' · ')
+
+  return (
+    <section className="section">
+      <h2 className="section-title">Game Log</h2>
+      <div className="row-between" style={{ marginBottom: 16 }}>
+        <select
+          className="select"
+          value={selectedSeason}
+          onChange={(e) => setPicked({ manager, season: Number(e.target.value) })}
+        >
+          {seasonsPlayed.map((s) => (
+            <option key={s} value={s}>
+              {s} Season
+            </option>
+          ))}
+        </select>
+        {summary && <span className="muted">{summary}</span>}
+      </div>
+
+      <div className="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th className="num">Week</th>
+              <th>Opponent</th>
+              <th className="num">Score</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {seasonGames.map((g, i) => {
+              const firstPlayoffGame = g.phase === 'playoff' && seasonGames[i - 1]?.phase === 'regular'
+              return (
+                <tr
+                  key={`${g.season}-${g.phase}-${g.week}`}
+                  style={firstPlayoffGame ? { borderTop: '2px solid var(--line)' } : undefined}
+                >
+                  <td className="num">{g.week}</td>
+                  <td>
+                    <ManagerLink manager={g.opponent} />
+                    {g.phase === 'playoff' && (
+                      <span className="chip" style={{ marginLeft: 8 }}>
+                        {g.consolation ? 'Consolation' : 'Playoffs'}
+                      </span>
+                    )}
+                  </td>
+                  <td className="num">
+                    {num(g.pf)} – {num(g.pa)}
+                  </td>
+                  <td className={g.result === 'T' ? 'muted' : g.result === 'W' ? 'pos' : 'neg'}>
+                    {g.result}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
+function RivalryCard({ label, rival }: { label: string; rival: RivalryOpponent }) {
+  const games = rival.w + rival.l + rival.t
+  const winRate = games === 0 ? 0 : (rival.w + rival.t * 0.5) / games
+  return (
+    <div className="card stat">
+      <div className="label">{label}</div>
+      <div className="value">
+        vs <ManagerLink manager={rival.opponent} />
+      </div>
+      <div className="meta">
+        {record(rival.w, rival.l, rival.t)} ({pct(winRate)})
+      </div>
+    </div>
   )
 }

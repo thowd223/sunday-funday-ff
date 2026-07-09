@@ -1,8 +1,9 @@
 import { ManagerLink } from '../components/ManagerLink'
 import { SEASONS, SEASON_YEARS } from '../data/league'
 import { BADGES } from '../data/badges'
-import { luckRating } from '../lib/stats'
-import { num, signedPct } from '../lib/format'
+import { allCareerStats, luckRating } from '../lib/stats'
+import { buildRecords } from '../lib/records'
+import { num, pct, signedPct } from '../lib/format'
 
 interface Superlative {
   season: number
@@ -35,8 +36,71 @@ function superlatives(): Superlative[] {
   }).reverse()
 }
 
+interface RecordCard {
+  emoji: string
+  label: string
+  value: string
+  meta: string
+}
+
 export function Awards() {
   const supers = superlatives()
+  const byLuck = allCareerStats()
+    .slice()
+    .sort((a, b) => b.avgLuck - a.avgLuck)
+  const luckiest = byLuck.slice(0, 5)
+  const unluckiest = byLuck.slice(-5).reverse()
+  const r = buildRecords()
+
+  const phaseLabel = (phase: 'regular' | 'playoff') => (phase === 'playoff' ? 'playoffs' : 'regular season')
+
+  const seasonCards: RecordCard[] = [
+    {
+      emoji: '🔥',
+      label: 'Highest Single-Season Points For',
+      value: num(r.highestSeasonPF.value),
+      meta: `${r.highestSeasonPF.season} season`,
+    },
+    {
+      emoji: '🥶',
+      label: 'Lowest Single-Season Points For',
+      value: num(r.lowestSeasonPF.value),
+      meta: `${r.lowestSeasonPF.season} season`,
+    },
+    {
+      emoji: '💪',
+      label: 'Best Single-Season Point Differential',
+      value: `+${num(r.bestSeasonPointDiff.value)}`,
+      meta: `${r.bestSeasonPointDiff.season} season`,
+    },
+    {
+      emoji: '💀',
+      label: 'Worst Single-Season Point Differential',
+      value: num(r.worstSeasonPointDiff.value),
+      meta: `${r.worstSeasonPointDiff.season} season`,
+    },
+    {
+      emoji: '🍀',
+      label: 'Luckiest Season',
+      value: signedPct(r.luckiestSeason.value),
+      meta: `${r.luckiestSeason.season} season · actual win % vs. Pythagorean-expected`,
+    },
+    {
+      emoji: '☔',
+      label: 'Unluckiest Season',
+      value: signedPct(r.unluckiestSeason.value),
+      meta: `${r.unluckiestSeason.season} season · actual win % vs. Pythagorean-expected`,
+    },
+  ]
+
+  const seasonCardManager: Record<number, string> = {
+    0: r.highestSeasonPF.manager,
+    1: r.lowestSeasonPF.manager,
+    2: r.bestSeasonPointDiff.manager,
+    3: r.worstSeasonPointDiff.manager,
+    4: r.luckiestSeason.manager,
+    5: r.unluckiestSeason.manager,
+  }
 
   return (
     <>
@@ -44,7 +108,9 @@ export function Awards() {
       <h1 className="page-title">League Awards</h1>
       <p className="page-sub">
         Career badges tell each manager's story; the season superlatives table hands out the
-        yearly hardware — top scorer, best record, and the luckiest and unluckiest teams.
+        yearly hardware — top scorer, best record, and the luckiest and unluckiest teams. Below
+        that, the league records book: streaks, single-game extremes, and the rivalries that
+        got personal.
       </p>
 
       <section className="section">
@@ -113,6 +179,187 @@ export function Awards() {
         <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
           Luck rating = actual win % − Pythagorean-expected win % (exponent 2.37). Positive =
           overperformed points scored; negative = underperformed.
+        </p>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">🍀 Career Luck Rating</h2>
+        <p className="page-sub">
+          Some managers win more than their points scored say they should — that's luck rating,
+          averaged across every season played. Positive means the wins have run hot; negative
+          means the schedule's been a grind.
+        </p>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))' }}>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Luckiest</th>
+                  <th className="num">Avg Luck</th>
+                </tr>
+              </thead>
+              <tbody>
+                {luckiest.map((c) => (
+                  <tr key={c.manager}>
+                    <td>
+                      <ManagerLink manager={c.manager} />
+                    </td>
+                    <td className="num pos">{signedPct(c.avgLuck)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Unluckiest</th>
+                  <th className="num">Avg Luck</th>
+                </tr>
+              </thead>
+              <tbody>
+                {unluckiest.map((c) => (
+                  <tr key={c.manager}>
+                    <td>
+                      <ManagerLink manager={c.manager} />
+                    </td>
+                    <td className="num neg">{signedPct(c.avgLuck)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div className="eyebrow" style={{ marginTop: 40 }}>
+        League Records Book
+      </div>
+
+      <section className="section" style={{ marginTop: 12 }}>
+        <h2 className="section-title">📈 Season Records</h2>
+        <div className="grid stat-grid">
+          {seasonCards.map((c, i) => (
+            <div className="card stat" key={c.label}>
+              <div className="label">
+                {c.emoji} {c.label}
+              </div>
+              <div className="value">{c.value}</div>
+              <div className="meta">
+                <ManagerLink manager={seasonCardManager[i]} /> · {c.meta}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">🎯 Single-Game Records</h2>
+        <div className="grid stat-grid">
+          <div className="card stat">
+            <div className="label">🚀 Highest Single-Game Score</div>
+            <div className="value">{num(r.highestSingleGame.points)}</div>
+            <div className="meta">
+              <ManagerLink manager={r.highestSingleGame.manager} /> vs.{' '}
+              <ManagerLink manager={r.highestSingleGame.opponent} plain /> · {r.highestSingleGame.season}{' '}
+              wk {r.highestSingleGame.week} ({phaseLabel(r.highestSingleGame.phase)})
+            </div>
+          </div>
+          <div className="card stat">
+            <div className="label">🧊 Lowest Single-Game Score</div>
+            <div className="value">{num(r.lowestSingleGame.points)}</div>
+            <div className="meta">
+              <ManagerLink manager={r.lowestSingleGame.manager} /> vs.{' '}
+              <ManagerLink manager={r.lowestSingleGame.opponent} plain /> · {r.lowestSingleGame.season}{' '}
+              wk {r.lowestSingleGame.week} ({phaseLabel(r.lowestSingleGame.phase)})
+            </div>
+          </div>
+          <div className="card stat">
+            <div className="label">💥 Biggest Blowout</div>
+            <div className="value">
+              +{num(r.biggestBlowout.margin)} <span className="muted">margin</span>
+            </div>
+            <div className="meta">
+              <ManagerLink manager={r.biggestBlowout.winner} /> {num(r.biggestBlowout.winnerScore)} –{' '}
+              {num(r.biggestBlowout.loserScore)} <ManagerLink manager={r.biggestBlowout.loser} plain /> ·{' '}
+              {r.biggestBlowout.season} wk {r.biggestBlowout.week} ({phaseLabel(r.biggestBlowout.phase)})
+            </div>
+          </div>
+          <div className="card stat">
+            <div className="label">😰 Closest Game</div>
+            <div className="value">
+              {num(r.closestGame.margin, 2)} <span className="muted">margin</span>
+            </div>
+            <div className="meta">
+              <ManagerLink manager={r.closestGame.winner} /> {num(r.closestGame.winnerScore, 2)} –{' '}
+              {num(r.closestGame.loserScore, 2)} <ManagerLink manager={r.closestGame.loser} plain /> ·{' '}
+              {r.closestGame.season} wk {r.closestGame.week} ({phaseLabel(r.closestGame.phase)})
+            </div>
+          </div>
+        </div>
+        {r.tiedScoreGames > 0 && (
+          <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
+            "Closest game" excludes exact ties — {r.tiedScoreGames} all-time{' '}
+            {r.tiedScoreGames === 1 ? 'game has' : 'games have'} finished with identical scores,
+            decided by the league's tiebreak rule rather than a true nonzero margin.
+          </p>
+        )}
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">🔗 Streaks</h2>
+        <div className="grid stat-grid">
+          <div className="card stat">
+            <div className="label">🏆 Longest Win Streak</div>
+            <div className="value">{r.longestWinStreak.length}</div>
+            <div className="meta">
+              <ManagerLink manager={r.longestWinStreak.manager} /> · {r.longestWinStreak.season}{' '}
+              season, weeks {r.longestWinStreak.startWeek}–{r.longestWinStreak.endWeek}
+            </div>
+          </div>
+          <div className="card stat">
+            <div className="label">🪦 Longest Losing Streak</div>
+            <div className="value">{r.longestLossStreak.length}</div>
+            <div className="meta">
+              <ManagerLink manager={r.longestLossStreak.manager} /> · {r.longestLossStreak.season}{' '}
+              season, weeks {r.longestLossStreak.startWeek}–{r.longestLossStreak.endWeek}
+            </div>
+          </div>
+          <div className="card stat">
+            <div className="label">⚔️ Longest Active Head-to-Head Streak</div>
+            <div className="value">{r.longestActiveH2HStreak.length}</div>
+            <div className="meta">
+              <ManagerLink manager={r.longestActiveH2HStreak.manager} /> vs.{' '}
+              <ManagerLink manager={r.longestActiveH2HStreak.opponent} plain /> · unbroken through{' '}
+              {r.longestActiveH2HStreak.lastSeason}
+            </div>
+          </div>
+        </div>
+        <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
+          Streaks reset at season boundaries — a hot or cold run can carry from the regular season
+          into a manager's own playoffs, but one season's finale never chains into the next
+          season's opener.
+        </p>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">😈 Most Lopsided Rivalry</h2>
+        <div className="card stat" style={{ maxWidth: 420 }}>
+          <div className="label">All-Time Head-to-Head Domination</div>
+          <div className="value">
+            {r.mostLopsidedRivalry.wins}-{r.mostLopsidedRivalry.losses}
+            {r.mostLopsidedRivalry.ties > 0 ? `-${r.mostLopsidedRivalry.ties}` : ''}
+          </div>
+          <div className="meta">
+            <ManagerLink manager={r.mostLopsidedRivalry.manager} /> vs.{' '}
+            <ManagerLink manager={r.mostLopsidedRivalry.opponent} plain /> ·{' '}
+            {pct(r.mostLopsidedRivalry.winPct)} win rate
+          </div>
+        </div>
+        <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
+          Minimum 10 all-time meetings required to qualify — enough games for the gap to mean
+          something rather than a small-sample fluke.
         </p>
       </section>
     </>

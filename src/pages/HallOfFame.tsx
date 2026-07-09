@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { ManagerLink } from '../components/ManagerLink'
-import { USER_USERNAME } from '../data/league'
 import { allCareerStats, type CareerStats } from '../lib/stats'
 import { num, pct } from '../lib/format'
 
@@ -68,10 +67,7 @@ export function HallOfFame() {
             </thead>
             <tbody>
               {sorted.map((c, i) => (
-                <tr
-                  key={c.manager}
-                  className={c.manager === USER_USERNAME ? 'you-row' : undefined}
-                >
+                <tr key={c.manager}>
                   <td className="muted">{i + 1}</td>
                   <td>
                     <ManagerLink manager={c.manager} />

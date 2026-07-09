@@ -2,13 +2,7 @@ import { Link } from 'react-router-dom'
 import { StatCard } from '../components/StatCard'
 import { ManagerLink } from '../components/ManagerLink'
 import { ResultBadge } from '../components/ResultBadge'
-import {
-  LEAGUE_NAME,
-  SEASON_YEARS,
-  SEASONS,
-  USER_USERNAME,
-  displayName,
-} from '../data/league'
+import { LEAGUE_NAME, SEASON_YEARS, SEASONS, displayName } from '../data/league'
 import { allCareerStats, leagueTotals, seasonPodiums } from '../lib/stats'
 import { int, num } from '../lib/format'
 
@@ -18,7 +12,6 @@ export function Overview() {
   const mostTitles = [...careers].sort((a, b) => b.championships - a.championships)[0]
   const podiums = seasonPodiums()
   const latest = podiums[podiums.length - 1]
-  const user = careers.find((c) => c.manager === USER_USERNAME)!
 
   const topScoringSeason = SEASONS.reduce((b, r) => (r.pf > b.pf ? r : b), SEASONS[0])
 
@@ -33,14 +26,17 @@ export function Overview() {
           bragging rights, all in one place.
         </p>
         <div className="cta">
-          <Link to="/champions" className="btn btn-gold">
-            🏆 See the champions
+          <Link to="/seasons" className="btn btn-gold">
+            🏆 Season history
           </Link>
           <Link to="/hall-of-fame" className="btn">
             Hall of Fame
           </Link>
           <Link to="/head-to-head" className="btn">
             Head-to-Head grid
+          </Link>
+          <Link to="/draft-history" className="btn">
+            Draft History
           </Link>
         </div>
       </section>
@@ -69,8 +65,8 @@ export function Overview() {
       <section className="section">
         <div className="row-between">
           <h2 className="section-title">🏆 Reigning Champion · {latest.season}</h2>
-          <Link to="/champions" className="muted">
-            All champions →
+          <Link to="/seasons" className="muted">
+            All seasons →
           </Link>
         </div>
         <div className="card stat">
@@ -87,25 +83,6 @@ export function Overview() {
             </div>
             <ResultBadge result="Champion" />
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="row-between">
-          <h2 className="section-title">Your Career · {displayName(USER_USERNAME)}</h2>
-          <Link to={`/managers/${USER_USERNAME}`} className="muted">
-            Full career →
-          </Link>
-        </div>
-        <div className="grid stat-grid">
-          <StatCard label="Championships" value={user.championships} meta="2017 · 2019 · 2025" />
-          <StatCard
-            label="Career Record"
-            value={`${user.wins}-${user.losses}`}
-            meta={`${num(user.winPct * 100)}% win rate`}
-          />
-          <StatCard label="Playoff Appearances" value={user.playoffAppearances} />
-          <StatCard label="Seasons" value={user.seasons} meta={`since ${user.firstSeason}`} />
         </div>
       </section>
 

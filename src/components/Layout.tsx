@@ -4,10 +4,11 @@ import { LEAGUE_NAME } from '../data/league'
 const LINKS = [
   { to: '/', label: 'Overview', end: true },
   { to: '/seasons', label: 'Seasons' },
-  { to: '/champions', label: 'Champions' },
   { to: '/hall-of-fame', label: 'Hall of Fame' },
   { to: '/awards', label: 'Awards' },
+  { to: '/managers', label: 'Managers' },
   { to: '/head-to-head', label: 'Head-to-Head' },
+  { to: '/draft-history', label: 'Draft History' },
 ]
 
 export function Layout() {
@@ -35,8 +36,8 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="footer">
-        {LEAGUE_NAME} · 14 seasons (2012–2025) · ESPN era manually curated, Sleeper era from
-        the public Sleeper API.
+        {LEAGUE_NAME} · 14 seasons (2012–2025) · Born on ESPN in 2012, living on Sleeper since
+        2019.
       </footer>
     </div>
   )

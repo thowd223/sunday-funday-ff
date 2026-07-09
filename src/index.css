@@ -289,10 +289,6 @@ tbody tr:last-child td {
   color: var(--gold-soft);
 }
 
-.you-row {
-  background: rgba(201, 162, 39, 0.09);
-}
-
 .pos {
   color: var(--pos);
 }
@@ -566,13 +562,3 @@ tbody tr:last-child td {
   font-weight: 600;
 }
 
-.tag-you {
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 5px;
-  padding: 1px 5px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
