@@ -1,167 +1,149 @@
-# Sunday Funday — Fantasy League Tools: Handoff Package
+# Sunday Funday — Current State (as of 2026-07-09)
 
-Context dump for picking this project up in Claude Code. Everything here was built
-in a chat session with no persistent code execution or unrestricted network access —
-Claude Code has both, so several "manual/interrupted" tasks below should be trivial
-to finish properly here.
+This replaces an earlier handoff doc that described a pre-React prototype (standalone
+HTML apps + an Excel workbook). That approach was abandoned; everything below reflects
+the actual shipped app.
 
-## What this project is
+## What this is
 
-A Sleeper.app fantasy football league ("Sunday Funday", 12 teams, league ID
-`1313676998056378368`) has three deliverables built around it:
+A React + TypeScript + Vite static site (`sunday-funday-ff`) — a fantasy football league
+chronicle for "Sunday Funday" (12 teams, 14 seasons, 2012–2025). No backend; all data is
+bundled JSON, built once from real API pulls and committed to the repo. HashRouter is used
+so the built static site works from any host path with no server-side rewrites.
 
-1. **`apps/sleeper-draft-warroom.html`** — a live draft assistant. Standalone
-   React (via CDN + Babel standalone, no build step) that connects to Sleeper's
-   public API, tracks a live draft, supports custom rankings pasted in, and shows
-   "survival odds" (will this player be there at your next pick) plus value/ADP
-   signals. Fully working, self-contained, open directly in a browser.
+Deployed on Vercel. **Open item: confirm Vercel is tracking the branch this repo actually
+uses** (see "Known open items" below) — there were misconfigured-domain notices before
+this session's work landed, unconfirmed whether they're resolved.
 
-2. **`apps/sleeper-league-history.html`** — "League Chronicle." Same stack. Walks
-   a league's `previous_league_id` chain back through every season, builds
-   champion/standings history, a Hall of Fame leaderboard, and — the newest,
-   **unfinished** piece — a head-to-head matchup grid (see "Outstanding work" below).
+## Data provenance — read this before touching any data file
 
-3. **`data/Sunday_Funday_League_History.xlsx`** — a 6-sheet Excel workbook (README,
-   All Seasons, Season Champions, Hall of Fame, Your Career, League Awards) covering
-   **2012–2025** (14 seasons: 2012-2018 from a manually-curated ESPN-era source file
-   the user uploaded, 2019-2025 pulled live from the Sleeper API). Built with
-   `scripts/build_workbook.py` (openpyxl), formulas recalculated via LibreOffice
-   headless (`libreoffice --headless` — the script that does this is
-   `/mnt/skills/public/xlsx/scripts/recalc.py` in the original environment; you'll
-   need your own recalc method, e.g. open once in Excel/LibreOffice, or just trust
-   openpyxl's formulas since they were verified working).
+- **2012–2018 (ESPN era)**: pulled directly from ESPN's Fantasy API, league ID `561849`,
+  via `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/leagueHistory/561849`
+  (the `leagueHistory` endpoint, not the per-season endpoint — ESPN's modern API doesn't
+  serve pre-2018 seasons through the per-season path at all, only through leagueHistory).
+  Required authenticated cookies (`SWID` + `espn_s2`) from the user's own ESPN account —
+  those cookies are NOT stored anywhere in this repo; if you need to re-pull ESPN data,
+  the user has to supply fresh ones (DevTools → Application → Cookies →
+  fantasy.espn.com). This data is frozen — the ESPN league is inactive, it will never
+  change, so there is no refresh need for these seasons, only extension (e.g. draft data
+  for other purposes).
+- **2019–2025 (Sleeper era)**: pulled from Sleeper's public API (no auth needed),
+  league chain in `src/data/league_data.json` under `league_chain_by_season`. **This DOES
+  need periodic re-pulling** as new seasons complete — see "Known open items" below.
+- League was named "National Beer League" in 2012, renamed to "Sunday Funday" from 2013 on.
+- Manager identity mapping (Sleeper handle → real name) lives in
+  `league_data.json.manager_identity`. Two franchise slots were folded across an owner
+  change: TylerKeel's slot includes an earlier "Robertson"-owned portion (2012), and
+  dnevels8's slot includes an earlier "Engler"-owned portion (2012–2015ish). This was
+  confirmed directly against ESPN's raw member list, not just the old source file's
+  footnotes — don't re-litigate it.
 
-All the underlying data — full season-by-season records, playoff results, points
-for/against, manager identity mapping, and the season league_id chain — is in
-**`data/league_data.json`**, already structured and ready to consume. You should
-not need to re-fetch anything from Sleeper's API to extend the Excel workbook;
-you only need fresh API calls for genuinely new data (like the head-to-head grid).
+## Known data corrections applied this session (do not "fix" these back)
 
-## Key identifiers
+1. **2015 championship**: ESPN's raw API data (single-week score, `rankCalculatedFinal`
+   field) shows jphn744 winning the week-16 final 170–155 over peterbrune. **This is
+   wrong** — the user confirmed 2015 was an anomaly year where the league manually
+   combined two weeks of scoring for the championship game outside ESPN's own bracket
+   system, and peterbrune actually won. The site correctly shows peterbrune as 2015
+   Champion. This is annotated in `data/full_league_history.json` under
+   `meta.corrections_applied` — if you ever regenerate data from raw ESPN pulls, you
+   MUST re-apply this override or the champion will silently flip back to wrong.
+2. **Sleeper losers-bracket results were inverted**: Sleeper's `losers_bracket` API
+   field `w` (winner) tracks *bracket advancement*, not who actually won that game.
+   All 49 losers-bracket games in the dataset had this checked against real weekly
+   scores and every single one needed correcting. If you ever re-pull Sleeper bracket
+   data, do NOT trust the `w` field directly for losers-bracket games — recompute the
+   actual winner from `/matchups/{week}` scores, same as the fix in this session did.
+3. **Playoff win/loss records exclude consolation-bracket games.** Only real
+   championship-bracket games (ESPN `WINNERS_BRACKET` + `WINNERS_CONSOLATION_LADDER`
+   placement games; Sleeper `winners_bracket`) count toward a manager's playoff record.
+   Toilet-bowl games (ESPN `LOSERS_CONSOLATION_LADDER`, Sleeper `losers_bracket`) are
+   flagged `consolation: true` on the game entry and excluded from win/loss totals —
+   they still show up in game logs, just labeled "Consolation" instead of "Playoffs".
+   Before this fix, career playoff records were inflated (e.g. one manager showed
+   18-9 across a single playoff appearance).
 
-- Sleeper username: `thowd` (the user, real name Tim Howd), user_id `77161125753798656`
-- Current league ID: `1313676998056378368` (2026 season, pre-draft, no games yet — excluded from all stats)
-- Full season chain (league_id per year) is in `league_data.json` under `league_chain_by_season`
-- Sleeper's public API needs no auth: `https://api.sleeper.app/v1/...`, fully CORS-open,
-  fine to call directly from a browser or from a script with normal internet access
-
-## Manager identity mapping (important — read before touching anything)
-
-This league started on ESPN in 2012, then moved to Sleeper for the 2019 season.
-The uploaded ESPN source file labeled rows by **surname**, and ownership of some
-roster slots changed hands over the years. The user explicitly confirmed this
-mapping (do not re-derive it, it's settled):
-
-| Sleeper username | Real name | Notes |
-|---|---|---|
-| thowd | Tim Howd | **This is the user.** 3 championships (2017, 2019, 2025). |
-| jphn744 | John Hartnett | **All-time championship leader, 5 titles.** User initially typo'd this as "jphn755" — confirmed jphn744 is correct via API. |
-| YungSimba | Nick Pellegrini | |
-| kdavis | Kurtis Davis | Best career win% (62%), most playoff appearances (12), only 2 titles. |
-| bcorrigan30 | Brian Corrigan | 6 third-place finishes, 0 titles — the league's perennial bronze medalist. |
-| peterbrune | Peter Brune | Set the all-time single-season scoring record (1912.3 pts, 2021) and lost that year's final anyway. |
-| JPeters19 | Jordan Peters | Left the league after 2023; replaced by Keughes in the same roster slot from 2024. |
-| GBClark | Garrett Clark | |
-| SeanOMara | Sean O'Mara | Joined 2015 as an expansion team. |
-| TylerKeel | Tyler Keel | Franchise **includes an earlier "Robertson"-era portion** per the source file's own footnote — folded into TylerKeel's career line per user instruction, not tracked as a separate manager. |
-| dnevels8 | devin nevels | Joined 2015 as an expansion team. Franchise **includes an earlier "Engler"-era portion** per the source file's footnote — folded in per user instruction. |
-| assif | Asif Lakhani | Also appears as "AsifL" in some seasons (same owner_id). Left after 2022; replaced by amenr5 in the same roster slot from 2023. |
-| amenr5 | (unknown) | Sleeper-only, joined 2023. Co-owned with "muhiuj" from 2024 (team "Love is Through the Air"). |
-| Keughes | (unknown) | Sleeper-only, joined 2024. |
-
-**roster_id has stayed stable for these 12 slots across all 7 Sleeper seasons**
-(2019-2025) — see `roster_id_map_2019_2025` in the JSON. This means you can often
-skip re-fetching `/rosters` per season if you already know which roster_id maps to
-which manager, EXCEPT for the two slots that changed hands (slot 6: JPeters19→Keughes
-after 2023; slot 12: assif→amenr5 after 2022).
-
-## Data methodology notes (carry these forward if you extend the workbook)
-
-- **Playoff field size**: 4 teams in the 10-team era (2012-2014), 6 teams from 2015
-  on (12-team league). The user corrected this explicitly — don't assume 6 uniformly.
-- **"Place Finished" in the ESPN source file is POST-playoff final standing**, not
-  regular-season rank. Confirmed by cross-checking against known Sleeper 2019/2020
-  results. Regular-season rank for 2012-2018 in the workbook was independently
-  computed from win-loss-PF (wins desc, points-for tiebreak) to match the methodology
-  used for 2019-2025.
-- **2019-2020 blocks in the ESPN source file are redundant with Sleeper data** and
-  have at least one confirmed copy-paste data entry error (KEEL/PELLEGRINI rows in
-  the 2020 block share an identical PF value that doesn't match real Sleeper data).
-  Ignore those two years from the ESPN file entirely; the workbook already does.
-- **Luck Rating** = actual win% − Pythagorean-expected win% (points-for^2.37 /
-  (points-for^2.37 + points-against^2.37)), the standard football exponent.
-- **Team names for 2012-2018** use each manager's single all-time "franchise title"
-  from the ESPN file's name key (Sheet2), since no per-season team name was available
-  — not necessarily what they were literally called that specific year. Noted in the
-  workbook's README sheet.
-- If writing MAXIFS/MINIFS (or any post-2007 Excel function) via openpyxl formula
-  strings, **you must prefix with `_xlfn.`** (e.g. `_xlfn.MAXIFS(...)`) or Excel/
-  LibreOffice will throw `#NAME?` on load. Cost real debugging time in this session —
-  don't repeat it.
-
-## Outstanding work (why this handoff exists)
-
-### 1. Head-to-head matchup grid — interrupted, needs a proper finish
-
-The user wants every manager's all-time head-to-head record against every other
-manager, using real weekly matchup data (not season aggregates). This requires
-`GET /v1/league/{league_id}/matchups/{week}` for every regular-season week of
-every Sleeper season — **96 total calls** (13 weeks in 2019 and 2020, 14 weeks
-2021-2025; exact `playoff_week_start` per season is in `league_data.json`).
-
-I built this as a feature into `apps/sleeper-league-history.html` (a "Build Grid"
-button under a new Head-to-Head Records section — see the `buildH2H` function and
-the `GridView`/`FocusView` components near the end of that file). **This should work
-as-is when opened in a real browser** — I just never got to verify it end-to-end
-since I don't have a network-enabled browser in this environment.
-
-Separately, the user asked me to pull just one pairing (thowd vs. jphn744) directly
-in chat, one URL at a time, due to my sandbox's fetch restrictions. I got through
-**6 of 96 weeks** (2019 weeks 1-6) before flagging that this was impractically slow
-and expensive to do that way, and recommended switching to a real script. That
-partial result is preserved in `league_data.json` under `head_to_head_progress` —
-treat it as provisional/spot-check data, not something to build on.
-
-**What to do**: write a proper script (Python + `requests`, or Node) that:
-- Reads the season chain and `playoff_week_start` per season from `league_data.json`
-  (or re-derive it from `GET /v1/league/{id}`)
-- Loops all 96 weeks, fetches matchups, groups by `matchup_id`, resolves `roster_id`
-  → `owner_id` (via `/rosters` per season) → manager identity (via the mapping table above)
-- Builds a full pairwise win-loss(-tie) + points matrix
-- Sanity-check the thowd-vs-jphn744 result against the one confirmed data point above
-  (2019 week 3: jphn744 won 176.86-116.00) as a smoke test
-- Either feed the result into the existing browser grid (it already expects this
-  exact shape — `matrix[ownerId][ownerId] = {w,l,t,pf,pa}` — see `buildH2H` in the
-  HTML file for the exact structure) or add a new sheet to the Excel workbook
-
-### 2. Excel workbook could use the head-to-head data once it exists
-
-Once #1 is done, a natural addition to `Sunday_Funday_League_History.xlsx` is a
-"Head-to-Head" sheet — likely most useful as a matrix (same shape as the in-app
-grid) plus maybe a per-manager "toughest opponent" / "favorite opponent" callout
-in the League Awards sheet. `build_workbook.py` is structured as a linear script
-that builds each sheet in sequence and saves at the end — follow that pattern,
-don't refactor unless asked.
-
-### 3. Nothing else was explicitly requested beyond this
-
-Don't add scope (e.g. don't build a "regular season vs playoff" splitter, don't
-add trade/waiver tracking) unless the user asks — this league's data sources don't
-have that information anyway (ESPN file is season-aggregate only; Sleeper API would
-need separate transaction endpoints never pulled here).
-
-## File manifest
+## Data pipeline / file map
 
 ```
-apps/
-  sleeper-draft-warroom.html      — live draft assistant, fully working
-  sleeper-league-history.html     — league history + Hall of Fame + head-to-head
-                                     (grid builder unverified end-to-end, see above)
 data/
-  Sunday_Funday_League_History.xlsx  — 6-sheet workbook, 2012-2025, formulas verified
-  league_data.json                — full compiled dataset: 162 season-team rows,
-                                     manager identity map, league_id chain, PA data,
-                                     partial head-to-head progress
-scripts/
-  build_workbook.py               — regenerates the xlsx from scratch (openpyxl)
+  full_league_history.json   — the canonical source of truth. Every season, every
+                                manager, every game (regular + playoff), real scores,
+                                authoritative results, correction annotations in
+                                .meta. NOT imported by the app directly — it's the
+                                staging file the bundled src/data/*.json are derived
+                                from. If you regenerate anything, regenerate FROM here
+                                or update this file first, then re-derive the bundles.
+
+src/data/
+  league_data.json     — season-by-season standings (w/l/pf/pa/result per manager
+                         per season). Imported by src/data/league.ts.
+  matchup_log.json     — full flat game log, every real game from both sides'
+                         perspective, WITH real scores and a `consolation` flag.
+                         Powers Head-to-Head and manager Game Log.
+  playoff_brackets.json — per-season per-manager ordered list of real bracket games
+                         (round/tier/place, scores, consolation flag). Powers
+                         PlayoffBracket.tsx.
+  playoff_records.json — per-season per-manager {wins, losses} — championship-path
+                         games only, post consolation-exclusion fix.
+  draft_history.json   — every pick, every season, both eras (ESPN needed the
+                         authenticated leagueHistory pull + a separate player-name
+                         lookup since ESPN draft picks are player IDs only; Sleeper
+                         embeds player names directly in pick metadata).
+  trade_history.json   — Sleeper era only (2019+). ESPN's transaction API
+                         (`mTransactions2` view, and others tried) returns nothing
+                         useful for historical leagues anymore — confirmed dead, not
+                         a bug in the pull script. If you want 2012-2018 trades, the
+                         only path found so far is parsing real ESPN trade-notification
+                         emails from the user's Gmail (rich detail exists there, never
+                         extracted into structured data).
+  badges.ts            — hand-written "career story" blurbs per manager. Rewritten
+                         this session to fix factual errors (see git log) and to
+                         read as plain league color, not internal dev/process notes.
 ```
+
+`src/data/league.ts` is the typed access layer over all of the above — read it first,
+it's the single source of truth for what's importable and how.
+
+## Known open items
+
+### 1. Confirm the Vercel deployment is live and correct
+There were "2 domains need configuration" emails in the user's inbox before this
+session. Check the Vercel project's branch tracking and domain config — this repo's
+only branch is `claude/fantastfootball-app-setup-up2qy5` (also the GitHub default
+branch; there is no `main`). If Vercel is watching a different branch name, pushes
+here won't trigger a deploy.
+
+### 2. Build a data-refresh pipeline for the Sleeper era
+Nothing automated exists yet. To refresh 2019–2025 data (new season, new games), you
+currently have to re-run the same ad-hoc pull scripts built during this session
+(matchups, brackets, drafts, trades — all straightforward public Sleeper API calls,
+no auth). Worth turning into a real `scripts/refresh-sleeper-data.js` (or similar)
+that: pulls all weekly matchups + winners/losers brackets + draft + transactions for
+each Sleeper season, regenerates `data/full_league_history.json` (careful: re-apply
+the correction-annotations logic, not just raw pulls) and all `src/data/*.json`
+bundles, and reports a diff summary. The ESPN-era files never need to change.
+
+### 3. Smaller/optional
+- Bundle is ~575 kB of JSON in one `league-data` chunk (65 kB gzipped) — fine for a
+  12-person site, revisit only if it ever feels slow.
+- No per-game score data exists for anything before this session's enrichment — it's
+  there now for all 2,548 games, but if you ever rebuild `matchup_log.json` from
+  scratch, make sure the enrichment step (pulling real weekly points and attaching
+  pf/pa to every game, especially playoff games) isn't skipped again.
+- Trade history has no ESPN-era data (see above) — either accept the gap or invest in
+  email-parsing if it matters.
+
+## Architecture notes for whoever picks this up
+
+- Static site, `HashRouter`, no backend, no auth, no env vars, no CI beyond `npm run
+  typecheck` and `npm run build` (both should be run before any commit).
+- Routes: `/`, `/seasons` (+ `/seasons/:year`), `/hall-of-fame`, `/awards` (absorbed
+  the old `/records`, which now redirects here), `/managers` (+ `/managers/:manager`),
+  `/head-to-head`, `/draft-history` (+ `/draft-history/:year`). `/champions` redirects
+  to `/seasons`.
+- `src/lib/stats.ts`, `src/lib/h2h.ts`, `src/lib/records.ts` hold the derived-stat
+  logic; keep new computed stats there rather than inline in page components.
+- Season-detail and manager-detail pages both derive their selected year/season from
+  the URL or local component state respectively — see those files for the pattern if
+  adding another drill-down view.
