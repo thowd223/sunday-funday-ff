@@ -94,7 +94,7 @@ export function Luck() {
         <p className="muted" style={{ fontSize: 14, marginBottom: 16 }}>
           Single manager-seasons, not careers — the years the schedule was kindest or cruelest.
         </p>
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(420px,1fr))' }}>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(min(420px, 100%),1fr))' }}>
           <div>
             <h3 style={{ fontSize: 15, color: 'var(--gold-soft)', marginBottom: 8 }}>
               🍀 Luckiest

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { displayName, SEASON_YEARS } from '../data/league'
 import { buildHeadToHead, pairGames } from '../lib/h2h'
 import { num, record } from '../lib/format'
@@ -118,7 +119,8 @@ export function HeadToHead() {
               return (
                 <p className="muted" style={{ fontSize: 14, marginBottom: 16 }}>
                   All-time record: <strong>{record(cell.w, cell.l, cell.t)}</strong> · Points for{' '}
-                  <strong>{num(cell.pf)}</strong>, points against <strong>{num(cell.pa)}</strong>
+                  <strong>{num(cell.pf)}</strong>, points against <strong>{num(cell.pa)}</strong>{' '}
+                  · <Link to={`/rivalries/${selected.row}/${selected.col}`}>Full rivalry page →</Link>
                 </p>
               )
             })()}
