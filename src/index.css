@@ -134,6 +134,76 @@ h3 {
   background: var(--gold);
 }
 
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+/* .nav-backdrop is only ever mounted (in Layout.tsx) while the mobile menu is
+   open, so no CSS class-toggling is needed here — just its base appearance,
+   plus a safety hide above the breakpoint in case of an open-menu window resize. */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 15;
+}
+
+@media (min-width: 769px) {
+  .nav-backdrop {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 0;
+    padding: 10px clamp(16px, 4vw, 40px) 16px;
+    background: var(--ink-2);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    z-index: 25;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 12px 14px;
+  }
+}
+
 .container {
   width: 100%;
   max-width: 1120px;
@@ -231,6 +301,48 @@ h3 {
   overflow-x: auto;
   border-radius: var(--radius);
   border: 1px solid var(--line);
+}
+
+/* Mobile scroll affordance: a right-edge fade + "swipe" hint on every wide,
+   horizontally-scrollable table/grid, so truncated columns don't go unnoticed.
+   Applies to .table-wrap, .h2h-scroll, and .bracket-scroll with no per-page
+   markup changes — the hint renders as a normal-flow block above the
+   scrollable content, so it stays put (doesn't scroll away with the table). */
+@media (max-width: 640px) {
+  .table-wrap,
+  .h2h-scroll,
+  .bracket-scroll {
+    position: relative;
+  }
+
+  .table-wrap::before,
+  .h2h-scroll::before,
+  .bracket-scroll::before {
+    content: 'Swipe to see more →';
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-faint);
+    text-align: right;
+    padding: 8px 12px;
+    background: var(--ink-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table-wrap::after,
+  .h2h-scroll::after,
+  .bracket-scroll::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 28px;
+    background: linear-gradient(to right, transparent, var(--ink-2));
+    pointer-events: none;
+  }
 }
 
 table {

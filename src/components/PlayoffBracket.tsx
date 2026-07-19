@@ -179,68 +179,70 @@ export function PlayoffBracket({ season }: { season: number }) {
   }
 
   return (
-    <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 8 }}>
-      {rounds.map((round, idx) => (
-        <div
-          key={idx}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
-            minWidth: 200,
-            flexShrink: 0,
-          }}
-        >
+    <div className="bracket-scroll">
+      <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 8 }}>
+        {rounds.map((round, idx) => (
           <div
+            key={idx}
             style={{
-              textAlign: 'center',
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: 'var(--gold)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+              minWidth: 200,
+              flexShrink: 0,
             }}
           >
-            {round.label}
-          </div>
-          {round.matchups.map((m) => (
             <div
-              key={m.key}
               style={{
-                position: 'relative',
-                border: '1px solid var(--line)',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--panel)',
-                padding: '10px 12px',
+                textAlign: 'center',
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: 'var(--gold)',
               }}
             >
-              {m.place != null && m.place !== 1 && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: -9,
-                    left: 10,
-                    background: 'var(--ink-3)',
-                    border: '1px solid var(--line)',
-                    color: 'var(--text-dim)',
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    padding: '1px 6px',
-                    borderRadius: 999,
-                  }}
-                >
-                  {ordinal(m.place)} Place
-                </div>
-              )}
-              <BracketTeamRow side={m.teamA} />
-              <div style={{ borderTop: '1px solid rgba(42, 55, 80, 0.5)' }} />
-              <BracketTeamRow side={m.teamB} />
+              {round.label}
             </div>
-          ))}
-        </div>
-      ))}
+            {round.matchups.map((m) => (
+              <div
+                key={m.key}
+                style={{
+                  position: 'relative',
+                  border: '1px solid var(--line)',
+                  borderRadius: 'var(--radius-sm)',
+                  background: 'var(--panel)',
+                  padding: '10px 12px',
+                }}
+              >
+                {m.place != null && m.place !== 1 && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: -9,
+                      left: 10,
+                      background: 'var(--ink-3)',
+                      border: '1px solid var(--line)',
+                      color: 'var(--text-dim)',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      padding: '1px 6px',
+                      borderRadius: 999,
+                    }}
+                  >
+                    {ordinal(m.place)} Place
+                  </div>
+                )}
+                <BracketTeamRow side={m.teamA} />
+                <div style={{ borderTop: '1px solid rgba(42, 55, 80, 0.5)' }} />
+                <BracketTeamRow side={m.teamB} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

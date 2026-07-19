@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { LEAGUE_NAME } from '../data/league'
 
 const LINKS = [
@@ -12,6 +13,14 @@ const LINKS = [
 ]
 
 export function Layout() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Close the mobile menu on every navigation.
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
   return (
     <div className="app">
       <header className="topbar">
@@ -24,7 +33,18 @@ export function Layout() {
             <small>League Chronicle</small>
           </span>
         </NavLink>
-        <nav className="nav">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav className={`nav${menuOpen ? ' nav-open' : ''}`}>
           {LINKS.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.end}>
               {l.label}
@@ -32,6 +52,9 @@ export function Layout() {
           ))}
         </nav>
       </header>
+      {menuOpen && (
+        <div className="nav-backdrop" onClick={() => setMenuOpen(false)} aria-hidden />
+      )}
       <main className="container">
         <Outlet />
       </main>
