@@ -217,6 +217,8 @@ export function SeasonDetail() {
 
       <p className="page-sub">
         <Link to={`/draft-history/${year}`}>View the {year} draft →</Link>
+        {' · '}
+        <Link to="/draft-grades">Draft Report Card →</Link>
       </p>
     </>
   )

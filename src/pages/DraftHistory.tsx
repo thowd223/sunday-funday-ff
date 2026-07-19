@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ManagerLink } from '../components/ManagerLink'
 import { draftForSeason, SEASON_YEARS } from '../data/league'
 
@@ -37,7 +37,9 @@ export function DraftHistory() {
       <h1 className="page-title">Draft History</h1>
       <p className="page-sub">
         Every pick from every draft, 2012–2025 — pulled directly from ESPN's and Sleeper's draft
-        APIs. Keeper picks are marked with a "K" tag.
+        APIs. Keeper picks are marked with a "K" tag. Want the league-wide grading — first-pick
+        curses, draft-day loyalty, positional tendencies? See the{' '}
+        <Link to="/draft-grades">Draft Report Card →</Link>
       </p>
 
       <div className="section" style={{ marginTop: 24 }}>

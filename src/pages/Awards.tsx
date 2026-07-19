@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ManagerLink } from '../components/ManagerLink'
 import { SEASONS, SEASON_YEARS } from '../data/league'
 import { BADGES } from '../data/badges'
@@ -187,7 +188,9 @@ export function Awards() {
         <p className="page-sub">
           Some managers win more than their points scored say they should — that's luck rating,
           averaged across every season played. Positive means the wins have run hot; negative
-          means the schedule's been a grind.
+          means the schedule's been a grind. This is a <em>different</em> metric from the site's{' '}
+          <Link to="/luck">Luck Index</Link>, which compares actual wins to an all-play record
+          instead of a Pythagorean expectation — worth a look if you want the fuller picture.
         </p>
         <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))' }}>
           <div className="table-wrap">
@@ -344,19 +347,28 @@ export function Awards() {
       </section>
 
       <section className="section">
-        <h2 className="section-title">😈 Most Lopsided Rivalry</h2>
-        <div className="card stat" style={{ maxWidth: 420 }}>
+        <div className="row-between">
+          <h2 className="section-title">😈 Most Lopsided Rivalry</h2>
+          <Link to="/rivalries" className="muted" style={{ fontSize: 13 }}>
+            All rivalries →
+          </Link>
+        </div>
+        <Link
+          to={`/rivalries/${r.mostLopsidedRivalry.manager}/${r.mostLopsidedRivalry.opponent}`}
+          className="card stat"
+          style={{ maxWidth: 420, display: 'block', color: 'inherit', textDecoration: 'none' }}
+        >
           <div className="label">All-Time Head-to-Head Domination</div>
           <div className="value">
             {r.mostLopsidedRivalry.wins}-{r.mostLopsidedRivalry.losses}
             {r.mostLopsidedRivalry.ties > 0 ? `-${r.mostLopsidedRivalry.ties}` : ''}
           </div>
           <div className="meta">
-            <ManagerLink manager={r.mostLopsidedRivalry.manager} /> vs.{' '}
+            <ManagerLink manager={r.mostLopsidedRivalry.manager} plain /> vs.{' '}
             <ManagerLink manager={r.mostLopsidedRivalry.opponent} plain /> ·{' '}
-            {pct(r.mostLopsidedRivalry.winPct)} win rate
+            {pct(r.mostLopsidedRivalry.winPct)} win rate · full rivalry →
           </div>
-        </div>
+        </Link>
         <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
           Minimum 10 all-time meetings required to qualify — enough games for the gap to mean
           something rather than a small-sample fluke.

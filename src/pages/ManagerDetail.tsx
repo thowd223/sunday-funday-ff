@@ -14,6 +14,7 @@ import { BADGE_BY_MANAGER } from '../data/badges'
 import { ManagerLink } from '../components/ManagerLink'
 import { careerStats, luckRating, winPct as winPctOf } from '../lib/stats'
 import { rivalryFor, type RivalryOpponent } from '../lib/h2h'
+import { careerLuck } from '../lib/luck'
 import { num, pct, record, signedPct } from '../lib/format'
 
 export function ManagerDetail() {
@@ -36,6 +37,7 @@ export function ManagerDetail() {
   const badge = BADGE_BY_MANAGER[manager]
   const initials = displayName(manager).slice(0, 2).toUpperCase()
   const rivalry = rivalryFor(manager)
+  const allPlayLuck = careerLuck().find((c) => c.manager === manager)
 
   return (
     <>
@@ -93,19 +95,42 @@ export function ManagerDetail() {
             value={
               <span className={c.avgLuck >= 0 ? 'pos' : 'neg'}>{signedPct(c.avgLuck)}</span>
             }
+            meta="actual vs. Pythagorean-expected win %"
           />
+          {allPlayLuck && (
+            <StatCard
+              label="Career Luck Index"
+              value={
+                <span className={allPlayLuck.luck >= 0 ? 'pos' : 'neg'}>
+                  {allPlayLuck.luck >= 0 ? '+' : ''}
+                  {num(allPlayLuck.luck, 2)}
+                </span>
+              }
+              meta={
+                <>
+                  actual wins vs. all-play — a different metric, see the{' '}
+                  <Link to="/luck">full Luck Index →</Link>
+                </>
+              }
+            />
+          )}
         </div>
       </section>
 
       {(rivalry.toughest || rivalry.favorite) && (
         <section className="section">
-          <h2 className="section-title">Rivalries</h2>
+          <div className="row-between">
+            <h2 className="section-title">Rivalries</h2>
+            <Link to="/rivalries" className="muted" style={{ fontSize: 13 }}>
+              All rivalries →
+            </Link>
+          </div>
           <div className="grid stat-grid">
             {rivalry.toughest && (
-              <RivalryCard label="Toughest Opponent" rival={rivalry.toughest} />
+              <RivalryCard label="Toughest Opponent" manager={manager} rival={rivalry.toughest} />
             )}
             {rivalry.favorite && (
-              <RivalryCard label="Favorite Opponent" rival={rivalry.favorite} />
+              <RivalryCard label="Favorite Opponent" manager={manager} rival={rivalry.favorite} />
             )}
           </div>
         </section>
@@ -156,6 +181,11 @@ export function ManagerDetail() {
       </section>
 
       <GameLog manager={manager} />
+
+      <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>
+        See also: <Link to="/luck">Luck Index</Link> · <Link to="/draft-grades">Draft Report Card</Link>{' '}
+        · <Link to="/trades">Trade History</Link>
+      </p>
     </>
   )
 }
@@ -270,18 +300,30 @@ function GameLog({ manager }: { manager: string }) {
   )
 }
 
-function RivalryCard({ label, rival }: { label: string; rival: RivalryOpponent }) {
+function RivalryCard({
+  label,
+  manager,
+  rival,
+}: {
+  label: string
+  manager: string
+  rival: RivalryOpponent
+}) {
   const games = rival.w + rival.l + rival.t
   const winRate = games === 0 ? 0 : (rival.w + rival.t * 0.5) / games
   return (
-    <div className="card stat">
+    <Link
+      to={`/rivalries/${manager}/${rival.opponent}`}
+      className="card stat"
+      style={{ display: 'block', color: 'inherit', textDecoration: 'none' }}
+    >
       <div className="label">{label}</div>
       <div className="value">
-        vs <ManagerLink manager={rival.opponent} />
+        vs <ManagerLink manager={rival.opponent} plain />
       </div>
       <div className="meta">
-        {record(rival.w, rival.l, rival.t)} ({pct(winRate)})
+        {record(rival.w, rival.l, rival.t)} ({pct(winRate)}) · full rivalry →
       </div>
-    </div>
+    </Link>
   )
 }
