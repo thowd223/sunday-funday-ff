@@ -11,9 +11,8 @@ chronicle for "Sunday Funday" (12 teams, 14 seasons, 2012–2025). No backend; a
 bundled JSON, built once from real API pulls and committed to the repo. HashRouter is used
 so the built static site works from any host path with no server-side rewrites.
 
-Deployed on Vercel. **Open item: confirm Vercel is tracking the branch this repo actually
-uses** (see "Known open items" below) — there were misconfigured-domain notices before
-this session's work landed, unconfirmed whether they're resolved.
+Deployed on Vercel (confirmed live and working by the league owner, July 2026) at
+https://sunday-funday-ff-bkvr.vercel.app — the project tracks this repo's only branch.
 
 ## Data provenance — read this before touching any data file
 
@@ -107,24 +106,14 @@ it's the single source of truth for what's importable and how.
 
 ## Known open items
 
-### 1. Confirm the Vercel deployment is live and correct
-There were "2 domains need configuration" emails in the user's inbox before this
-session. Check the Vercel project's branch tracking and domain config — this repo's
-only branch is `claude/fantastfootball-app-setup-up2qy5` (also the GitHub default
-branch; there is no `main`). If Vercel is watching a different branch name, pushes
-here won't trigger a deploy.
+(The Vercel deployment was confirmed live in July 2026 — no longer an open item. A
+Sleeper data-refresh pipeline was considered and explicitly descoped by the league
+owner; if it's ever revived, the approach is straightforward: re-run the public
+Sleeper API pulls — matchups, brackets, draft, transactions per season — regenerate
+`data/full_league_history.json` with the correction-annotations logic re-applied,
+then rebuild the `src/data/*.json` bundles. ESPN-era files never change.)
 
-### 2. Build a data-refresh pipeline for the Sleeper era
-Nothing automated exists yet. To refresh 2019–2025 data (new season, new games), you
-currently have to re-run the same ad-hoc pull scripts built during this session
-(matchups, brackets, drafts, trades — all straightforward public Sleeper API calls,
-no auth). Worth turning into a real `scripts/refresh-sleeper-data.js` (or similar)
-that: pulls all weekly matchups + winners/losers brackets + draft + transactions for
-each Sleeper season, regenerates `data/full_league_history.json` (careful: re-apply
-the correction-annotations logic, not just raw pulls) and all `src/data/*.json`
-bundles, and reports a diff summary. The ESPN-era files never need to change.
-
-### 3. Smaller/optional
+### Smaller/optional
 - Bundle is ~575 kB of JSON in one `league-data` chunk (65 kB gzipped) — fine for a
   12-person site, revisit only if it ever feels slow.
 - No per-game score data exists for anything before this session's enrichment — it's
@@ -140,10 +129,12 @@ bundles, and reports a diff summary. The ESPN-era files never need to change.
   typecheck` and `npm run build` (both should be run before any commit).
 - Routes: `/`, `/seasons` (+ `/seasons/:year`), `/hall-of-fame`, `/awards` (absorbed
   the old `/records`, which now redirects here), `/managers` (+ `/managers/:manager`),
-  `/head-to-head`, `/draft-history` (+ `/draft-history/:year`). `/champions` redirects
-  to `/seasons`.
-- `src/lib/stats.ts`, `src/lib/h2h.ts`, `src/lib/records.ts` hold the derived-stat
-  logic; keep new computed stats there rather than inline in page components.
+  `/head-to-head`, `/rivalries` (+ `/rivalries/:a/:b`), `/luck`, `/draft-history`
+  (+ `/draft-history/:year`), `/draft-grades`, `/trades`, `/stories`. `/champions`
+  redirects to `/seasons`.
+- `src/lib/stats.ts`, `src/lib/h2h.ts`, `src/lib/records.ts`, `src/lib/luck.ts`,
+  `src/lib/rivalry.ts` hold the derived-stat logic; keep new computed stats there
+  rather than inline in page components.
 - Season-detail and manager-detail pages both derive their selected year/season from
   the URL or local component state respectively — see those files for the pattern if
   adding another drill-down view.
