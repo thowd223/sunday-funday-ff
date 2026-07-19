@@ -15,7 +15,7 @@ import { ManagerLink } from '../components/ManagerLink'
 import { careerStats, luckRating, winPct as winPctOf } from '../lib/stats'
 import { rivalryFor, type RivalryOpponent } from '../lib/h2h'
 import { careerLuck } from '../lib/luck'
-import { franchiseForManager } from '../lib/franchise'
+import { franchisesForManager } from '../lib/franchise'
 import { num, pct, record, signedPct } from '../lib/format'
 
 export function ManagerDetail() {
@@ -39,14 +39,7 @@ export function ManagerDetail() {
   const initials = displayName(manager).slice(0, 2).toUpperCase()
   const rivalry = rivalryFor(manager)
   const allPlayLuck = careerLuck().find((c) => c.manager === manager)
-  const franchise = franchiseForManager(manager)
-  const franchiseEra = franchise?.owners.find((o) => o.manager === manager)
-  const predecessor = franchise && franchiseEra
-    ? franchise.owners[franchise.owners.indexOf(franchiseEra) - 1]
-    : undefined
-  const successor = franchise && franchiseEra
-    ? franchise.owners[franchise.owners.indexOf(franchiseEra) + 1]
-    : undefined
+  const franchises = franchisesForManager(manager)
 
   return (
     <>
@@ -71,23 +64,34 @@ export function ManagerDetail() {
 
       {badge && <p className="note" style={{ maxWidth: '70ch' }}>{badge.why}</p>}
       {identity?.note && <p className="note callout" style={{ marginTop: 12 }}>{identity.note}</p>}
-      {franchise && (
-        <p className="note callout" style={{ marginTop: 12, maxWidth: '70ch' }}>
-          This seat has had more than one owner.{' '}
-          {predecessor && (
-            <>
-              Before {displayName(manager)}, it belonged to{' '}
-              <ManagerLink manager={predecessor.manager} />.{' '}
-            </>
-          )}
-          {successor && (
-            <>
-              After {displayName(manager)}, it passed to <ManagerLink manager={successor.manager} />.{' '}
-            </>
-          )}
-          See the <Link to={`/franchises/${franchise.id}`}>full franchise history →</Link>
-        </p>
-      )}
+      {franchises.map((franchise) => {
+        const franchiseEra = franchise.owners.find((o) => o.manager === manager)!
+        const idx = franchise.owners.indexOf(franchiseEra)
+        const predecessor = franchise.owners[idx - 1]
+        const successor = franchise.owners[idx + 1]
+        return (
+          <p
+            key={franchise.id}
+            className="note callout"
+            style={{ marginTop: 12, maxWidth: '70ch' }}
+          >
+            This seat has had more than one owner.{' '}
+            {predecessor && (
+              <>
+                Before {displayName(manager)}, it belonged to{' '}
+                <ManagerLink manager={predecessor.manager} />.{' '}
+              </>
+            )}
+            {successor && (
+              <>
+                After {displayName(manager)}, it passed to{' '}
+                <ManagerLink manager={successor.manager} />.{' '}
+              </>
+            )}
+            See the <Link to={`/franchises/${franchise.id}`}>full franchise history →</Link>
+          </p>
+        )
+      })}
 
       <section className="section">
         <div className="grid stat-grid">

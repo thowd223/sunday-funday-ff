@@ -98,7 +98,23 @@ owner-only by design — they're personal bragging rights, not seat history.
 manager is their own implicit single-owner franchise (`franchiseIdFor` in
 `src/lib/franchise.ts` falls back to the manager handle when no explicit lineage exists) —
 no per-season franchise-id field was added to the bundled data files, this is computed
-purely from the small curated list.
+purely from the small curated list. Total franchise count is always exactly 12, matching
+the league's actual max team count (10 founding teams in 2012, expanded to 12 in 2015,
+never more) — if a code change ever pushes that count above 12, something's wrong.
+
+**Gap-filling across the ESPN/Sleeper boundary.** FRANCHISES only lists the season range
+with hard evidence for an ownership change (e.g. `jpeters-keughes` only explicitly lists
+JPeters19's 2019-2023 Sleeper seasons, since that's where the roster_id evidence is) —
+but JPeters19 also played that same seat's ESPN-era predecessor uninterrupted from 2012.
+`franchiseIdFor` attaches those unlisted seasons to the franchise with the closest listed
+season, so a manager's own unbroken tenure isn't artificially split into two franchises
+at the platform boundary. This matters for 3 of the 4 lineages (`jpeters-keughes`,
+`assif-amenr5`, `engler-nevels`) — without it, the total franchise count comes out to 15,
+not 12, because those three managers' non-explicit seasons would otherwise fall back to
+being counted as their own separate solo franchise. A manager who genuinely held two
+distinct seats (Andy Engler: 2015 ESPN stint, then a different 2023+ Sleeper seat) has
+both fully enumerated already, so there's no gap for this logic to guess at — see
+`franchisesForManager` in `src/lib/franchise.ts`, which correctly returns both for him.
 
 **How the lineages were determined** (2026-07-19 session): the ESPN era and Sleeper era
 each expose their own stable per-team-seat identifier, but the two are *completely
