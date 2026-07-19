@@ -201,11 +201,11 @@ export const RECAPS: SeasonRecap[] = [
     subhead: 'A first-year manager delivered the year\'s biggest statement game — against the eventual champion.',
     paragraphs: [
       'John Hartnett went 10-4 as the No. 1 seed and cruised through the playoffs untouched — 142.0-93.2 over Tyler Keel, then 159.1-146.7 over Jordan Peters in the championship — for his fourth title, extending his own league record.',
-      'But the season\'s loudest moment belonged to amenr5, a brand-new manager who announced himself in Week 3 by beating Hartnett 193.2-79.7 — a 113.5-point margin, one of the biggest regular-season blowouts in league history, and against the very team that would go on to win it all.',
+      'But the season\'s loudest moment belonged to Andy Engler, a brand-new manager who announced himself in Week 3 by beating Hartnett 193.2-79.7 — a 113.5-point margin, one of the biggest regular-season blowouts in league history, and against the very team that would go on to win it all.',
       'Jordan Peters reached the final from the No. 6 seed despite a 6-8 regular season — the only losing-record team to ever play in a championship game — beating Garrett Clark and Tim Howd along the way before falling to Hartnett. Peter Brune finished with the league\'s worst record that year at 5-9.',
     ],
     keyMoments: [
-      { label: 'Rookie Statement', detail: 'First-year manager amenr5 upset John Hartnett 193.2-79.7 in Week 3 — one of the biggest regular-season blowouts ever.' },
+      { label: 'Rookie Statement', detail: 'First-year manager Andy Engler upset John Hartnett 193.2-79.7 in Week 3 — one of the biggest regular-season blowouts ever.' },
       { label: 'Championship', detail: 'John Hartnett 159.1, Jordan Peters 146.7 — Hartnett\'s fourth title.' },
       { label: 'Longshot Final', detail: 'Jordan Peters reached the championship from the No. 6 seed on a 6-8 regular season.' },
     ],
@@ -216,7 +216,7 @@ export const RECAPS: SeasonRecap[] = [
     subhead: 'John Hartnett went back-to-back and pulled away from the pack as the winningest manager the league has ever seen.',
     paragraphs: [
       'John Hartnett went just 8-6 and slipped into the playoffs as the No. 5 seed — and then ran through it: 108.7-96.2 over Brian Corrigan, 167.4-98.2 over top-seeded Kurtis Davis, and 172.8-120.9 over Tim Howd in the championship. It was his fifth title and his second in a row, pulling him well clear of every other manager in franchise history (the next-closest has three).',
-      'Kurtis Davis had the league\'s best regular season (10-4) but couldn\'t survive Hartnett in the semifinal, settling for 3rd. Two newcomers made their mark: Keughes finished 9-5 in his rookie season (4th place after a semifinal loss), while amenr5, in his second year, was on the wrong end of the season\'s biggest blowout — a 191.6-107.1 loss to Kurtis Davis in Week 10.',
+      'Kurtis Davis had the league\'s best regular season (10-4) but couldn\'t survive Hartnett in the semifinal, settling for 3rd. Two newcomers made their mark: Kevin Hughes finished 9-5 in his rookie season (4th place after a semifinal loss), while Andy Engler, in his second year, was on the wrong end of the season\'s biggest blowout — a 191.6-107.1 loss to Kurtis Davis in Week 10.',
       'Brian Corrigan quietly had one of the best scoring seasons the league has ever produced by the all-play numbers (a 76.0% all-play win rate) and still finished with the league\'s worst luck score (-2.6) — a reminder that great numbers don\'t always find the scoreboard.',
     ],
     keyMoments: [
@@ -232,12 +232,12 @@ export const RECAPS: SeasonRecap[] = [
     paragraphs: [
       'Tim Howd went 9-5, reeled off an eight-game winning streak from Week 2 through Week 9, and closed it out by beating John Hartnett (131.6-88.5) and Brian Corrigan (126.5-119.6) in the championship — his third career title.',
       'Corrigan, the league\'s No. 1 seed at 10-4, reached his first championship game in franchise history and came up just short. It was a strong season across the board for him after years in the middle of the pack.',
-      'Keughes had a brutal sophomore slump, tumbling from a 9-5, fourth-place rookie season in 2024 to 3-11 and last place in 2025. Tim Howd delivered the season\'s biggest blowout in Week 3, 156.4-56.8 over Peter Brune, and the closest finish came in Week 6, when amenr5 edged Brune 119.5-119.2.',
+      'Kevin Hughes had a brutal sophomore slump, tumbling from a 9-5, fourth-place rookie season in 2024 to 3-11 and last place in 2025. Tim Howd delivered the season\'s biggest blowout in Week 3, 156.4-56.8 over Peter Brune, and the closest finish came in Week 6, when Andy Engler edged Brune 119.5-119.2.',
     ],
     keyMoments: [
       { label: 'Championship', detail: 'Tim Howd 126.5, Brian Corrigan 119.6 — Howd\'s third title.' },
       { label: 'First Final', detail: 'Brian Corrigan reached his first career championship game as the No. 1 seed.' },
-      { label: 'Sophomore Slump', detail: 'Keughes fell from 9-5 (4th place) in 2024 to 3-11 (last place) in 2025.' },
+      { label: 'Sophomore Slump', detail: 'Kevin Hughes fell from 9-5 (4th place) in 2024 to 3-11 (last place) in 2025.' },
     ],
   },
 ]
