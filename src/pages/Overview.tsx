@@ -1,10 +1,42 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { StatCard } from '../components/StatCard'
 import { ManagerLink } from '../components/ManagerLink'
 import { ResultBadge } from '../components/ResultBadge'
 import { LEAGUE_NAME, SEASON_YEARS, SEASONS, displayName } from '../data/league'
 import { allCareerStats, leagueTotals, seasonPodiums } from '../lib/stats'
-import { int, num } from '../lib/format'
+import { rankRivalries } from '../lib/rivalry'
+import { careerLuck } from '../lib/luck'
+import { firstPickLedger, firstPickEverWon } from '../lib/draftGrades'
+import { leagueTradeTotals, traderProfilesRanked } from '../lib/trades'
+import { RECAPS } from '../data/recaps'
+import { int, num, record } from '../lib/format'
+
+/** A card-as-link teaser into one of the deeper stat pages, with a live-computed hook. */
+function TeaserCard({
+  to,
+  emoji,
+  title,
+  children,
+}: {
+  to: string
+  emoji: string
+  title: string
+  children: ReactNode
+}) {
+  return (
+    <Link
+      to={to}
+      className="card"
+      style={{ display: 'block', padding: 18, textDecoration: 'none', color: 'inherit' }}
+    >
+      <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
+        {emoji} {title}
+      </div>
+      <div style={{ fontSize: 13.5, color: 'var(--text-dim)', lineHeight: 1.5 }}>{children}</div>
+    </Link>
+  )
+}
 
 export function Overview() {
   const totals = leagueTotals()
@@ -14,6 +46,16 @@ export function Overview() {
   const latest = podiums[podiums.length - 1]
 
   const topScoringSeason = SEASONS.reduce((b, r) => (r.pf > b.pf ? r : b), SEASONS[0])
+
+  const topRivalry = rankRivalries()[0]
+  const luck = [...careerLuck()].sort((a, b) => b.luck - a.luck)
+  const luckiest = luck[0]
+  const unluckiest = luck[luck.length - 1]
+  const ledger = firstPickLedger()
+  const oneOhOneWon = firstPickEverWon(ledger)
+  const tradeTotals = leagueTradeTotals()
+  const topTrader = traderProfilesRanked()[0]
+  const latestStory = RECAPS[RECAPS.length - 1]
 
   return (
     <>
@@ -31,6 +73,12 @@ export function Overview() {
           </Link>
           <Link to="/hall-of-fame" className="btn">
             Hall of Fame
+          </Link>
+          <Link to="/rivalries" className="btn">
+            Rivalries
+          </Link>
+          <Link to="/stories" className="btn">
+            Season Stories
           </Link>
           <Link to="/head-to-head" className="btn">
             Head-to-Head grid
@@ -117,6 +165,52 @@ export function Overview() {
           Data covers {SEASON_YEARS[0]}–{SEASON_YEARS[SEASON_YEARS.length - 1]}. 2026 is
           pre-draft and excluded from all stats.
         </p>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">Dig Deeper</h2>
+        <div
+          className="grid"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))' }}
+        >
+          {topRivalry && (
+            <TeaserCard to="/rivalries" emoji="🥊" title="Rivalries">
+              The Main Event: <strong>{displayName(topRivalry.stats.a)}</strong> vs.{' '}
+              <strong>{displayName(topRivalry.stats.b)}</strong>,{' '}
+              {record(
+                topRivalry.stats.allTime.wins,
+                topRivalry.stats.allTime.losses,
+                topRivalry.stats.allTime.ties,
+              )}
+              . See every grudge in the league.
+            </TeaserCard>
+          )}
+          <TeaserCard to="/luck" emoji="🎰" title="Luck Index">
+            <strong>{displayName(luckiest.manager)}</strong> has ridden the schedule hardest;{' '}
+            <strong>{displayName(unluckiest.manager)}</strong> has been robbed by it. Who's
+            luckiest all-time?
+          </TeaserCard>
+          <TeaserCard to="/draft-grades" emoji="🎯" title="Draft Report Card">
+            The #1-overall pick has {oneOhOneWon ? 'won it all before' : 'never once won a title'}{' '}
+            in {ledger.length} tries. Grade every draft since 2012.
+          </TeaserCard>
+          <TeaserCard to="/trades" emoji="🤝" title="Trade History">
+            {int(tradeTotals.totalTrades)} completed trades since 2019
+            {topTrader && topTrader.totalTrades > 0 ? (
+              <>
+                , led by <strong>{displayName(topTrader.manager)}</strong> (
+                {int(topTrader.totalTrades)})
+              </>
+            ) : null}
+            . See who actually picks up the phone.
+          </TeaserCard>
+          {latestStory && (
+            <TeaserCard to="/stories" emoji="📖" title="Season Stories">
+              {latestStory.season}: <strong>&ldquo;{latestStory.headline}&rdquo;</strong> — every
+              season's story, told in full.
+            </TeaserCard>
+          )}
+        </div>
       </section>
     </>
   )
