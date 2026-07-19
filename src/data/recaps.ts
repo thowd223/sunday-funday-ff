@@ -51,8 +51,8 @@ export const RECAPS: SeasonRecap[] = [
     subhead: 'A 2-seed with a middling record found another gear in the playoffs and started a dynasty nobody saw coming.',
     paragraphs: [
       'John Hartnett went just 8-5 in the regular season, tucked in behind Nick Pellegrini\'s league-best 9-4, but by the all-play numbers he was actually the best team in the league — an 84-32 all-play record (72.2%) that made him one of the unluckiest managers in the league that year (-1.4 luck) relative to what his weekly scoring deserved. It didn\'t matter. Hartnett dropped 198 points on Kurtis Davis in a Week 8 rout (198-90, the league\'s biggest blowout of the season), then rolled into the playoffs and beat Brian Corrigan 251-233 in the semifinal before knocking off top-seeded Pellegrini 264-225 in the championship. It was the first of what would become the most decorated championship run in league history.',
-      'Pellegrini closed the regular season with a five-game win streak (Weeks 9-13) to lock up the top seed, and he beat Tim Howd 301-291 in his own semifinal — but the championship got away from him. Tyler Keel had the opposite kind of year, going 3-10 and taking a four-game losing streak (Weeks 7-10) on his way to the league\'s worst record.',
-      'Down in the trenches, Week 3 produced the season\'s low-water mark: Keel managed just 63 points in a loss to Peter Brune. And Week 12 gave the league its closest finish of the year, with Jordan Peters edging Asif Lakhani 109-108.',
+      'Pellegrini closed the regular season with a five-game win streak (Weeks 9-13) to lock up the top seed, and he beat Tim Howd 301-291 in his own semifinal — but the championship got away from him. Keith Robertson had the opposite kind of year, going 3-10 and taking a four-game losing streak (Weeks 7-10) on his way to the league\'s worst record — his last season before leaving the league.',
+      'Down in the trenches, Week 3 produced the season\'s low-water mark: Robertson managed just 63 points in a loss to Peter Brune. And Week 12 gave the league its closest finish of the year, with Jordan Peters edging Asif Lakhani 109-108.',
     ],
     keyMoments: [
       { label: 'Signature Win', detail: 'John Hartnett 198, Kurtis Davis 90 — the season\'s biggest blowout, in Week 8.' },
@@ -67,7 +67,7 @@ export const RECAPS: SeasonRecap[] = [
     paragraphs: [
       'Kurtis Davis looked like the team to beat all year — he opened the season with a seven-game winning streak (Weeks 1-7), finished 10-3, and posted the league\'s best regular-season record. It bought him a bye straight into nothing, because John Hartnett was waiting. Hartnett, seeded third at 8-5, throttled Brian Corrigan 350-239 in the semifinal and then did it again to Davis in the championship, 310-180 — back-to-back titles, and back-to-back blowout wins to get the second one.',
       'It was a rough year to be on a cold streak: Asif Lakhani opened the season with a seven-game losing streak and never really turned it around (4-9 finish), while Peter Brune hit his own seven-game skid a few weeks later (Weeks 3-9) on his way to a 5-8 finish. Garrett Clark had that season\'s luckiest bounce by the numbers (+1.9 all-play luck, a 6-7 record despite a paltry 31.6% all-play rate), while Brune was the unluckiest (-2.3), going 5-8 despite scoring like a 56.4% team.',
-      'The season\'s low point, literally, belonged to Tyler Keel — 63 points in a Week 9 loss, matching the same number Keel had put up in a Week 3 loss the year before. Brian Corrigan opened the year with the season\'s biggest blowout, 143-68 over Garrett Clark in Week 1.',
+      'The season\'s low point, literally, belonged to Tyler Keel — playing his first season in the league — with 63 points in a Week 9 loss. Brian Corrigan opened the year with the season\'s biggest blowout, 143-68 over Garrett Clark in Week 1.',
     ],
     keyMoments: [
       { label: 'Championship', detail: 'John Hartnett 310, Kurtis Davis 180 — the No. 1 seed never had a chance.' },
@@ -80,7 +80,7 @@ export const RECAPS: SeasonRecap[] = [
     headline: 'Six Teams, One Twist Ending',
     subhead: 'The playoff field expanded to six for the first time — and the new format delivered the strangest championship result yet.',
     paragraphs: [
-      'The postseason grew from four teams to six in 2015, giving the top two seeds a first-round bye for the first time. Peter Brune, seeded third, made the format work for him: a 155-79 rout of devin nevels, a 170-144 win over No. 2 seed Sean O\'Mara, and then a championship over John Hartnett that the record books will forever list as a win — despite Hartnett actually outscoring him, 170-155. However that one got settled, it\'s Brune\'s name in the champion\'s column.',
+      'The postseason grew from four teams to six in 2015, giving the top two seeds a first-round bye for the first time. Peter Brune, seeded third, made the format work for him: a 155-79 rout of Andy Engler (in what would be Engler\'s only ESPN-era season — he\'d resurface in the league eight years later), a 170-144 win over No. 2 seed Sean O\'Mara, and then a championship over John Hartnett that the record books will forever list as a win — despite Hartnett actually outscoring him, 170-155. However that one got settled, it\'s Brune\'s name in the champion\'s column.',
       'Nick Pellegrini put together the league\'s best regular season (9-4) capped by a seven-game winning streak from Week 7 through Week 13 — and then lost both of his playoff games, falling to 4th place. Asif Lakhani had the opposite kind of year: a seven-game losing streak to open the season, a league-record-low 36 points in a Week 11 loss, and a 3-10 finish.',
       'Sean O\'Mara turned in the luckiest season the league had seen to that point (+3.0 — a 9-4 record despite a 46.2% all-play rate), while Kurtis Davis was the unlucky mirror image at -2.7, going just 6-7 despite scoring like a 66.8% team. The season\'s biggest blowout came in Week 13, when Tim Howd ran up 145 points against Lakhani\'s 68.',
     ],
@@ -197,15 +197,15 @@ export const RECAPS: SeasonRecap[] = [
   },
   {
     season: 2023,
-    headline: 'The Rookie Throws a Haymaker, the Vet Throws His Fourth Ring',
-    subhead: 'A first-year manager delivered the year\'s biggest statement game — against the eventual champion.',
+    headline: 'The Comeback Throws a Haymaker, the Vet Throws His Fourth Ring',
+    subhead: 'A manager back after eight years away delivered the year\'s biggest statement game — against the eventual champion.',
     paragraphs: [
       'John Hartnett went 10-4 as the No. 1 seed and cruised through the playoffs untouched — 142.0-93.2 over Tyler Keel, then 159.1-146.7 over Jordan Peters in the championship — for his fourth title, extending his own league record.',
-      'But the season\'s loudest moment belonged to Andy Engler, a brand-new manager who announced himself in Week 3 by beating Hartnett 193.2-79.7 — a 113.5-point margin, one of the biggest regular-season blowouts in league history, and against the very team that would go on to win it all.',
+      'But the season\'s loudest moment belonged to Andy Engler, back in the league for the first time since a lone 2015 season, who announced his return in Week 3 by beating Hartnett 193.2-79.7 — a 113.5-point margin, one of the biggest regular-season blowouts in league history, and against the very team that would go on to win it all.',
       'Jordan Peters reached the final from the No. 6 seed despite a 6-8 regular season — the only losing-record team to ever play in a championship game — beating Garrett Clark and Tim Howd along the way before falling to Hartnett. Peter Brune finished with the league\'s worst record that year at 5-9.',
     ],
     keyMoments: [
-      { label: 'Rookie Statement', detail: 'First-year manager Andy Engler upset John Hartnett 193.2-79.7 in Week 3 — one of the biggest regular-season blowouts ever.' },
+      { label: 'Comeback Statement', detail: 'Andy Engler, back after eight years away, upset John Hartnett 193.2-79.7 in Week 3 — one of the biggest regular-season blowouts ever.' },
       { label: 'Championship', detail: 'John Hartnett 159.1, Jordan Peters 146.7 — Hartnett\'s fourth title.' },
       { label: 'Longshot Final', detail: 'Jordan Peters reached the championship from the No. 6 seed on a 6-8 regular season.' },
     ],

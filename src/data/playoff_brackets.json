@@ -1,1 +1,4480 @@
-{"2012":{"peterbrune":[{"week":14,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":260,"pa":272},{"week":15,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":217,"pa":252}],"GBClark":[{"week":14,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":236,"pa":241},{"week":15,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":252,"pa":217}],"JPeters19":[{"week":14,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":241,"pa":236},{"week":15,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":378,"pa":231}],"kdavis":[{"week":14,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":272,"pa":260},{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":231,"pa":378}],"YungSimba":[{"week":14,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":190,"pa":189,"consolation":true},{"week":15,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":216,"pa":193,"consolation":true}],"thowd":[{"week":14,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":189,"pa":190,"consolation":true},{"week":15,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":216,"pa":205,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":203,"pa":227,"consolation":true},{"week":15,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":216,"pa":257,"consolation":true}],"assif":[{"week":14,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":227,"pa":203,"consolation":true},{"week":15,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":193,"pa":216,"consolation":true}],"jphn744":[{"week":14,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":238,"pa":227,"consolation":true},{"week":15,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":205,"pa":216,"consolation":true}],"bcorrigan30":[{"week":14,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":227,"pa":238,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":257,"pa":216,"consolation":true}]},"2013":{"YungSimba":[{"week":14,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":301,"pa":291},{"week":15,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":225,"pa":264}],"jphn744":[{"week":14,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":251,"pa":233},{"week":15,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":264,"pa":225}],"thowd":[{"week":14,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":291,"pa":301},{"week":15,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":211,"pa":235}],"bcorrigan30":[{"week":14,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":233,"pa":251},{"week":15,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":235,"pa":211}],"peterbrune":[{"week":14,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":261,"pa":248,"consolation":true},{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":212,"pa":241,"consolation":true}],"kdavis":[{"week":14,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":248,"pa":261,"consolation":true},{"week":15,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":210,"pa":151,"consolation":true}],"assif":[{"week":14,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":201,"pa":245,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":215,"pa":199,"consolation":true}],"JPeters19":[{"week":14,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":245,"pa":201,"consolation":true},{"week":15,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":241,"pa":212,"consolation":true}],"GBClark":[{"week":14,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":239,"pa":211,"consolation":true},{"week":15,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":151,"pa":210,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":211,"pa":239,"consolation":true},{"week":15,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":199,"pa":215,"consolation":true}]},"2014":{"kdavis":[{"week":14,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":233,"pa":202},{"week":15,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":180,"pa":310}],"bcorrigan30":[{"week":14,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":239,"pa":350},{"week":15,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":223,"pa":200}],"jphn744":[{"week":14,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":350,"pa":239},{"week":15,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":310,"pa":180}],"YungSimba":[{"week":14,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":202,"pa":233},{"week":15,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":200,"pa":223}],"JPeters19":[{"week":14,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":249,"pa":239,"consolation":true},{"week":15,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":211,"pa":206,"consolation":true}],"thowd":[{"week":14,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":239,"pa":249,"consolation":true},{"week":15,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":208,"pa":203,"consolation":true}],"GBClark":[{"week":14,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":223,"pa":290,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":212,"pa":183,"consolation":true}],"peterbrune":[{"week":14,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":290,"pa":223,"consolation":true},{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":206,"pa":211,"consolation":true}],"assif":[{"week":14,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":206,"pa":147,"consolation":true},{"week":15,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":203,"pa":208,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":147,"pa":206,"consolation":true},{"week":15,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":183,"pa":212,"consolation":true}]},"2015":{"YungSimba":[{"week":15,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":132,"pa":162},{"week":16,"opponent":"SeanOMara","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":76,"pa":82}],"SeanOMara":[{"week":15,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":144,"pa":170},{"week":16,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":82,"pa":76}],"peterbrune":[{"week":14,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":155,"pa":79},{"week":15,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":170,"pa":144},{"week":16,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":155,"pa":170}],"jphn744":[{"week":14,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":109,"pa":85},{"week":15,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":162,"pa":132},{"week":16,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":170,"pa":155}],"thowd":[{"week":14,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":85,"pa":109},{"week":15,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":167,"pa":99},{"week":16,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":96,"pa":90}],"dnevels8":[{"week":14,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":79,"pa":155},{"week":15,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":99,"pa":167},{"week":16,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":90,"pa":96}],"kdavis":[{"week":14,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":98,"pa":104,"consolation":true},{"week":15,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":131,"pa":92,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":149,"pa":124,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":104,"pa":98,"consolation":true},{"week":15,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":182,"pa":79,"consolation":true},{"week":16,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":124,"pa":149,"consolation":true}],"JPeters19":[{"week":14,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":82,"pa":134,"consolation":true},{"week":15,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":115,"pa":93,"consolation":true},{"week":16,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":119,"pa":111,"consolation":true}],"GBClark":[{"week":14,"opponent":"JPeters19","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":134,"pa":82,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":79,"pa":182,"consolation":true},{"week":16,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":111,"pa":119,"consolation":true}],"bcorrigan30":[{"week":14,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":89,"pa":124,"consolation":true},{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":93,"pa":115,"consolation":true},{"week":16,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":79,"pa":95,"consolation":true}],"assif":[{"week":14,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":124,"pa":89,"consolation":true},{"week":15,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":92,"pa":131,"consolation":true},{"week":16,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":95,"pa":79,"consolation":true}]},"2016":{"assif":[{"week":15,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":105.88,"pa":115.24},{"week":16,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":150.88,"pa":93.82}],"TylerKeel":[{"week":15,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":111.72,"pa":95.6},{"week":16,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":134.28,"pa":164.68}],"kdavis":[{"week":14,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":81.54,"pa":107},{"week":15,"opponent":"dnevels8","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":88.24,"pa":110.2},{"week":16,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":129.98,"pa":98.72}],"peterbrune":[{"week":14,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":136.88,"pa":93.54},{"week":15,"opponent":"assif","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":115.24,"pa":105.88},{"week":16,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":164.68,"pa":134.28}],"dnevels8":[{"week":14,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":93.54,"pa":136.88},{"week":15,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":110.2,"pa":88.24},{"week":16,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":98.72,"pa":129.98}],"bcorrigan30":[{"week":14,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":107,"pa":81.54},{"week":15,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":95.6,"pa":111.72},{"week":16,"opponent":"assif","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":93.82,"pa":150.88}],"GBClark":[{"week":14,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":91.1,"pa":92.82,"consolation":true},{"week":15,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":96.44,"pa":122.48,"consolation":true},{"week":16,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":147.66,"pa":103.6,"consolation":true}],"jphn744":[{"week":14,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":92.82,"pa":91.1,"consolation":true},{"week":15,"opponent":"JPeters19","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":119.82,"pa":87.22,"consolation":true},{"week":16,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":116.14,"pa":121.78,"consolation":true}],"SeanOMara":[{"week":14,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":106.08,"pa":106.54,"consolation":true},{"week":15,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":151.86,"pa":111.1,"consolation":true},{"week":16,"opponent":"JPeters19","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":108.46,"pa":83.36,"consolation":true}],"JPeters19":[{"week":14,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":106.54,"pa":106.08,"consolation":true},{"week":15,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":87.22,"pa":119.82,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":83.36,"pa":108.46,"consolation":true}],"YungSimba":[{"week":14,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":95.96,"pa":115.12,"consolation":true},{"week":15,"opponent":"SeanOMara","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":111.1,"pa":151.86,"consolation":true},{"week":16,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":103.6,"pa":147.66,"consolation":true}],"thowd":[{"week":14,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":115.12,"pa":95.96,"consolation":true},{"week":15,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":122.48,"pa":96.44,"consolation":true},{"week":16,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":121.78,"pa":116.14,"consolation":true}]},"2017":{"kdavis":[{"week":15,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":144.04,"pa":167.98},{"week":16,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":139.58,"pa":99.76}],"YungSimba":[{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":113.54,"pa":140.04},{"week":16,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":99.76,"pa":139.58}],"jphn744":[{"week":14,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":127.06,"pa":127.84},{"week":15,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":95.88,"pa":104.88},{"week":16,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":112.3,"pa":80.62}],"bcorrigan30":[{"week":14,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":96.42,"pa":129.08},{"week":15,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":104.88,"pa":95.88},{"week":16,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":80.62,"pa":112.3}],"thowd":[{"week":14,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":129.08,"pa":96.42},{"week":15,"opponent":"kdavis","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":167.98,"pa":144.04},{"week":16,"opponent":"JPeters19","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":108.8,"pa":85.64}],"JPeters19":[{"week":14,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":127.84,"pa":127.06},{"week":15,"opponent":"YungSimba","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":140.04,"pa":113.54},{"week":16,"opponent":"thowd","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":85.64,"pa":108.8}],"peterbrune":[{"week":14,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":85.94,"pa":135.46,"consolation":true},{"week":15,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":117.7,"pa":108.14,"consolation":true},{"week":16,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":96.62,"pa":115.58,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":135.46,"pa":85.94,"consolation":true},{"week":15,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":107.4,"pa":118.88,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":144.84,"pa":112.06,"consolation":true}],"assif":[{"week":14,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":127.98,"pa":90.92,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":118.88,"pa":107.4,"consolation":true},{"week":16,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":115.58,"pa":96.62,"consolation":true}],"SeanOMara":[{"week":14,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":90.92,"pa":127.98,"consolation":true},{"week":15,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":85.42,"pa":84.84,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":112.06,"pa":144.84,"consolation":true}],"dnevels8":[{"week":14,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":92.06,"pa":109.34,"consolation":true},{"week":15,"opponent":"SeanOMara","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":84.84,"pa":85.42,"consolation":true},{"week":16,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":118.68,"pa":85.4,"consolation":true}],"GBClark":[{"week":14,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":109.34,"pa":92.06,"consolation":true},{"week":15,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":108.14,"pa":117.7,"consolation":true},{"week":16,"opponent":"dnevels8","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":85.4,"pa":118.68,"consolation":true}]},"2018":{"kdavis":[{"week":15,"opponent":"bcorrigan30","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":125.98,"pa":103.9},{"week":16,"opponent":"peterbrune","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":164.84,"pa":120.08}],"thowd":[{"week":15,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":75.22,"pa":90.14},{"week":16,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":128.64,"pa":159.08}],"peterbrune":[{"week":14,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":136.8,"pa":124.02},{"week":15,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":90.14,"pa":75.22},{"week":16,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":120.08,"pa":164.84}],"bcorrigan30":[{"week":14,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":114.28,"pa":113.8},{"week":15,"opponent":"kdavis","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":103.9,"pa":125.98},{"week":16,"opponent":"thowd","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":159.08,"pa":128.64}],"dnevels8":[{"week":14,"opponent":"bcorrigan30","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":113.8,"pa":114.28},{"week":15,"opponent":"jphn744","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":114.62,"pa":111.88},{"week":16,"opponent":"jphn744","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":65.94,"pa":117.24}],"jphn744":[{"week":14,"opponent":"peterbrune","result":"L","round":null,"place":null,"tier":"WINNERS_BRACKET","pf":124.02,"pa":136.8},{"week":15,"opponent":"dnevels8","result":"L","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":111.88,"pa":114.62},{"week":16,"opponent":"dnevels8","result":"W","round":null,"place":null,"tier":"WINNERS_CONSOLATION_LADDER","pf":117.24,"pa":65.94}],"YungSimba":[{"week":14,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":140.38,"pa":108.98,"consolation":true},{"week":15,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":96.06,"pa":95.28,"consolation":true},{"week":16,"opponent":"GBClark","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":128.18,"pa":127.02,"consolation":true}],"GBClark":[{"week":14,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":108.98,"pa":140.38,"consolation":true},{"week":15,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":99.62,"pa":94.42,"consolation":true},{"week":16,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":127.02,"pa":128.18,"consolation":true}],"assif":[{"week":14,"opponent":"JPeters19","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":187.6,"pa":118.42,"consolation":true},{"week":15,"opponent":"YungSimba","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":95.28,"pa":96.06,"consolation":true},{"week":16,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":99.24,"pa":103.26,"consolation":true}],"JPeters19":[{"week":14,"opponent":"assif","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":118.42,"pa":187.6,"consolation":true},{"week":15,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":90.96,"pa":83.26,"consolation":true},{"week":16,"opponent":"assif","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":103.26,"pa":99.24,"consolation":true}],"SeanOMara":[{"week":14,"opponent":"TylerKeel","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":44.5,"pa":96.04,"consolation":true},{"week":15,"opponent":"JPeters19","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":83.26,"pa":90.96,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":119.24,"pa":108.68,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"SeanOMara","result":"W","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":96.04,"pa":44.5,"consolation":true},{"week":15,"opponent":"GBClark","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":94.42,"pa":99.62,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"L","round":null,"place":null,"tier":"LOSERS_CONSOLATION_LADDER","pf":108.68,"pa":119.24,"consolation":true}]},"2019":{"JPeters19":[{"week":15,"opponent":"thowd","result":"L","round":2,"place":null,"tier":null,"pf":120.08,"pa":144.46},{"week":16,"opponent":"bcorrigan30","result":"L","round":3,"place":3,"tier":null,"pf":77.62,"pa":88.9}],"SeanOMara":[{"week":15,"opponent":"bcorrigan30","result":"W","round":2,"place":null,"tier":null,"pf":117.58,"pa":107.18},{"week":16,"opponent":"thowd","result":"L","round":3,"place":1,"tier":null,"pf":105.78,"pa":131.38}],"bcorrigan30":[{"week":14,"opponent":"kdavis","result":"W","round":1,"place":null,"tier":null,"pf":148.76,"pa":116.1},{"week":15,"opponent":"SeanOMara","result":"L","round":2,"place":null,"tier":null,"pf":107.18,"pa":117.58},{"week":16,"opponent":"JPeters19","result":"W","round":3,"place":3,"tier":null,"pf":88.9,"pa":77.62}],"GBClark":[{"week":14,"opponent":"thowd","result":"L","round":1,"place":null,"tier":null,"pf":109.62,"pa":135.78},{"week":15,"opponent":"kdavis","result":"L","round":2,"place":5,"tier":null,"pf":85.8,"pa":197.46}],"thowd":[{"week":14,"opponent":"GBClark","result":"W","round":1,"place":null,"tier":null,"pf":135.78,"pa":109.62},{"week":15,"opponent":"JPeters19","result":"W","round":2,"place":null,"tier":null,"pf":144.46,"pa":120.08},{"week":16,"opponent":"SeanOMara","result":"W","round":3,"place":1,"tier":null,"pf":131.38,"pa":105.78}],"kdavis":[{"week":14,"opponent":"bcorrigan30","result":"L","round":1,"place":null,"tier":null,"pf":116.1,"pa":148.76},{"week":15,"opponent":"GBClark","result":"W","round":2,"place":5,"tier":null,"pf":197.46,"pa":85.8}],"TylerKeel":[{"week":14,"opponent":"jphn744","result":"L","round":1,"place":null,"tier":null,"pf":108.22,"pa":133.42,"consolation":true},{"week":15,"opponent":"YungSimba","result":"W","round":2,"place":null,"tier":null,"pf":146.46,"pa":135.18,"consolation":true},{"week":16,"opponent":"dnevels8","result":"W","round":3,"place":3,"tier":null,"pf":136.92,"pa":112.76,"consolation":true}],"peterbrune":[{"week":14,"opponent":"dnevels8","result":"W","round":1,"place":null,"tier":null,"pf":101.6,"pa":95.7,"consolation":true},{"week":15,"opponent":"jphn744","result":"L","round":2,"place":5,"tier":null,"pf":128.18,"pa":146.14,"consolation":true}],"dnevels8":[{"week":14,"opponent":"peterbrune","result":"L","round":1,"place":null,"tier":null,"pf":95.7,"pa":101.6,"consolation":true},{"week":15,"opponent":"assif","result":"W","round":2,"place":null,"tier":null,"pf":147.24,"pa":108.8,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"L","round":3,"place":3,"tier":null,"pf":112.76,"pa":136.92,"consolation":true}],"jphn744":[{"week":14,"opponent":"TylerKeel","result":"W","round":1,"place":null,"tier":null,"pf":133.42,"pa":108.22,"consolation":true},{"week":15,"opponent":"peterbrune","result":"W","round":2,"place":5,"tier":null,"pf":146.14,"pa":128.18,"consolation":true}],"YungSimba":[{"week":15,"opponent":"TylerKeel","result":"L","round":2,"place":null,"tier":null,"pf":135.18,"pa":146.46,"consolation":true},{"week":16,"opponent":"assif","result":"W","round":3,"place":1,"tier":null,"pf":145.66,"pa":80.54,"consolation":true}],"assif":[{"week":15,"opponent":"dnevels8","result":"L","round":2,"place":null,"tier":null,"pf":108.8,"pa":147.24,"consolation":true},{"week":16,"opponent":"YungSimba","result":"L","round":3,"place":1,"tier":null,"pf":80.54,"pa":145.66,"consolation":true}]},"2020":{"kdavis":[{"week":15,"opponent":"jphn744","result":"L","round":2,"place":null,"tier":null,"pf":132.7,"pa":139.02},{"week":16,"opponent":"bcorrigan30","result":"L","round":3,"place":3,"tier":null,"pf":138.14,"pa":164.72}],"dnevels8":[{"week":15,"opponent":"bcorrigan30","result":"W","round":2,"place":null,"tier":null,"pf":148.72,"pa":108.86},{"week":16,"opponent":"jphn744","result":"W","round":3,"place":1,"tier":null,"pf":131.64,"pa":104.84}],"bcorrigan30":[{"week":14,"opponent":"JPeters19","result":"W","round":1,"place":null,"tier":null,"pf":140.32,"pa":129.72},{"week":15,"opponent":"dnevels8","result":"L","round":2,"place":null,"tier":null,"pf":108.86,"pa":148.72},{"week":16,"opponent":"kdavis","result":"W","round":3,"place":3,"tier":null,"pf":164.72,"pa":138.14}],"GBClark":[{"week":14,"opponent":"jphn744","result":"L","round":1,"place":null,"tier":null,"pf":97.92,"pa":105.6},{"week":15,"opponent":"JPeters19","result":"W","round":2,"place":5,"tier":null,"pf":140.46,"pa":138.66}],"jphn744":[{"week":14,"opponent":"GBClark","result":"W","round":1,"place":null,"tier":null,"pf":105.6,"pa":97.92},{"week":15,"opponent":"kdavis","result":"W","round":2,"place":null,"tier":null,"pf":139.02,"pa":132.7},{"week":16,"opponent":"dnevels8","result":"L","round":3,"place":1,"tier":null,"pf":104.84,"pa":131.64}],"JPeters19":[{"week":14,"opponent":"bcorrigan30","result":"L","round":1,"place":null,"tier":null,"pf":129.72,"pa":140.32},{"week":15,"opponent":"GBClark","result":"L","round":2,"place":5,"tier":null,"pf":138.66,"pa":140.46}],"thowd":[{"week":14,"opponent":"TylerKeel","result":"W","round":1,"place":null,"tier":null,"pf":164.04,"pa":86.16,"consolation":true},{"week":15,"opponent":"assif","result":"L","round":2,"place":5,"tier":null,"pf":93.56,"pa":100.62,"consolation":true}],"assif":[{"week":14,"opponent":"YungSimba","result":"W","round":1,"place":null,"tier":null,"pf":109.82,"pa":90.36,"consolation":true},{"week":15,"opponent":"thowd","result":"W","round":2,"place":5,"tier":null,"pf":100.62,"pa":93.56,"consolation":true}],"YungSimba":[{"week":14,"opponent":"assif","result":"L","round":1,"place":null,"tier":null,"pf":90.36,"pa":109.82,"consolation":true},{"week":15,"opponent":"peterbrune","result":"L","round":2,"place":null,"tier":null,"pf":119.82,"pa":177.34,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"W","round":3,"place":1,"tier":null,"pf":139.26,"pa":137.3,"consolation":true}],"TylerKeel":[{"week":14,"opponent":"thowd","result":"L","round":1,"place":null,"tier":null,"pf":86.16,"pa":164.04,"consolation":true},{"week":15,"opponent":"SeanOMara","result":"W","round":2,"place":null,"tier":null,"pf":144.74,"pa":82.34,"consolation":true},{"week":16,"opponent":"peterbrune","result":"W","round":3,"place":3,"tier":null,"pf":135.1,"pa":127.78,"consolation":true}],"SeanOMara":[{"week":15,"opponent":"TylerKeel","result":"L","round":2,"place":null,"tier":null,"pf":82.34,"pa":144.74,"consolation":true},{"week":16,"opponent":"YungSimba","result":"L","round":3,"place":1,"tier":null,"pf":137.3,"pa":139.26,"consolation":true}],"peterbrune":[{"week":15,"opponent":"YungSimba","result":"W","round":2,"place":null,"tier":null,"pf":177.34,"pa":119.82,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"L","round":3,"place":3,"tier":null,"pf":127.78,"pa":135.1,"consolation":true}]},"2021":{"jphn744":[{"week":16,"opponent":"kdavis","result":"W","round":2,"place":null,"tier":null,"pf":151.38,"pa":111},{"week":17,"opponent":"peterbrune","result":"W","round":3,"place":1,"tier":null,"pf":139.8,"pa":132.7}],"SeanOMara":[{"week":16,"opponent":"peterbrune","result":"L","round":2,"place":null,"tier":null,"pf":75.08,"pa":157.36},{"week":17,"opponent":"kdavis","result":"L","round":3,"place":3,"tier":null,"pf":128.26,"pa":128.74}],"peterbrune":[{"week":15,"opponent":"YungSimba","result":"W","round":1,"place":null,"tier":null,"pf":124.5,"pa":100.12},{"week":16,"opponent":"SeanOMara","result":"W","round":2,"place":null,"tier":null,"pf":157.36,"pa":75.08},{"week":17,"opponent":"jphn744","result":"L","round":3,"place":1,"tier":null,"pf":132.7,"pa":139.8}],"bcorrigan30":[{"week":15,"opponent":"kdavis","result":"L","round":1,"place":null,"tier":null,"pf":85.28,"pa":115.38},{"week":16,"opponent":"YungSimba","result":"L","round":2,"place":5,"tier":null,"pf":102.9,"pa":121.38}],"kdavis":[{"week":15,"opponent":"bcorrigan30","result":"W","round":1,"place":null,"tier":null,"pf":115.38,"pa":85.28},{"week":16,"opponent":"jphn744","result":"L","round":2,"place":null,"tier":null,"pf":111,"pa":151.38},{"week":17,"opponent":"SeanOMara","result":"W","round":3,"place":3,"tier":null,"pf":128.74,"pa":128.26}],"YungSimba":[{"week":15,"opponent":"peterbrune","result":"L","round":1,"place":null,"tier":null,"pf":100.12,"pa":124.5},{"week":16,"opponent":"bcorrigan30","result":"W","round":2,"place":5,"tier":null,"pf":121.38,"pa":102.9}],"thowd":[{"week":15,"opponent":"assif","result":"W","round":1,"place":null,"tier":null,"pf":116.58,"pa":80.38,"consolation":true},{"week":16,"opponent":"dnevels8","result":"L","round":2,"place":5,"tier":null,"pf":110.3,"pa":144.72,"consolation":true}],"TylerKeel":[{"week":15,"opponent":"dnevels8","result":"L","round":1,"place":null,"tier":null,"pf":62.5,"pa":116.8,"consolation":true},{"week":16,"opponent":"GBClark","result":"L","round":2,"place":null,"tier":null,"pf":94.86,"pa":127.5,"consolation":true},{"week":17,"opponent":"assif","result":"W","round":3,"place":1,"tier":null,"pf":175.8,"pa":147.58,"consolation":true}],"dnevels8":[{"week":15,"opponent":"TylerKeel","result":"W","round":1,"place":null,"tier":null,"pf":116.8,"pa":62.5,"consolation":true},{"week":16,"opponent":"thowd","result":"W","round":2,"place":5,"tier":null,"pf":144.72,"pa":110.3,"consolation":true}],"assif":[{"week":15,"opponent":"thowd","result":"L","round":1,"place":null,"tier":null,"pf":80.38,"pa":116.58,"consolation":true},{"week":16,"opponent":"JPeters19","result":"L","round":2,"place":null,"tier":null,"pf":118.3,"pa":118.94,"consolation":true},{"week":17,"opponent":"TylerKeel","result":"L","round":3,"place":1,"tier":null,"pf":147.58,"pa":175.8,"consolation":true}],"JPeters19":[{"week":16,"opponent":"assif","result":"W","round":2,"place":null,"tier":null,"pf":118.94,"pa":118.3,"consolation":true},{"week":17,"opponent":"GBClark","result":"W","round":3,"place":3,"tier":null,"pf":101.98,"pa":94.78,"consolation":true}],"GBClark":[{"week":16,"opponent":"TylerKeel","result":"W","round":2,"place":null,"tier":null,"pf":127.5,"pa":94.86,"consolation":true},{"week":17,"opponent":"JPeters19","result":"L","round":3,"place":3,"tier":null,"pf":94.78,"pa":101.98,"consolation":true}]},"2022":{"peterbrune":[{"week":16,"opponent":"SeanOMara","result":"W","round":2,"place":null,"tier":null,"pf":114.1,"pa":111.46},{"week":17,"opponent":"kdavis","result":"L","round":3,"place":1,"tier":null,"pf":72.1,"pa":94.98}],"bcorrigan30":[{"week":16,"opponent":"kdavis","result":"L","round":2,"place":null,"tier":null,"pf":122.1,"pa":131.78},{"week":17,"opponent":"SeanOMara","result":"W","round":3,"place":3,"tier":null,"pf":108.28,"pa":91.4}],"SeanOMara":[{"week":15,"opponent":"YungSimba","result":"W","round":1,"place":null,"tier":null,"pf":160.78,"pa":122.84},{"week":16,"opponent":"peterbrune","result":"L","round":2,"place":null,"tier":null,"pf":111.46,"pa":114.1},{"week":17,"opponent":"bcorrigan30","result":"L","round":3,"place":3,"tier":null,"pf":91.4,"pa":108.28}],"YungSimba":[{"week":15,"opponent":"SeanOMara","result":"L","round":1,"place":null,"tier":null,"pf":122.84,"pa":160.78},{"week":16,"opponent":"GBClark","result":"L","round":2,"place":5,"tier":null,"pf":97.4,"pa":161.18}],"GBClark":[{"week":15,"opponent":"kdavis","result":"L","round":1,"place":null,"tier":null,"pf":108.46,"pa":124.64},{"week":16,"opponent":"YungSimba","result":"W","round":2,"place":5,"tier":null,"pf":161.18,"pa":97.4}],"kdavis":[{"week":15,"opponent":"GBClark","result":"W","round":1,"place":null,"tier":null,"pf":124.64,"pa":108.46},{"week":16,"opponent":"bcorrigan30","result":"W","round":2,"place":null,"tier":null,"pf":131.78,"pa":122.1},{"week":17,"opponent":"peterbrune","result":"W","round":3,"place":1,"tier":null,"pf":94.98,"pa":72.1}],"assif":[{"week":15,"opponent":"thowd","result":"L","round":1,"place":null,"tier":null,"pf":89.34,"pa":134.32,"consolation":true},{"week":16,"opponent":"dnevels8","result":"L","round":2,"place":null,"tier":null,"pf":68.36,"pa":100.2,"consolation":true},{"week":17,"opponent":"jphn744","result":"L","round":3,"place":1,"tier":null,"pf":112.12,"pa":129.28,"consolation":true}],"thowd":[{"week":15,"opponent":"assif","result":"W","round":1,"place":null,"tier":null,"pf":134.32,"pa":89.34,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"W","round":2,"place":5,"tier":null,"pf":126.06,"pa":91.2,"consolation":true}],"dnevels8":[{"week":16,"opponent":"assif","result":"W","round":2,"place":null,"tier":null,"pf":100.2,"pa":68.36,"consolation":true},{"week":17,"opponent":"JPeters19","result":"W","round":3,"place":3,"tier":null,"pf":98.6,"pa":75.4,"consolation":true}],"jphn744":[{"week":15,"opponent":"TylerKeel","result":"L","round":1,"place":null,"tier":null,"pf":94.52,"pa":132.7,"consolation":true},{"week":16,"opponent":"JPeters19","result":"L","round":2,"place":null,"tier":null,"pf":67,"pa":139.2,"consolation":true},{"week":17,"opponent":"assif","result":"W","round":3,"place":1,"tier":null,"pf":129.28,"pa":112.12,"consolation":true}],"TylerKeel":[{"week":15,"opponent":"jphn744","result":"W","round":1,"place":null,"tier":null,"pf":132.7,"pa":94.52,"consolation":true},{"week":16,"opponent":"thowd","result":"L","round":2,"place":5,"tier":null,"pf":91.2,"pa":126.06,"consolation":true}],"JPeters19":[{"week":16,"opponent":"jphn744","result":"W","round":2,"place":null,"tier":null,"pf":139.2,"pa":67,"consolation":true},{"week":17,"opponent":"dnevels8","result":"L","round":3,"place":3,"tier":null,"pf":75.4,"pa":98.6,"consolation":true}]},"2023":{"jphn744":[{"week":16,"opponent":"TylerKeel","result":"W","round":2,"place":null,"tier":null,"pf":142,"pa":93.18},{"week":17,"opponent":"JPeters19","result":"W","round":3,"place":1,"tier":null,"pf":159.12,"pa":146.68}],"thowd":[{"week":16,"opponent":"JPeters19","result":"L","round":2,"place":null,"tier":null,"pf":114.6,"pa":120.34},{"week":17,"opponent":"TylerKeel","result":"W","round":3,"place":3,"tier":null,"pf":168.1,"pa":102.74}],"GBClark":[{"week":15,"opponent":"JPeters19","result":"L","round":1,"place":null,"tier":null,"pf":80.56,"pa":136.28},{"week":16,"opponent":"kdavis","result":"L","round":2,"place":5,"tier":null,"pf":109.4,"pa":121.48}],"kdavis":[{"week":15,"opponent":"TylerKeel","result":"L","round":1,"place":null,"tier":null,"pf":101.34,"pa":139.32},{"week":16,"opponent":"GBClark","result":"W","round":2,"place":5,"tier":null,"pf":121.48,"pa":109.4}],"TylerKeel":[{"week":15,"opponent":"kdavis","result":"W","round":1,"place":null,"tier":null,"pf":139.32,"pa":101.34},{"week":16,"opponent":"jphn744","result":"L","round":2,"place":null,"tier":null,"pf":93.18,"pa":142},{"week":17,"opponent":"thowd","result":"L","round":3,"place":3,"tier":null,"pf":102.74,"pa":168.1}],"JPeters19":[{"week":15,"opponent":"GBClark","result":"W","round":1,"place":null,"tier":null,"pf":136.28,"pa":80.56},{"week":16,"opponent":"thowd","result":"W","round":2,"place":null,"tier":null,"pf":120.34,"pa":114.6},{"week":17,"opponent":"jphn744","result":"L","round":3,"place":1,"tier":null,"pf":146.68,"pa":159.12}],"SeanOMara":[{"week":15,"opponent":"dnevels8","result":"W","round":1,"place":null,"tier":null,"pf":172.3,"pa":58.86,"consolation":true},{"week":16,"opponent":"YungSimba","result":"L","round":2,"place":5,"tier":null,"pf":79,"pa":134.18,"consolation":true}],"YungSimba":[{"week":15,"opponent":"bcorrigan30","result":"W","round":1,"place":null,"tier":null,"pf":115.96,"pa":96.62,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"W","round":2,"place":5,"tier":null,"pf":134.18,"pa":79,"consolation":true}],"bcorrigan30":[{"week":15,"opponent":"YungSimba","result":"L","round":1,"place":null,"tier":null,"pf":96.62,"pa":115.96,"consolation":true},{"week":16,"opponent":"peterbrune","result":"W","round":2,"place":null,"tier":null,"pf":137.12,"pa":104.9,"consolation":true},{"week":17,"opponent":"amenr5","result":"L","round":3,"place":3,"tier":null,"pf":91.68,"pa":98.54,"consolation":true}],"dnevels8":[{"week":15,"opponent":"SeanOMara","result":"L","round":1,"place":null,"tier":null,"pf":58.86,"pa":172.3,"consolation":true},{"week":16,"opponent":"amenr5","result":"L","round":2,"place":null,"tier":null,"pf":113.32,"pa":136.66,"consolation":true},{"week":17,"opponent":"peterbrune","result":"L","round":3,"place":1,"tier":null,"pf":88.88,"pa":167.28,"consolation":true}],"amenr5":[{"week":16,"opponent":"dnevels8","result":"W","round":2,"place":null,"tier":null,"pf":136.66,"pa":113.32,"consolation":true},{"week":17,"opponent":"bcorrigan30","result":"W","round":3,"place":3,"tier":null,"pf":98.54,"pa":91.68,"consolation":true}],"peterbrune":[{"week":16,"opponent":"bcorrigan30","result":"L","round":2,"place":null,"tier":null,"pf":104.9,"pa":137.12,"consolation":true},{"week":17,"opponent":"dnevels8","result":"W","round":3,"place":1,"tier":null,"pf":167.28,"pa":88.88,"consolation":true}]},"2024":{"kdavis":[{"week":16,"opponent":"jphn744","result":"L","round":2,"place":null,"tier":null,"pf":98.24,"pa":167.42},{"week":17,"opponent":"Keughes","result":"W","round":3,"place":3,"tier":null,"pf":113.02,"pa":94.58}],"Keughes":[{"week":16,"opponent":"thowd","result":"L","round":2,"place":null,"tier":null,"pf":90.96,"pa":128.38},{"week":17,"opponent":"kdavis","result":"L","round":3,"place":3,"tier":null,"pf":94.58,"pa":113.02}],"thowd":[{"week":15,"opponent":"peterbrune","result":"W","round":1,"place":null,"tier":null,"pf":125.56,"pa":99.08},{"week":16,"opponent":"Keughes","result":"W","round":2,"place":null,"tier":null,"pf":128.38,"pa":90.96},{"week":17,"opponent":"jphn744","result":"L","round":3,"place":1,"tier":null,"pf":120.94,"pa":172.78}],"bcorrigan30":[{"week":15,"opponent":"jphn744","result":"L","round":1,"place":null,"tier":null,"pf":96.24,"pa":108.74},{"week":16,"opponent":"peterbrune","result":"W","round":2,"place":5,"tier":null,"pf":120.08,"pa":99.12}],"jphn744":[{"week":15,"opponent":"bcorrigan30","result":"W","round":1,"place":null,"tier":null,"pf":108.74,"pa":96.24},{"week":16,"opponent":"kdavis","result":"W","round":2,"place":null,"tier":null,"pf":167.42,"pa":98.24},{"week":17,"opponent":"thowd","result":"W","round":3,"place":1,"tier":null,"pf":172.78,"pa":120.94}],"peterbrune":[{"week":15,"opponent":"thowd","result":"L","round":1,"place":null,"tier":null,"pf":99.08,"pa":125.56},{"week":16,"opponent":"bcorrigan30","result":"L","round":2,"place":5,"tier":null,"pf":99.12,"pa":120.08}],"YungSimba":[{"week":15,"opponent":"amenr5","result":"W","round":1,"place":null,"tier":null,"pf":123.9,"pa":122.54,"consolation":true},{"week":16,"opponent":"GBClark","result":"L","round":2,"place":5,"tier":null,"pf":128.38,"pa":161.54,"consolation":true}],"GBClark":[{"week":15,"opponent":"SeanOMara","result":"W","round":1,"place":null,"tier":null,"pf":185.46,"pa":112.5,"consolation":true},{"week":16,"opponent":"YungSimba","result":"W","round":2,"place":5,"tier":null,"pf":161.54,"pa":128.38,"consolation":true}],"SeanOMara":[{"week":15,"opponent":"GBClark","result":"L","round":1,"place":null,"tier":null,"pf":112.5,"pa":185.46,"consolation":true},{"week":16,"opponent":"dnevels8","result":"W","round":2,"place":null,"tier":null,"pf":115.52,"pa":110.72,"consolation":true},{"week":17,"opponent":"amenr5","result":"W","round":3,"place":3,"tier":null,"pf":125.56,"pa":121.4,"consolation":true}],"amenr5":[{"week":15,"opponent":"YungSimba","result":"L","round":1,"place":null,"tier":null,"pf":122.54,"pa":123.9,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"W","round":2,"place":null,"tier":null,"pf":135.58,"pa":101.5,"consolation":true},{"week":17,"opponent":"SeanOMara","result":"L","round":3,"place":3,"tier":null,"pf":121.4,"pa":125.56,"consolation":true}],"TylerKeel":[{"week":16,"opponent":"amenr5","result":"L","round":2,"place":null,"tier":null,"pf":101.5,"pa":135.58,"consolation":true},{"week":17,"opponent":"dnevels8","result":"L","round":3,"place":1,"tier":null,"pf":87.8,"pa":142.96,"consolation":true}],"dnevels8":[{"week":16,"opponent":"SeanOMara","result":"L","round":2,"place":null,"tier":null,"pf":110.72,"pa":115.52,"consolation":true},{"week":17,"opponent":"TylerKeel","result":"W","round":3,"place":1,"tier":null,"pf":142.96,"pa":87.8,"consolation":true}]},"2025":{"bcorrigan30":[{"week":16,"opponent":"peterbrune","result":"W","round":2,"place":null,"tier":null,"pf":122.3,"pa":104.98},{"week":17,"opponent":"thowd","result":"L","round":3,"place":1,"tier":null,"pf":119.64,"pa":126.5}],"thowd":[{"week":16,"opponent":"jphn744","result":"W","round":2,"place":null,"tier":null,"pf":131.6,"pa":88.52},{"week":17,"opponent":"bcorrigan30","result":"W","round":3,"place":1,"tier":null,"pf":126.5,"pa":119.64}],"jphn744":[{"week":15,"opponent":"kdavis","result":"W","round":1,"place":null,"tier":null,"pf":115.44,"pa":111.96},{"week":16,"opponent":"thowd","result":"L","round":2,"place":null,"tier":null,"pf":88.52,"pa":131.6},{"week":17,"opponent":"peterbrune","result":"L","round":3,"place":3,"tier":null,"pf":80.88,"pa":122.12}],"peterbrune":[{"week":15,"opponent":"dnevels8","result":"W","round":1,"place":null,"tier":null,"pf":139.88,"pa":125.72},{"week":16,"opponent":"bcorrigan30","result":"L","round":2,"place":null,"tier":null,"pf":104.98,"pa":122.3},{"week":17,"opponent":"jphn744","result":"W","round":3,"place":3,"tier":null,"pf":122.12,"pa":80.88}],"dnevels8":[{"week":15,"opponent":"peterbrune","result":"L","round":1,"place":null,"tier":null,"pf":125.72,"pa":139.88},{"week":16,"opponent":"kdavis","result":"L","round":2,"place":5,"tier":null,"pf":128.18,"pa":180.2}],"kdavis":[{"week":15,"opponent":"jphn744","result":"L","round":1,"place":null,"tier":null,"pf":111.96,"pa":115.44},{"week":16,"opponent":"dnevels8","result":"W","round":2,"place":5,"tier":null,"pf":180.2,"pa":128.18}],"SeanOMara":[{"week":15,"opponent":"GBClark","result":"W","round":1,"place":null,"tier":null,"pf":130.82,"pa":89.4,"consolation":true},{"week":16,"opponent":"amenr5","result":"W","round":2,"place":5,"tier":null,"pf":101.8,"pa":95.88,"consolation":true}],"amenr5":[{"week":15,"opponent":"YungSimba","result":"W","round":1,"place":null,"tier":null,"pf":104.56,"pa":51.4,"consolation":true},{"week":16,"opponent":"SeanOMara","result":"L","round":2,"place":5,"tier":null,"pf":95.88,"pa":101.8,"consolation":true}],"YungSimba":[{"week":15,"opponent":"amenr5","result":"L","round":1,"place":null,"tier":null,"pf":51.4,"pa":104.56,"consolation":true},{"week":16,"opponent":"Keughes","result":"W","round":2,"place":null,"tier":null,"pf":111.96,"pa":89.26,"consolation":true},{"week":17,"opponent":"GBClark","result":"L","round":3,"place":3,"tier":null,"pf":96.2,"pa":126.64,"consolation":true}],"GBClark":[{"week":15,"opponent":"SeanOMara","result":"L","round":1,"place":null,"tier":null,"pf":89.4,"pa":130.82,"consolation":true},{"week":16,"opponent":"TylerKeel","result":"W","round":2,"place":null,"tier":null,"pf":126.2,"pa":98.4,"consolation":true},{"week":17,"opponent":"YungSimba","result":"W","round":3,"place":3,"tier":null,"pf":126.64,"pa":96.2,"consolation":true}],"TylerKeel":[{"week":16,"opponent":"GBClark","result":"L","round":2,"place":null,"tier":null,"pf":98.4,"pa":126.2,"consolation":true},{"week":17,"opponent":"Keughes","result":"W","round":3,"place":1,"tier":null,"pf":80.74,"pa":68.88,"consolation":true}],"Keughes":[{"week":16,"opponent":"YungSimba","result":"L","round":2,"place":null,"tier":null,"pf":89.26,"pa":111.96,"consolation":true},{"week":17,"opponent":"TylerKeel","result":"L","round":3,"place":1,"tier":null,"pf":68.88,"pa":80.74,"consolation":true}]}}
+{
+  "2012": {
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 260,
+        "pa": 272
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 217,
+        "pa": 252
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 236,
+        "pa": 241
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 252,
+        "pa": 217
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 241,
+        "pa": 236
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 378,
+        "pa": 231
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 272,
+        "pa": 260
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 231,
+        "pa": 378
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 190,
+        "pa": 189,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 216,
+        "pa": 193,
+        "consolation": true
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 189,
+        "pa": 190,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 216,
+        "pa": 205,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "KRobertson",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 227,
+        "pa": 203,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 193,
+        "pa": 216,
+        "consolation": true
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 238,
+        "pa": 227,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 205,
+        "pa": 216,
+        "consolation": true
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 227,
+        "pa": 238,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "KRobertson",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 257,
+        "pa": 216,
+        "consolation": true
+      }
+    ],
+    "KRobertson": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 203,
+        "pa": 227,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 216,
+        "pa": 257,
+        "consolation": true
+      }
+    ]
+  },
+  "2013": {
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 301,
+        "pa": 291
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 225,
+        "pa": 264
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 251,
+        "pa": 233
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 264,
+        "pa": 225
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 291,
+        "pa": 301
+      },
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 211,
+        "pa": 235
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 233,
+        "pa": 251
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 235,
+        "pa": 211
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 261,
+        "pa": 248,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 212,
+        "pa": 241,
+        "consolation": true
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 248,
+        "pa": 261,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 210,
+        "pa": 151,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 201,
+        "pa": 245,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "KRobertson",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 215,
+        "pa": 199,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 245,
+        "pa": 201,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 241,
+        "pa": 212,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "KRobertson",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 239,
+        "pa": 211,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 151,
+        "pa": 210,
+        "consolation": true
+      }
+    ],
+    "KRobertson": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 211,
+        "pa": 239,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 199,
+        "pa": 215,
+        "consolation": true
+      }
+    ]
+  },
+  "2014": {
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 233,
+        "pa": 202
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 180,
+        "pa": 310
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 239,
+        "pa": 350
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 223,
+        "pa": 200
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 350,
+        "pa": 239
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 310,
+        "pa": 180
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 202,
+        "pa": 233
+      },
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 200,
+        "pa": 223
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 249,
+        "pa": 239,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 211,
+        "pa": 206,
+        "consolation": true
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 239,
+        "pa": 249,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 208,
+        "pa": 203,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 223,
+        "pa": 290,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 212,
+        "pa": 183,
+        "consolation": true
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 290,
+        "pa": 223,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 206,
+        "pa": 211,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 206,
+        "pa": 147,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 203,
+        "pa": 208,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 147,
+        "pa": 206,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 183,
+        "pa": 212,
+        "consolation": true
+      }
+    ]
+  },
+  "2015": {
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 132,
+        "pa": 162
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 76,
+        "pa": 82
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 144,
+        "pa": 170
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 82,
+        "pa": 76
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 155,
+        "pa": 79
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 170,
+        "pa": 144
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 155,
+        "pa": 170
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 109,
+        "pa": 85
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 162,
+        "pa": 132
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 170,
+        "pa": 155
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 85,
+        "pa": 109
+      },
+      {
+        "week": 15,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 167,
+        "pa": 99
+      },
+      {
+        "week": 16,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 96,
+        "pa": 90
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 98,
+        "pa": 104,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 131,
+        "pa": 92,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 149,
+        "pa": 124,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 104,
+        "pa": 98,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 182,
+        "pa": 79,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 124,
+        "pa": 149,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 82,
+        "pa": 134,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 115,
+        "pa": 93,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 119,
+        "pa": 111,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 134,
+        "pa": 82,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 79,
+        "pa": 182,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 111,
+        "pa": 119,
+        "consolation": true
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 89,
+        "pa": 124,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 93,
+        "pa": 115,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 79,
+        "pa": 95,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 124,
+        "pa": 89,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 92,
+        "pa": 131,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 95,
+        "pa": 79,
+        "consolation": true
+      }
+    ],
+    "amenr5": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 79,
+        "pa": 155
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 99,
+        "pa": 167
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 90,
+        "pa": 96
+      }
+    ]
+  },
+  "2016": {
+    "assif": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 105.88,
+        "pa": 115.24
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 150.88,
+        "pa": 93.82
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 111.72,
+        "pa": 95.6
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 134.28,
+        "pa": 164.68
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 81.54,
+        "pa": 107
+      },
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 88.24,
+        "pa": 110.2
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 129.98,
+        "pa": 98.72
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 136.88,
+        "pa": 93.54
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 115.24,
+        "pa": 105.88
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 164.68,
+        "pa": 134.28
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 93.54,
+        "pa": 136.88
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 110.2,
+        "pa": 88.24
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 98.72,
+        "pa": 129.98
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 107,
+        "pa": 81.54
+      },
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 95.6,
+        "pa": 111.72
+      },
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 93.82,
+        "pa": 150.88
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 91.1,
+        "pa": 92.82,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 96.44,
+        "pa": 122.48,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 147.66,
+        "pa": 103.6,
+        "consolation": true
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 92.82,
+        "pa": 91.1,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 119.82,
+        "pa": 87.22,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 116.14,
+        "pa": 121.78,
+        "consolation": true
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 106.08,
+        "pa": 106.54,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 151.86,
+        "pa": 111.1,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 108.46,
+        "pa": 83.36,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 106.54,
+        "pa": 106.08,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 87.22,
+        "pa": 119.82,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 83.36,
+        "pa": 108.46,
+        "consolation": true
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 95.96,
+        "pa": 115.12,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 111.1,
+        "pa": 151.86,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 103.6,
+        "pa": 147.66,
+        "consolation": true
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 115.12,
+        "pa": 95.96,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 122.48,
+        "pa": 96.44,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 121.78,
+        "pa": 116.14,
+        "consolation": true
+      }
+    ]
+  },
+  "2017": {
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 144.04,
+        "pa": 167.98
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 139.58,
+        "pa": 99.76
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 113.54,
+        "pa": 140.04
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 99.76,
+        "pa": 139.58
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 127.06,
+        "pa": 127.84
+      },
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 95.88,
+        "pa": 104.88
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 112.3,
+        "pa": 80.62
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 96.42,
+        "pa": 129.08
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 104.88,
+        "pa": 95.88
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 80.62,
+        "pa": 112.3
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 129.08,
+        "pa": 96.42
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 167.98,
+        "pa": 144.04
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 108.8,
+        "pa": 85.64
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 127.84,
+        "pa": 127.06
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 140.04,
+        "pa": 113.54
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 85.64,
+        "pa": 108.8
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 85.94,
+        "pa": 135.46,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 117.7,
+        "pa": 108.14,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 96.62,
+        "pa": 115.58,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 135.46,
+        "pa": 85.94,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 107.4,
+        "pa": 118.88,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 144.84,
+        "pa": 112.06,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 127.98,
+        "pa": 90.92,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 118.88,
+        "pa": 107.4,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 115.58,
+        "pa": 96.62,
+        "consolation": true
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 90.92,
+        "pa": 127.98,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 85.42,
+        "pa": 84.84,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 112.06,
+        "pa": 144.84,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 92.06,
+        "pa": 109.34,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 84.84,
+        "pa": 85.42,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 118.68,
+        "pa": 85.4,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 109.34,
+        "pa": 92.06,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 108.14,
+        "pa": 117.7,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 85.4,
+        "pa": 118.68,
+        "consolation": true
+      }
+    ]
+  },
+  "2018": {
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 125.98,
+        "pa": 103.9
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 164.84,
+        "pa": 120.08
+      }
+    ],
+    "thowd": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 75.22,
+        "pa": 90.14
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 128.64,
+        "pa": 159.08
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 136.8,
+        "pa": 124.02
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 90.14,
+        "pa": 75.22
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 120.08,
+        "pa": 164.84
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 114.28,
+        "pa": 113.8
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 103.9,
+        "pa": 125.98
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 159.08,
+        "pa": 128.64
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 113.8,
+        "pa": 114.28
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 114.62,
+        "pa": 111.88
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 65.94,
+        "pa": 117.24
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_BRACKET",
+        "pf": 124.02,
+        "pa": 136.8
+      },
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 111.88,
+        "pa": 114.62
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "WINNERS_CONSOLATION_LADDER",
+        "pf": 117.24,
+        "pa": 65.94
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 140.38,
+        "pa": 108.98,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 96.06,
+        "pa": 95.28,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 128.18,
+        "pa": 127.02,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 108.98,
+        "pa": 140.38,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 99.62,
+        "pa": 94.42,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 127.02,
+        "pa": 128.18,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 187.6,
+        "pa": 118.42,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 95.28,
+        "pa": 96.06,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 99.24,
+        "pa": 103.26,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 118.42,
+        "pa": 187.6,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 90.96,
+        "pa": 83.26,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 103.26,
+        "pa": 99.24,
+        "consolation": true
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 44.5,
+        "pa": 96.04,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 83.26,
+        "pa": 90.96,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 119.24,
+        "pa": 108.68,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 96.04,
+        "pa": 44.5,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 94.42,
+        "pa": 99.62,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": null,
+        "place": null,
+        "tier": "LOSERS_CONSOLATION_LADDER",
+        "pf": 108.68,
+        "pa": 119.24,
+        "consolation": true
+      }
+    ]
+  },
+  "2019": {
+    "JPeters19": [
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 120.08,
+        "pa": 144.46
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 77.62,
+        "pa": 88.9
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 117.58,
+        "pa": 107.18
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 105.78,
+        "pa": 131.38
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 148.76,
+        "pa": 116.1
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 107.18,
+        "pa": 117.58
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 88.9,
+        "pa": 77.62
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 109.62,
+        "pa": 135.78
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 85.8,
+        "pa": 197.46
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 135.78,
+        "pa": 109.62
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 144.46,
+        "pa": 120.08
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 131.38,
+        "pa": 105.78
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 116.1,
+        "pa": 148.76
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 197.46,
+        "pa": 85.8
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 108.22,
+        "pa": 133.42,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 146.46,
+        "pa": 135.18,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 136.92,
+        "pa": 112.76,
+        "consolation": true
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 14,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 101.6,
+        "pa": 95.7,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 128.18,
+        "pa": 146.14,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 14,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 95.7,
+        "pa": 101.6,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 147.24,
+        "pa": 108.8,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 112.76,
+        "pa": 136.92,
+        "consolation": true
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 133.42,
+        "pa": 108.22,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 146.14,
+        "pa": 128.18,
+        "consolation": true
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 135.18,
+        "pa": 146.46,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 145.66,
+        "pa": 80.54,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 108.8,
+        "pa": 147.24,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 80.54,
+        "pa": 145.66,
+        "consolation": true
+      }
+    ]
+  },
+  "2020": {
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 132.7,
+        "pa": 139.02
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 138.14,
+        "pa": 164.72
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 148.72,
+        "pa": 108.86
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 131.64,
+        "pa": 104.84
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 14,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 140.32,
+        "pa": 129.72
+      },
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 108.86,
+        "pa": 148.72
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 164.72,
+        "pa": 138.14
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 14,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 97.92,
+        "pa": 105.6
+      },
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 140.46,
+        "pa": 138.66
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 14,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 105.6,
+        "pa": 97.92
+      },
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 139.02,
+        "pa": 132.7
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 104.84,
+        "pa": 131.64
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 14,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 129.72,
+        "pa": 140.32
+      },
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 138.66,
+        "pa": 140.46
+      }
+    ],
+    "thowd": [
+      {
+        "week": 14,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 164.04,
+        "pa": 86.16,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 93.56,
+        "pa": 100.62,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 14,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 109.82,
+        "pa": 90.36,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 100.62,
+        "pa": 93.56,
+        "consolation": true
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 14,
+        "opponent": "assif",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 90.36,
+        "pa": 109.82,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 119.82,
+        "pa": 177.34,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 139.26,
+        "pa": 137.3,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 14,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 86.16,
+        "pa": 164.04,
+        "consolation": true
+      },
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 144.74,
+        "pa": 82.34,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 135.1,
+        "pa": 127.78,
+        "consolation": true
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 82.34,
+        "pa": 144.74,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 137.3,
+        "pa": 139.26,
+        "consolation": true
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 177.34,
+        "pa": 119.82,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 127.78,
+        "pa": 135.1,
+        "consolation": true
+      }
+    ]
+  },
+  "2021": {
+    "jphn744": [
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 151.38,
+        "pa": 111
+      },
+      {
+        "week": 17,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 139.8,
+        "pa": 132.7
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 75.08,
+        "pa": 157.36
+      },
+      {
+        "week": 17,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 128.26,
+        "pa": 128.74
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 124.5,
+        "pa": 100.12
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 157.36,
+        "pa": 75.08
+      },
+      {
+        "week": 17,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 132.7,
+        "pa": 139.8
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 85.28,
+        "pa": 115.38
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 102.9,
+        "pa": 121.38
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 115.38,
+        "pa": 85.28
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 111,
+        "pa": 151.38
+      },
+      {
+        "week": 17,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 128.74,
+        "pa": 128.26
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 100.12,
+        "pa": 124.5
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 121.38,
+        "pa": 102.9
+      }
+    ],
+    "thowd": [
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 116.58,
+        "pa": 80.38,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 110.3,
+        "pa": 144.72,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 62.5,
+        "pa": 116.8,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 94.86,
+        "pa": 127.5,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "assif",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 175.8,
+        "pa": 147.58,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 116.8,
+        "pa": 62.5,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 144.72,
+        "pa": 110.3,
+        "consolation": true
+      }
+    ],
+    "assif": [
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 80.38,
+        "pa": 116.58,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 118.3,
+        "pa": 118.94,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 147.58,
+        "pa": 175.8,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 118.94,
+        "pa": 118.3,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 101.98,
+        "pa": 94.78,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 127.5,
+        "pa": 94.86,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 94.78,
+        "pa": 101.98,
+        "consolation": true
+      }
+    ]
+  },
+  "2022": {
+    "peterbrune": [
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 114.1,
+        "pa": 111.46
+      },
+      {
+        "week": 17,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 72.1,
+        "pa": 94.98
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 122.1,
+        "pa": 131.78
+      },
+      {
+        "week": 17,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 108.28,
+        "pa": 91.4
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 160.78,
+        "pa": 122.84
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 111.46,
+        "pa": 114.1
+      },
+      {
+        "week": 17,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 91.4,
+        "pa": 108.28
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 122.84,
+        "pa": 160.78
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 97.4,
+        "pa": 161.18
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 108.46,
+        "pa": 124.64
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 161.18,
+        "pa": 97.4
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 124.64,
+        "pa": 108.46
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 131.78,
+        "pa": 122.1
+      },
+      {
+        "week": 17,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 94.98,
+        "pa": 72.1
+      }
+    ],
+    "assif": [
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 89.34,
+        "pa": 134.32,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 68.36,
+        "pa": 100.2,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 112.12,
+        "pa": 129.28,
+        "consolation": true
+      }
+    ],
+    "thowd": [
+      {
+        "week": 15,
+        "opponent": "assif",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 134.32,
+        "pa": 89.34,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 126.06,
+        "pa": 91.2,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 16,
+        "opponent": "assif",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 100.2,
+        "pa": 68.36,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 98.6,
+        "pa": 75.4,
+        "consolation": true
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 94.52,
+        "pa": 132.7,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 67,
+        "pa": 139.2,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "assif",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 129.28,
+        "pa": 112.12,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 132.7,
+        "pa": 94.52,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 91.2,
+        "pa": 126.06,
+        "consolation": true
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 139.2,
+        "pa": 67,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 75.4,
+        "pa": 98.6,
+        "consolation": true
+      }
+    ]
+  },
+  "2023": {
+    "jphn744": [
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 142,
+        "pa": 93.18
+      },
+      {
+        "week": 17,
+        "opponent": "JPeters19",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 159.12,
+        "pa": 146.68
+      }
+    ],
+    "thowd": [
+      {
+        "week": 16,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 114.6,
+        "pa": 120.34
+      },
+      {
+        "week": 17,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 168.1,
+        "pa": 102.74
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 15,
+        "opponent": "JPeters19",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 80.56,
+        "pa": 136.28
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 109.4,
+        "pa": 121.48
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 101.34,
+        "pa": 139.32
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 121.48,
+        "pa": 109.4
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 139.32,
+        "pa": 101.34
+      },
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 93.18,
+        "pa": 142
+      },
+      {
+        "week": 17,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 102.74,
+        "pa": 168.1
+      }
+    ],
+    "JPeters19": [
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 136.28,
+        "pa": 80.56
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 120.34,
+        "pa": 114.6
+      },
+      {
+        "week": 17,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 146.68,
+        "pa": 159.12
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 172.3,
+        "pa": 58.86,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 79,
+        "pa": 134.18,
+        "consolation": true
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 115.96,
+        "pa": 96.62,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 134.18,
+        "pa": 79,
+        "consolation": true
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 96.62,
+        "pa": 115.96,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 137.12,
+        "pa": 104.9,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "amenr5",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 91.68,
+        "pa": 98.54,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 58.86,
+        "pa": 172.3,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "amenr5",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 113.32,
+        "pa": 136.66,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 88.88,
+        "pa": 167.28,
+        "consolation": true
+      }
+    ],
+    "amenr5": [
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 136.66,
+        "pa": 113.32,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 98.54,
+        "pa": 91.68,
+        "consolation": true
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 104.9,
+        "pa": 137.12,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 167.28,
+        "pa": 88.88,
+        "consolation": true
+      }
+    ]
+  },
+  "2024": {
+    "kdavis": [
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 98.24,
+        "pa": 167.42
+      },
+      {
+        "week": 17,
+        "opponent": "Keughes",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 113.02,
+        "pa": 94.58
+      }
+    ],
+    "Keughes": [
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 90.96,
+        "pa": 128.38
+      },
+      {
+        "week": 17,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 94.58,
+        "pa": 113.02
+      }
+    ],
+    "thowd": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 125.56,
+        "pa": 99.08
+      },
+      {
+        "week": 16,
+        "opponent": "Keughes",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 128.38,
+        "pa": 90.96
+      },
+      {
+        "week": 17,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 120.94,
+        "pa": 172.78
+      }
+    ],
+    "bcorrigan30": [
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 96.24,
+        "pa": 108.74
+      },
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 120.08,
+        "pa": 99.12
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 15,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 108.74,
+        "pa": 96.24
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 167.42,
+        "pa": 98.24
+      },
+      {
+        "week": 17,
+        "opponent": "thowd",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 172.78,
+        "pa": 120.94
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 15,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 99.08,
+        "pa": 125.56
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 99.12,
+        "pa": 120.08
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 123.9,
+        "pa": 122.54,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 128.38,
+        "pa": 161.54,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 185.46,
+        "pa": 112.5,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 161.54,
+        "pa": 128.38,
+        "consolation": true
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 112.5,
+        "pa": 185.46,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 115.52,
+        "pa": 110.72,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 125.56,
+        "pa": 121.4,
+        "consolation": true
+      }
+    ],
+    "amenr5": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 122.54,
+        "pa": 123.9,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 135.58,
+        "pa": 101.5,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 121.4,
+        "pa": 125.56,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 16,
+        "opponent": "amenr5",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 101.5,
+        "pa": 135.58,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "dnevels8",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 87.8,
+        "pa": 142.96,
+        "consolation": true
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 110.72,
+        "pa": 115.52,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 142.96,
+        "pa": 87.8,
+        "consolation": true
+      }
+    ]
+  },
+  "2025": {
+    "bcorrigan30": [
+      {
+        "week": 16,
+        "opponent": "peterbrune",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 122.3,
+        "pa": 104.98
+      },
+      {
+        "week": 17,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 119.64,
+        "pa": 126.5
+      }
+    ],
+    "thowd": [
+      {
+        "week": 16,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 131.6,
+        "pa": 88.52
+      },
+      {
+        "week": 17,
+        "opponent": "bcorrigan30",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 126.5,
+        "pa": 119.64
+      }
+    ],
+    "jphn744": [
+      {
+        "week": 15,
+        "opponent": "kdavis",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 115.44,
+        "pa": 111.96
+      },
+      {
+        "week": 16,
+        "opponent": "thowd",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 88.52,
+        "pa": 131.6
+      },
+      {
+        "week": 17,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 80.88,
+        "pa": 122.12
+      }
+    ],
+    "peterbrune": [
+      {
+        "week": 15,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 139.88,
+        "pa": 125.72
+      },
+      {
+        "week": 16,
+        "opponent": "bcorrigan30",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 104.98,
+        "pa": 122.3
+      },
+      {
+        "week": 17,
+        "opponent": "jphn744",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 122.12,
+        "pa": 80.88
+      }
+    ],
+    "dnevels8": [
+      {
+        "week": 15,
+        "opponent": "peterbrune",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 125.72,
+        "pa": 139.88
+      },
+      {
+        "week": 16,
+        "opponent": "kdavis",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 128.18,
+        "pa": 180.2
+      }
+    ],
+    "kdavis": [
+      {
+        "week": 15,
+        "opponent": "jphn744",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 111.96,
+        "pa": 115.44
+      },
+      {
+        "week": 16,
+        "opponent": "dnevels8",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 180.2,
+        "pa": 128.18
+      }
+    ],
+    "SeanOMara": [
+      {
+        "week": 15,
+        "opponent": "GBClark",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 130.82,
+        "pa": 89.4,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "amenr5",
+        "result": "W",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 101.8,
+        "pa": 95.88,
+        "consolation": true
+      }
+    ],
+    "amenr5": [
+      {
+        "week": 15,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 104.56,
+        "pa": 51.4,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 2,
+        "place": 5,
+        "tier": null,
+        "pf": 95.88,
+        "pa": 101.8,
+        "consolation": true
+      }
+    ],
+    "YungSimba": [
+      {
+        "week": 15,
+        "opponent": "amenr5",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 51.4,
+        "pa": 104.56,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "Keughes",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 111.96,
+        "pa": 89.26,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 96.2,
+        "pa": 126.64,
+        "consolation": true
+      }
+    ],
+    "GBClark": [
+      {
+        "week": 15,
+        "opponent": "SeanOMara",
+        "result": "L",
+        "round": 1,
+        "place": null,
+        "tier": null,
+        "pf": 89.4,
+        "pa": 130.82,
+        "consolation": true
+      },
+      {
+        "week": 16,
+        "opponent": "TylerKeel",
+        "result": "W",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 126.2,
+        "pa": 98.4,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "YungSimba",
+        "result": "W",
+        "round": 3,
+        "place": 3,
+        "tier": null,
+        "pf": 126.64,
+        "pa": 96.2,
+        "consolation": true
+      }
+    ],
+    "TylerKeel": [
+      {
+        "week": 16,
+        "opponent": "GBClark",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 98.4,
+        "pa": 126.2,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "Keughes",
+        "result": "W",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 80.74,
+        "pa": 68.88,
+        "consolation": true
+      }
+    ],
+    "Keughes": [
+      {
+        "week": 16,
+        "opponent": "YungSimba",
+        "result": "L",
+        "round": 2,
+        "place": null,
+        "tier": null,
+        "pf": 89.26,
+        "pa": 111.96,
+        "consolation": true
+      },
+      {
+        "week": 17,
+        "opponent": "TylerKeel",
+        "result": "L",
+        "round": 3,
+        "place": 1,
+        "tier": null,
+        "pf": 68.88,
+        "pa": 80.74,
+        "consolation": true
+      }
+    ]
+  }
+}

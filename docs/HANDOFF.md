@@ -31,11 +31,12 @@ https://sunday-funday-ff-bkvr.vercel.app — the project tracks this repo's only
   need periodic re-pulling** as new seasons complete — see "Known open items" below.
 - League was named "National Beer League" in 2012, renamed to "Sunday Funday" from 2013 on.
 - Manager identity mapping (Sleeper handle → real name) lives in
-  `league_data.json.manager_identity`. Two franchise slots were folded across an owner
-  change: TylerKeel's slot includes an earlier "Robertson"-owned portion (2012), and
-  dnevels8's slot includes an earlier "Engler"-owned portion (2012–2015ish). This was
-  confirmed directly against ESPN's raw member list, not just the old source file's
-  footnotes — don't re-litigate it.
+  `league_data.json.manager_identity`. A prior version of this doc claimed TylerKeel's
+  and dnevels8's franchise slots were continuations of earlier "Robertson"- and
+  "Engler"-owned portions — **that claim was wrong** and has been corrected (see
+  correction #4 below). They're unrelated managers with their own identities
+  (`KRobertson`, `amenr5`), confirmed against ESPN's raw `leagueHistory` API member
+  list (`view=mTeam`) at the win/loss-record level, not just surname matching.
 
 ## Known data corrections applied this session (do not "fix" these back)
 
@@ -61,6 +62,26 @@ https://sunday-funday-ff-bkvr.vercel.app — the project tracks this repo's only
    they still show up in game logs, just labeled "Consolation" instead of "Playoffs".
    Before this fix, career playoff records were inflated (e.g. one manager showed
    18-9 across a single playoff appearance).
+4. **TylerKeel's 2012/2013 rows and dnevels8's 2015 row were misattributed** — this was
+   the opposite of the "folded franchise lineage" story a prior version of this doc
+   told. Verified by pulling ESPN's raw `leagueHistory` API (`view=mTeam`) directly and
+   cross-checking every 2012-2018 team's `primaryOwner` + win/loss record against the
+   site's data: 2012 and 2013's roster slot 7 belonged to **Keith Robertson** (4-8,
+   then 3-10), who left the league before the 2014 season — Tyler Keel then joined as
+   an entirely new, unrelated franchise (roster slot 11) in 2014, not a continuation of
+   Robertson's team. Separately, 2015's roster slot 12 belonged to **Andy Engler**
+   (8-5, "Team Engler," playoff seed 6) — a one-season manager who left before devin
+   nevels took over that same slot number in 2016. Andy Engler resurfaced in the league
+   in 2023 under the Sleeper handle `amenr5`, making him the only manager in league
+   history to leave and return. New manager identity `KRobertson` (Keith Robertson) was
+   added for his two-season stint; `amenr5`'s identity now spans both his 2015 ESPN
+   season and his 2023+ Sleeper return. All of `matchup_log.json`,
+   `playoff_brackets.json`, `playoff_records.json`, `draft_history.json`, and
+   `data/full_league_history.json` were corrected to match, including every mirrored
+   opponent-side game entry. If you ever regenerate data from raw ESPN pulls, do NOT
+   trust surname-only matching or "which Sleeper handle inherited this roster slot
+   number" — verify against the actual `primaryOwner` member ID and win/loss record for
+   each individual season, the same way this correction was made.
 
 ## Data pipeline / file map
 

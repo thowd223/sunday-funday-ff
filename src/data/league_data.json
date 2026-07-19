@@ -36,7 +36,7 @@
     "dnevels8": {
       "real_name": "devin nevels",
       "espn_surname": "NEVELS",
-      "note": "Joined as an expansion franchise in 2015, inheriting the roster slot once run by an earlier owner, \"Engler.\""
+      "note": "Joined as an expansion franchise in 2016 (not 2015 as earlier documented — that year's roster slot 12 belonged to Andy Engler, a one-season 2015 manager; see amenr5). Co-manages the roster with \"muhiuj\" since 2024 under the team name \"Love is Through the Air.\""
     },
     "peterbrune": {
       "real_name": "Peter Brune",
@@ -63,7 +63,7 @@
     "TylerKeel": {
       "real_name": "Tyler Keel",
       "espn_surname": "KEEL",
-      "note": "Franchise traces back to an earlier owner, \"Robertson,\" before Tyler took the reins."
+      "note": "Joined in 2014 as a brand-new franchise (not a continuation of Keith Robertson's 2012-2013 team, as earlier documented — Robertson's slot was dropped when he left, and Tyler joined as an entirely separate new team the following year)."
     },
     "GBClark": {
       "real_name": "Garrett Clark",
@@ -76,15 +76,21 @@
     },
     "amenr5": {
       "real_name": "Andy Engler",
-      "note": "Joined the league in 2023; co-manages the roster with \"muhiuj\" since 2024 under the team name \"Love is Through the Air.\""
+      "note": "Played one ESPN-era season in 2015 under \"Team Engler\" (roster slot 12, 8-5, seed 6), then left the league — that slot passed to devin nevels for 2016. Andy returned in 2023 under the Sleeper handle amenr5; co-manages the roster with \"muhiuj\" since 2024 under the team name \"Love is Through the Air.\"",
+      "espn_surname": "ENGLER"
     },
     "Keughes": {
       "real_name": "Kevin Hughes",
       "note": "Joined the league in 2024."
+    },
+    "KRobertson": {
+      "real_name": "Keith Robertson",
+      "espn_surname": "ROBERTSON",
+      "note": "Founding-era manager, 2012-2013 only — left before the 2014 season, at which point Tyler Keel took over an entirely new roster slot (not a continuation of Robertson's team). Confirmed against ESPN's raw member list."
     }
   },
   "roster_id_map_2019_2025": {
-    "note": "roster_id has stayed stable for these 12 managers across all 7 Sleeper seasons (2019-2025) \u2014 useful for quickly matching matchup data without re-fetching /rosters every season.",
+    "note": "roster_id has stayed stable for these 12 managers across all 7 Sleeper seasons (2019-2025) — useful for quickly matching matchup data without re-fetching /rosters every season.",
     "kdavis": 1,
     "thowd": 2,
     "bcorrigan30": 3,
@@ -169,8 +175,8 @@
     {
       "season": 2012,
       "reg_season_rank": 7,
-      "manager": "TylerKeel",
-      "team": "Jimmy Graham's Crackers",
+      "manager": "KRobertson",
+      "team": "Team Robertson",
       "w": 4,
       "l": 8,
       "pf": 1370.0,
@@ -312,8 +318,8 @@
     {
       "season": 2013,
       "reg_season_rank": 10,
-      "manager": "TylerKeel",
-      "team": "Jimmy Graham's Crackers",
+      "manager": "KRobertson",
+      "team": "Bust a Kaep",
       "w": 3,
       "l": 10,
       "pf": 1265.0,
@@ -488,8 +494,8 @@
     {
       "season": 2015,
       "reg_season_rank": 6,
-      "manager": "dnevels8",
-      "team": "Andre Thundacock",
+      "manager": "amenr5",
+      "team": "Team Engler",
       "w": 8,
       "l": 5,
       "pf": 1485.0,
@@ -2048,7 +2054,7 @@
     "2025|amenr5": 1500.84
   },
   "head_to_head_progress": {
-    "status": "IN PROGRESS \u2014 interrupted partway through manual chat-based pull. Resume/redo via script, this partial data is provisional.",
+    "status": "IN PROGRESS — interrupted partway through manual chat-based pull. Resume/redo via script, this partial data is provisional.",
     "pairs_done": {
       "thowd_vs_jphn744": {
         "seasons_checked": "2019 weeks 1-6 only (out of 96 total regular-season weeks across 2019-2025)",

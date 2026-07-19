@@ -32,7 +32,7 @@ export const BADGES: Badge[] = [
   {
     manager: 'TylerKeel',
     badge: 'Wooden Spoon King',
-    why: '3 last-place finishes, more than anyone else, including the worst single season in league history (1-12 in 2018).',
+    why: 'Owns the single worst season in league history outright: 1-12 in 2018, with a -395.5 point differential that also stands as the worst ever. Tied for the most last-place finishes (2) along with three others.',
   },
   {
     manager: 'peterbrune',
@@ -47,7 +47,7 @@ export const BADGES: Badge[] = [
   {
     manager: 'dnevels8',
     badge: 'Late Arrival, Fast Learner',
-    why: 'Joined as an expansion team in 2015 and already has a title (2020) — one of the shortest tenures of the long-time managers, and already a champion.',
+    why: 'Joined as an expansion team in 2016 and already has a title (2020) — one of the shortest tenures of the long-time managers, and already a champion.',
   },
   {
     manager: 'GBClark',
@@ -66,8 +66,13 @@ export const BADGES: Badge[] = [
   },
   {
     manager: 'amenr5',
-    badge: 'Too Early to Tell',
-    why: 'Only 3 seasons in — the newest long-tenured manager still building a track record.',
+    badge: 'The Prodigal Manager',
+    why: "Played one ESPN-era season back in 2015 (8-5, seed 6, as \"Team Engler\"), then vanished for eight years before returning in 2023 under a new Sleeper handle — the only manager in league history to leave and come back.",
+  },
+  {
+    manager: 'KRobertson',
+    badge: 'Founding Member, Early Exit',
+    why: "One of the league's original ten in 2012 — two losing seasons (4-8, then 3-10) and gone before the league's first expansion in 2015.",
   },
   {
     manager: 'JPeters19',
