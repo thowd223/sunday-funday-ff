@@ -11,6 +11,7 @@ import {
 } from '../data/league'
 import { luckRating } from '../lib/stats'
 import { num, signedPct } from '../lib/format'
+import { recapForSeason } from '../data/recaps'
 
 const FINISH_ORDER: PlayoffResult[] = [
   'Champion',
@@ -46,6 +47,7 @@ export function SeasonDetail() {
     .sort((a, b) => FINISH_ORDER.indexOf(a.result) - FINISH_ORDER.indexOf(b.result))
 
   const trades = tradesForSeason(year)
+  const recap = recapForSeason(year)
 
   return (
     <>
@@ -60,6 +62,45 @@ export function SeasonDetail() {
           {hasNext && <Link to={`/seasons/${nextYear}`}>{nextYear} →</Link>}
         </div>
       </div>
+
+      {recap && (
+        <section className="section">
+          <h2 className="section-title">The Story</h2>
+          <div className="card" style={{ padding: 20 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 800 }}>{recap.headline}</h3>
+            {recap.subhead && (
+              <p className="muted" style={{ marginTop: 6, fontSize: 14.5, lineHeight: 1.5 }}>
+                {recap.subhead}
+              </p>
+            )}
+            <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {recap.paragraphs.map((p, i) => (
+                <p key={i} style={{ lineHeight: 1.65, fontSize: 14.5 }}>
+                  {p}
+                </p>
+              ))}
+            </div>
+            {recap.keyMoments && recap.keyMoments.length > 0 && (
+              <div
+                className="grid"
+                style={{
+                  marginTop: 16,
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))',
+                }}
+              >
+                {recap.keyMoments.map((m) => (
+                  <div key={m.label} className="card stat" style={{ background: 'var(--panel-2)' }}>
+                    <div className="label">{m.label}</div>
+                    <p className="note" style={{ marginTop: 6 }}>
+                      {m.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="section">
         <h2 className="section-title">Regular Season</h2>
