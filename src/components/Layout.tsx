@@ -12,6 +12,9 @@ const LINKS = [
   { to: '/rivalries', label: 'Rivalries' },
   { to: '/luck', label: 'Luck Index' },
   { to: '/draft-history', label: 'Draft History' },
+  { to: '/draft-grades', label: 'Draft Grades' },
+  { to: '/trades', label: 'Trades' },
+  { to: '/stories', label: 'Stories' },
 ]
 
 export function Layout() {

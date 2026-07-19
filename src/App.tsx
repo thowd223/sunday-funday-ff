@@ -14,6 +14,9 @@ import { RivalryDetail } from './pages/RivalryDetail'
 import { Luck } from './pages/Luck'
 import { Records } from './pages/Records'
 import { DraftHistory } from './pages/DraftHistory'
+import { DraftGrades } from './pages/DraftGrades'
+import { Trades } from './pages/Trades'
+import { Stories } from './pages/Stories'
 import { NotFound } from './pages/NotFound'
 
 /**
@@ -40,6 +43,9 @@ export function App() {
           <Route path="records" element={<Records />} />
           <Route path="draft-history" element={<DraftHistory />} />
           <Route path="draft-history/:year" element={<DraftHistory />} />
+          <Route path="draft-grades" element={<DraftGrades />} />
+          <Route path="trades" element={<Trades />} />
+          <Route path="stories" element={<Stories />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
