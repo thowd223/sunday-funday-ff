@@ -18,7 +18,7 @@
       },
       {
         "season": "multiple (2012, 2013, 2015)",
-        "note": "TylerKeel's 2012 and 2013 rows, and dnevels8's 2015 row, were misattributed during the original ESPN-era curation. Verified directly against ESPN's raw leagueHistory API member list (view=mTeam): 2012 and 2013's roster slot 7 belonged to Keith Robertson (new identity: KRobertson), who left before Tyler Keel joined as an unrelated new franchise in 2014. 2015's roster slot 12 belonged to Andy Engler (amenr5), a one-season manager who left before devin nevels took over that slot in 2016. Do not re-fold these into TylerKeel/dnevels8's continuous history if ever regenerating from raw ESPN pulls."
+        "note": "TylerKeel's 2012 and 2013 rows, and dnevels8's 2015 row, were misattributed during the original ESPN-era curation. Verified directly against ESPN's raw leagueHistory API member list (view=mTeam): 2012 and 2013's roster slot 7 belonged to Keith Robertson (new identity: KRobertson), who left before Tyler Keel joined as an unrelated new franchise in 2014. 2015's roster slot 12 belonged to Andy Engler (amenr5), a one-season manager who left before Devin Nevels took over that slot in 2016. Do not re-fold these into TylerKeel/dnevels8's continuous history if ever regenerating from raw ESPN pulls."
       }
     ],
     "fields": {

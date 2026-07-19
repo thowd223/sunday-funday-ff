@@ -5,7 +5,7 @@
  *  - ESPN era (2012-2018): ESPN's internal `team.id` is the seat identifier. Confirmed by
  *    pulling ESPN's leagueHistory API (`view=mTeam`) and diffing every team id season over
  *    season. One seat was handed to a new owner and kept the same id: team id 12 (Andy
- *    Engler, 2015 → devin nevels, 2016-2018). See docs/HANDOFF.md.
+ *    Engler, 2015 → Devin Nevels, 2016-2018). See docs/HANDOFF.md.
  *  - Sleeper era (2019-2025): Sleeper's `roster_id` is the seat identifier, already captured
  *    in `league_data.json`'s `roster_id_map_2019_2025`. Two seats changed owners: roster 6
  *    (JPeters19 → Keughes, 2024) and roster 12 (assif → amenr5, 2023).

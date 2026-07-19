@@ -96,7 +96,7 @@ export const RECAPS: SeasonRecap[] = [
     subhead: 'Two of the largest routs in franchise history happened in the same season — and Peter Brune still found a way to repeat as champion.',
     paragraphs: [
       'Nobody in the regular season has topped what Sean O\'Mara did to Garrett Clark in Week 6: 214.2 to 67.4, a 146.9-point margin that stands as the largest regular-season blowout in league history (only Jordan Peters\' 378-231 playoff title-game rout from 2012 is bigger, postseason included) — and O\'Mara\'s 214.2 remains the highest regular-season score anyone has ever posted. It wasn\'t even the only historic beatdown of the season: two weeks earlier, Tyler Keel had put 204.2 on Jordan Peters, a 123-point margin that still ranks as the second-biggest regular-season blowout the league has ever recorded.',
-      'Amid all that chaos, Peter Brune quietly repeated as champion. Seeded fourth at 7-6, he beat devin nevels 136.9-93.5, then Asif Lakhani (the No. 1 seed, fresh off an eight-game winning streak from Weeks 5-12) 115.2-105.9, then Tyler Keel 164.7-134.3 in the final for his second straight title. Lakhani\'s 10-3 regular season, the league\'s best that year, ended in a semifinal exit and a 3rd-place finish.',
+      'Amid all that chaos, Peter Brune quietly repeated as champion. Seeded fourth at 7-6, he beat Devin Nevels 136.9-93.5, then Asif Lakhani (the No. 1 seed, fresh off an eight-game winning streak from Weeks 5-12) 115.2-105.9, then Tyler Keel 164.7-134.3 in the final for his second straight title. Lakhani\'s 10-3 regular season, the league\'s best that year, ended in a semifinal exit and a 3rd-place finish.',
       'Tim Howd had the roughest year in the league, finishing 4-9 despite being the unluckiest manager in the field (-2.9 luck) — his all-play rate said he should have been a 53.1% team. Tyler Keel, on the other hand, rode that season\'s luckiest bounce (+1.9 all-play luck) all the way to the runner-up finish.',
     ],
     keyMoments: [
@@ -126,13 +126,13 @@ export const RECAPS: SeasonRecap[] = [
     subhead: 'The best regular season the league had ever seen shared a year with the worst.',
     paragraphs: [
       'Kurtis Davis went 11-2, the best regular-season record the league had produced to that point, and backed it up: a 126.0-103.9 semifinal win over Brian Corrigan, then a 164.8-120.1 championship win over Peter Brune, for his first title. He was also, somehow, the luckiest team in the league that year (+1.7) on top of being the best — there was no ceiling on this roster.',
-      'At the other extreme, Tyler Keel had the worst season in league history: 1-12, a -395.5 point differential (also a league worst), and a seven-game losing streak to close it out. It got worse before it got better — in Week 7, devin nevels beat Keel 149.5-43.1, the season\'s biggest blowout, and Keel\'s 43.1 stands as one of the lowest single-week scores the league has ever produced. His all-play numbers said he "deserved" about three wins; he got one.',
+      'At the other extreme, Tyler Keel had the worst season in league history: 1-12, a -395.5 point differential (also a league worst), and a seven-game losing streak to close it out. It got worse before it got better — in Week 7, Devin Nevels beat Keel 149.5-43.1, the season\'s biggest blowout, and Keel\'s 43.1 stands as one of the lowest single-week scores the league has ever produced. His all-play numbers said he "deserved" about three wins; he got one.',
       'Peter Brune returned to the championship game for the third time in his career (after winning it in 2015 and 2016) as the No. 3 seed, beating John Hartnett and Tim Howd along the way before running into the Davis buzzsaw. The season\'s closest game came in Week 5, when Davis himself needed every bit of a 121.7-121.5 win over Corrigan.',
     ],
     keyMoments: [
       { label: 'Historic Season', detail: 'Kurtis Davis went 11-2 and won it all — the best regular season in league history at that point.' },
       { label: 'Historic Bottom', detail: 'Tyler Keel finished 1-12 with a -395.5 point differential, both league worsts.' },
-      { label: 'Pile-On', detail: 'devin nevels beat Keel 149.5-43.1 in Week 7 — Keel\'s 43.1 among the lowest scores ever posted.' },
+      { label: 'Pile-On', detail: 'Devin Nevels beat Keel 149.5-43.1 in Week 7 — Keel\'s 43.1 among the lowest scores ever posted.' },
     ],
   },
   {
@@ -142,7 +142,7 @@ export const RECAPS: SeasonRecap[] = [
     paragraphs: [
       'The league moved to Sleeper in 2019, and the regular season it produced was a logjam for the ages: five different managers — Jordan Peters, Sean O\'Mara, Brian Corrigan, Garrett Clark, and Tim Howd — all finished 8-5, separated only by tiebreakers for seeds 1 through 5. It was Howd, seeded fifth in that pile-up, who made it count: wins over Garrett Clark (135.8-109.6), Jordan Peters (144.5-120.1), and Sean O\'Mara (131.4-105.8) in the championship for his second title.',
       'Sean O\'Mara had one of the strangest back-to-back weeks the league has on record: 60.4 points in a Week 7 loss — the low point of his season — followed immediately by a league-high 190.8 the very next week. He rode that into the championship game, where he ultimately came up short.',
-      'Kurtis Davis put up the season\'s biggest blowout, 185.6-94.5 over devin nevels in Week 6, while Asif Lakhani had the toughest year of anyone, going 3-10 with the league\'s worst luck figure (-1.7) to boot.',
+      'Kurtis Davis put up the season\'s biggest blowout, 185.6-94.5 over Devin Nevels in Week 6, while Asif Lakhani had the toughest year of anyone, going 3-10 with the league\'s worst luck figure (-1.7) to boot.',
     ],
     keyMoments: [
       { label: 'The Logjam', detail: 'Five managers finished the regular season 8-5, decided entirely by tiebreakers.' },
@@ -155,14 +155,14 @@ export const RECAPS: SeasonRecap[] = [
     headline: 'The Streak Ends, the Upset Begins',
     subhead: 'Kurtis Davis authored the best regular season in league history and still went home early.',
     paragraphs: [
-      'Kurtis Davis opened the season 12-0 and didn\'t lose until Week 13, finishing 12-1 — still the longest winning streak and the best point differential (+416.8) in league history. It didn\'t matter. Davis lost both playoff games and finished 4th, while devin nevels — seeded second — won it all, beating Brian Corrigan 148.7-108.9 and then John Hartnett 131.6-104.8 in the championship for his first title.',
+      'Kurtis Davis opened the season 12-0 and didn\'t lose until Week 13, finishing 12-1 — still the longest winning streak and the best point differential (+416.8) in league history. It didn\'t matter. Davis lost both playoff games and finished 4th, while Devin Nevels — seeded second — won it all, beating Brian Corrigan 148.7-108.9 and then John Hartnett 131.6-104.8 in the championship for his first title.',
       'Davis\'s regular season was also, by the numbers, one of the luckiest of the two teams involved: Brian Corrigan actually posted the luckiest season in league history by the all-play Luck Index (+3.3 — an 8-5 record despite a 36.4% all-play rate), which makes his championship-week loss to nevels sting a little less and his run to the title game make a little more sense.',
       'The season\'s biggest blowout doubled as Davis\'s coronation moment — a 202.3-121.4 win over Jordan Peters in Week 12 that also capped his 12-game streak. And Week 13 gave the league one of its closest finishes ever: Corrigan edged Peter Brune 118.3-118.2.',
     ],
     keyMoments: [
       { label: 'League Record', detail: 'Kurtis Davis opened 12-0, still the longest winning streak in league history.' },
       { label: 'League Record', detail: 'Brian Corrigan posted a +3.3 all-play Luck Index — the luckiest season anyone has had.' },
-      { label: 'Championship', detail: 'devin nevels 131.6, John Hartnett 104.8 — nevels\'s first title, from the No. 2 seed.' },
+      { label: 'Championship', detail: 'Devin Nevels 131.6, John Hartnett 104.8 — Nevels\'s first title, from the No. 2 seed.' },
     ],
   },
   {
@@ -172,7 +172,7 @@ export const RECAPS: SeasonRecap[] = [
     paragraphs: [
       'John Hartnett went 10-4, rode an eight-game winning streak (Weeks 5-12), and beat Kurtis Davis (151.4-111.0) and Peter Brune (139.8-132.7) in the playoffs for his third title. But it was Brune who actually put up the bigger numbers: his 1,912.3 points scored is the most any manager has posted in a single season in league history — and he still finished runner-up.',
       'Garrett Clark had the toughest year, finishing 2-12 (the second-worst record in league history behind only Tyler Keel\'s 2018) and closing on a six-game losing streak. Tyler Keel delivered the season\'s biggest blowout at Clark\'s expense, 191.5-87.7 in Week 5.',
-      'The closest game of the year came in Week 12, when Nick Pellegrini edged devin nevels 116.9-116.3. Asif Lakhani posted the league\'s best luck figure of the season at +1.9, while Tim Howd, at -1.7, had the worst of it.',
+      'The closest game of the year came in Week 12, when Nick Pellegrini edged Devin Nevels 116.9-116.3. Asif Lakhani posted the league\'s best luck figure of the season at +1.9, while Tim Howd, at -1.7, had the worst of it.',
     ],
     keyMoments: [
       { label: 'League Record', detail: 'Peter Brune scored 1,912.3 points — the most in a single season in league history — and still finished runner-up.' },

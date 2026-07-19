@@ -127,7 +127,7 @@ solely at the league owner's explicit direction — see below.
 - **ESPN era (2012-2018)**: pulled the raw `leagueHistory` API (`view=mTeam`) directly
   and diffed every team's numeric `id` season over season. Of all id transitions across
   2012-2018, exactly one seat was handed to a new owner while keeping the same `id`: team
-  id 12 went from Andy Engler (2015, "Team Engler") to devin nevels (2016-2018, "Andre
+  id 12 went from Andy Engler (2015, "Team Engler") to Devin Nevels (2016-2018, "Andre
   Thundacock") with no other continuity (team name changed completely, full redraft, no
   shared roster) — franchise `engler-nevels`.
 - **Sleeper era (2019-2025)**: `roster_id` is Sleeper's stable seat identifier, already
@@ -146,7 +146,7 @@ solely at the league owner's explicit direction — see below.
   of hard platform-id evidence or an explicit owner confirmation like this one.
 
 Note the asymmetry this produces: Andy Engler's 2015 ESPN season lives in the
-`engler-nevels` franchise (displayed under devin nevels' name, since he's the more recent
+`engler-nevels` franchise (displayed under Devin Nevels' name, since he's the more recent
 owner of that seat), while Engler's own personal `/managers/amenr5` page still correctly
 shows his full individual career — all 4 of his seasons (2015, 2023-2025) — since owner
 stats and franchise stats are deliberately different views over the same underlying data.
