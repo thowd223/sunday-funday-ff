@@ -9,6 +9,9 @@ import { Awards } from './pages/Awards'
 import { Managers } from './pages/Managers'
 import { ManagerDetail } from './pages/ManagerDetail'
 import { HeadToHead } from './pages/HeadToHead'
+import { Rivalries } from './pages/Rivalries'
+import { RivalryDetail } from './pages/RivalryDetail'
+import { Luck } from './pages/Luck'
 import { Records } from './pages/Records'
 import { DraftHistory } from './pages/DraftHistory'
 import { NotFound } from './pages/NotFound'
@@ -31,6 +34,9 @@ export function App() {
           <Route path="managers" element={<Managers />} />
           <Route path="managers/:manager" element={<ManagerDetail />} />
           <Route path="head-to-head" element={<HeadToHead />} />
+          <Route path="rivalries" element={<Rivalries />} />
+          <Route path="rivalries/:a/:b" element={<RivalryDetail />} />
+          <Route path="luck" element={<Luck />} />
           <Route path="records" element={<Records />} />
           <Route path="draft-history" element={<DraftHistory />} />
           <Route path="draft-history/:year" element={<DraftHistory />} />

@@ -9,6 +9,8 @@ const LINKS = [
   { to: '/awards', label: 'Awards' },
   { to: '/managers', label: 'Managers' },
   { to: '/head-to-head', label: 'Head-to-Head' },
+  { to: '/rivalries', label: 'Rivalries' },
+  { to: '/luck', label: 'Luck Index' },
   { to: '/draft-history', label: 'Draft History' },
 ]
 
