@@ -81,7 +81,10 @@ https://sunday-funday-ff-bkvr.vercel.app — the project tracks this repo's only
    opponent-side game entry. If you ever regenerate data from raw ESPN pulls, do NOT
    trust surname-only matching or "which Sleeper handle inherited this roster slot
    number" — verify against the actual `primaryOwner` member ID and win/loss record for
-   each individual season, the same way this correction was made.
+   each individual season, the same way this correction was made. This stat-level fix
+   stands regardless of franchise grouping below — Keel's individual career numbers still
+   correctly exclude Robertson's 2012-2013 record even though the two are now linked as
+   one franchise lineage (see "Franchises" section below, `robertson-keel`).
 
 ## Franchises — persistent seats vs. individual owners
 
@@ -91,34 +94,40 @@ this) and the **franchise** (a competitive seat that can outlive any one owner �
 Fame and `/franchises`/`/franchises/:id` default to this). Head-to-head and rivalries are
 owner-only by design — they're personal bragging rights, not seat history.
 
-`src/data/franchises.ts` defines the only 3 seats that ever changed real-world hands.
-Every other manager is their own implicit single-owner franchise (`franchiseIdFor` in
+`src/data/franchises.ts` defines the 4 seats that changed real-world hands. Every other
+manager is their own implicit single-owner franchise (`franchiseIdFor` in
 `src/lib/franchise.ts` falls back to the manager handle when no explicit lineage exists) —
 no per-season franchise-id field was added to the bundled data files, this is computed
 purely from the small curated list.
 
-**How the 3 lineages were verified** (2026-07-19 session): the ESPN era and Sleeper era
+**How the lineages were determined** (2026-07-19 session): the ESPN era and Sleeper era
 each expose their own stable per-team-seat identifier, but the two are *completely
 unrelated numbering systems* — there is no cross-platform franchise linkage, and a
 manager who played continuously across the 2018→2019 switch doesn't need a franchise
-entry at all (their season rows already share one manager handle).
+entry at all (their season rows already share one manager handle). Three of the four
+lineages are backed by hard platform-id evidence; the fourth is not, and is included
+solely at the league owner's explicit direction — see below.
 
 - **ESPN era (2012-2018)**: pulled the raw `leagueHistory` API (`view=mTeam`) directly
   and diffed every team's numeric `id` season over season. Of all id transitions across
   2012-2018, exactly one seat was handed to a new owner while keeping the same `id`: team
   id 12 went from Andy Engler (2015, "Team Engler") to devin nevels (2016-2018, "Andre
   Thundacock") with no other continuity (team name changed completely, full redraft, no
-  shared roster) — franchise `engler-nevels`. Every other departure in this window
-  (e.g. Keith Robertson leaving after 2013) saw its `id` **retired**, not reassigned —
-  confirming those are correctly separate, unrelated managers (see correction #4 above),
-  not franchises. ESPN's `id` reuse looks like an artifact of how the commissioner UI
-  happened to add a replacement in a given year, not a deliberate "same franchise" design
-  — treat any future ESPN `id` match with the same scrutiny, not as automatic proof of a
-  franchise link.
+  shared roster) — franchise `engler-nevels`.
 - **Sleeper era (2019-2025)**: `roster_id` is Sleeper's stable seat identifier, already
   captured in `league_data.json`'s `roster_id_map_2019_2025`. Two seats changed owners:
   roster 6 (JPeters19 2019-2023 → Keughes 2024-2025, franchise `jpeters-keughes`) and
   roster 12 (assif 2019-2022 → amenr5/Andy Engler 2023-2025, franchise `assif-amenr5`).
+- **`robertson-keel` — the one exception.** Keith Robertson's ESPN team id (7) was
+  **retired** when he left after 2013, not reassigned — Tyler Keel joined in 2014 with a
+  brand-new id (11). ESPN's own data says these are unrelated seats, matching the
+  misattribution correction in #4 above (Keel's individual stats correctly do NOT include
+  Robertson's 2012-2013 record — that fix stands, untouched). The league owner confirmed
+  from direct recollection that Keel's arrival was still meant as taking over Robertson's
+  seat in the league, so `robertson-keel` is included as a franchise lineage on that
+  explicit instruction, layered on top of — not reversing — the stat-level correction.
+  Don't treat this as precedent for inferring other franchise links from anything short
+  of hard platform-id evidence or an explicit owner confirmation like this one.
 
 Note the asymmetry this produces: Andy Engler's 2015 ESPN season lives in the
 `engler-nevels` franchise (displayed under devin nevels' name, since he's the more recent
