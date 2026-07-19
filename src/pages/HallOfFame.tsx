@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { FranchiseLink } from '../components/FranchiseLink'
 import { ManagerLink } from '../components/ManagerLink'
-import { allCareerStats, type CareerStats } from '../lib/stats'
+import { allFranchiseCareerStats, type FranchiseCareerStats } from '../lib/franchise'
 import { num, pct } from '../lib/format'
 
 type SortKey = keyof Pick<
-  CareerStats,
+  FranchiseCareerStats,
   | 'seasons'
   | 'championships'
   | 'runnerUps'
@@ -14,7 +16,7 @@ type SortKey = keyof Pick<
   | 'pointsFor'
 >
 
-const COLUMNS: { key: SortKey; label: string; fmt: (c: CareerStats) => string }[] = [
+const COLUMNS: { key: SortKey; label: string; fmt: (c: FranchiseCareerStats) => string }[] = [
   { key: 'seasons', label: 'Seasons', fmt: (c) => String(c.seasons) },
   { key: 'championships', label: 'Titles', fmt: (c) => String(c.championships) },
   { key: 'runnerUps', label: 'Runner-Ups', fmt: (c) => String(c.runnerUps) },
@@ -26,15 +28,15 @@ const COLUMNS: { key: SortKey; label: string; fmt: (c: CareerStats) => string }[
 
 export function HallOfFame() {
   const [sort, setSort] = useState<SortKey>('championships')
-  const careers = useMemo(() => allCareerStats(), [])
+  const franchises = useMemo(() => allFranchiseCareerStats(), [])
 
   const sorted = useMemo(
     () =>
-      [...careers].sort((a, b) => {
+      [...franchises].sort((a, b) => {
         const d = (b[sort] as number) - (a[sort] as number)
         return d !== 0 ? d : b.winPct - a.winPct
       }),
-    [careers, sort],
+    [franchises, sort],
   )
 
   return (
@@ -42,8 +44,11 @@ export function HallOfFame() {
       <div className="eyebrow">All-Time Leaderboard</div>
       <h1 className="page-title">Hall of Fame</h1>
       <p className="page-sub">
-        Career totals for every manager across all 14 seasons. Click any column header to
-        re-rank the table.
+        Career totals for every franchise across all 14 seasons — ranked by franchise seat,
+        not just the person currently holding it. A handful of seats changed owners over the
+        years (see <FranchiseLink id="jpeters-keughes" plain />, for one); their combined
+        history is credited to the seat. For pure individual career stats, see{' '}
+        <Link to="/managers">Managers</Link>. Click any column header to re-rank the table.
       </p>
 
       <div className="section" style={{ marginTop: 24 }}>
@@ -52,7 +57,7 @@ export function HallOfFame() {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Manager</th>
+                <th>Franchise</th>
                 <th>Best Finish</th>
                 {COLUMNS.map((c) => (
                   <th
@@ -67,10 +72,20 @@ export function HallOfFame() {
             </thead>
             <tbody>
               {sorted.map((c, i) => (
-                <tr key={c.manager}>
+                <tr key={c.id}>
                   <td className="muted">{i + 1}</td>
                   <td>
-                    <ManagerLink manager={c.manager} />
+                    <FranchiseLink id={c.id} />
+                    {c.isMultiOwner && (
+                      <div className="muted" style={{ fontSize: 12 }}>
+                        {c.owners.map((o, idx) => (
+                          <span key={o}>
+                            {idx > 0 && ' → '}
+                            <ManagerLink manager={o} plain />
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </td>
                   <td className="muted">{c.bestFinish}</td>
                   {COLUMNS.map((col) => (

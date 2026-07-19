@@ -29,8 +29,7 @@ export function madePlayoffs(result: PlayoffResult): boolean {
   return result !== 'Missed Playoffs'
 }
 
-export interface CareerStats {
-  manager: string
+export interface AggregateStats {
   seasons: number
   wins: number
   losses: number
@@ -51,6 +50,10 @@ export interface CareerStats {
   playoffLosses: number
 }
 
+export interface CareerStats extends AggregateStats {
+  manager: string
+}
+
 const RESULT_RANK: Record<PlayoffResult, number> = {
   Champion: 6,
   'Runner-Up': 5,
@@ -69,8 +72,13 @@ function lastRankBySeason(): Map<number, number> {
   return m
 }
 
-export function careerStats(manager: string): CareerStats {
-  const rows = SEASONS.filter((r) => r.manager === manager)
+/**
+ * Aggregates any set of season rows into career-style totals. Shared by per-manager
+ * career stats and per-franchise career stats (a franchise's rows come from more than
+ * one manager handle, so playoff records are looked up per-row rather than for a single
+ * outer manager).
+ */
+export function aggregateStats(rows: SeasonRow[]): AggregateStats {
   const lastRanks = lastRankBySeason()
 
   let wins = 0
@@ -99,7 +107,7 @@ export function careerStats(manager: string): CareerStats {
     if (r.reg_season_rank === lastRanks.get(r.season)) lastPlaceFinishes++
     luckSum += luckRating(r)
     if (RESULT_RANK[r.result] > RESULT_RANK[bestResult]) bestResult = r.result
-    const po = playoffRecordFor(r.season, manager)
+    const po = playoffRecordFor(r.season, r.manager)
     playoffWins += po.wins
     playoffLosses += po.losses
   }
@@ -107,7 +115,6 @@ export function careerStats(manager: string): CareerStats {
   const seasonYears = rows.map((r) => r.season)
 
   return {
-    manager,
     seasons: rows.length,
     wins,
     losses,
@@ -127,6 +134,11 @@ export function careerStats(manager: string): CareerStats {
     playoffWins,
     playoffLosses,
   }
+}
+
+export function careerStats(manager: string): CareerStats {
+  const rows = SEASONS.filter((r) => r.manager === manager)
+  return { manager, ...aggregateStats(rows) }
 }
 
 export function allCareerStats(): CareerStats[] {

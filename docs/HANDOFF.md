@@ -83,6 +83,49 @@ https://sunday-funday-ff-bkvr.vercel.app — the project tracks this repo's only
    number" — verify against the actual `primaryOwner` member ID and win/loss record for
    each individual season, the same way this correction was made.
 
+## Franchises — persistent seats vs. individual owners
+
+The league has two overlapping notions of "who": the **owner** (a real person, tracked
+by manager handle — every stat page other than Hall of Fame and `/franchises` defaults to
+this) and the **franchise** (a competitive seat that can outlive any one owner — Hall of
+Fame and `/franchises`/`/franchises/:id` default to this). Head-to-head and rivalries are
+owner-only by design — they're personal bragging rights, not seat history.
+
+`src/data/franchises.ts` defines the only 3 seats that ever changed real-world hands.
+Every other manager is their own implicit single-owner franchise (`franchiseIdFor` in
+`src/lib/franchise.ts` falls back to the manager handle when no explicit lineage exists) —
+no per-season franchise-id field was added to the bundled data files, this is computed
+purely from the small curated list.
+
+**How the 3 lineages were verified** (2026-07-19 session): the ESPN era and Sleeper era
+each expose their own stable per-team-seat identifier, but the two are *completely
+unrelated numbering systems* — there is no cross-platform franchise linkage, and a
+manager who played continuously across the 2018→2019 switch doesn't need a franchise
+entry at all (their season rows already share one manager handle).
+
+- **ESPN era (2012-2018)**: pulled the raw `leagueHistory` API (`view=mTeam`) directly
+  and diffed every team's numeric `id` season over season. Of all id transitions across
+  2012-2018, exactly one seat was handed to a new owner while keeping the same `id`: team
+  id 12 went from Andy Engler (2015, "Team Engler") to devin nevels (2016-2018, "Andre
+  Thundacock") with no other continuity (team name changed completely, full redraft, no
+  shared roster) — franchise `engler-nevels`. Every other departure in this window
+  (e.g. Keith Robertson leaving after 2013) saw its `id` **retired**, not reassigned —
+  confirming those are correctly separate, unrelated managers (see correction #4 above),
+  not franchises. ESPN's `id` reuse looks like an artifact of how the commissioner UI
+  happened to add a replacement in a given year, not a deliberate "same franchise" design
+  — treat any future ESPN `id` match with the same scrutiny, not as automatic proof of a
+  franchise link.
+- **Sleeper era (2019-2025)**: `roster_id` is Sleeper's stable seat identifier, already
+  captured in `league_data.json`'s `roster_id_map_2019_2025`. Two seats changed owners:
+  roster 6 (JPeters19 2019-2023 → Keughes 2024-2025, franchise `jpeters-keughes`) and
+  roster 12 (assif 2019-2022 → amenr5/Andy Engler 2023-2025, franchise `assif-amenr5`).
+
+Note the asymmetry this produces: Andy Engler's 2015 ESPN season lives in the
+`engler-nevels` franchise (displayed under devin nevels' name, since he's the more recent
+owner of that seat), while Engler's own personal `/managers/amenr5` page still correctly
+shows his full individual career — all 4 of his seasons (2015, 2023-2025) — since owner
+stats and franchise stats are deliberately different views over the same underlying data.
+
 ## Data pipeline / file map
 
 ```
@@ -149,10 +192,10 @@ then rebuild the `src/data/*.json` bundles. ESPN-era files never change.)
 - Static site, `HashRouter`, no backend, no auth, no env vars, no CI beyond `npm run
   typecheck` and `npm run build` (both should be run before any commit).
 - Routes: `/`, `/seasons` (+ `/seasons/:year`), `/hall-of-fame`, `/awards` (absorbed
-  the old `/records`, which now redirects here), `/managers` (+ `/managers/:manager`),
-  `/head-to-head`, `/rivalries` (+ `/rivalries/:a/:b`), `/luck`, `/draft-history`
-  (+ `/draft-history/:year`), `/draft-grades`, `/trades`, `/stories`. `/champions`
-  redirects to `/seasons`.
+  the old `/records`, which now redirects here), `/franchises` (+ `/franchises/:id`),
+  `/managers` (+ `/managers/:manager`), `/head-to-head`, `/rivalries`
+  (+ `/rivalries/:a/:b`), `/luck`, `/draft-history` (+ `/draft-history/:year`),
+  `/draft-grades`, `/trades`, `/stories`. `/champions` redirects to `/seasons`.
 - `src/lib/stats.ts`, `src/lib/h2h.ts`, `src/lib/records.ts`, `src/lib/luck.ts`,
   `src/lib/rivalry.ts` hold the derived-stat logic; keep new computed stats there
   rather than inline in page components.

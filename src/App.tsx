@@ -8,6 +8,8 @@ import { HallOfFame } from './pages/HallOfFame'
 import { Awards } from './pages/Awards'
 import { Managers } from './pages/Managers'
 import { ManagerDetail } from './pages/ManagerDetail'
+import { Franchises } from './pages/Franchises'
+import { FranchiseDetail } from './pages/FranchiseDetail'
 import { HeadToHead } from './pages/HeadToHead'
 import { Rivalries } from './pages/Rivalries'
 import { RivalryDetail } from './pages/RivalryDetail'
@@ -34,6 +36,8 @@ export function App() {
           <Route path="champions" element={<Champions />} />
           <Route path="hall-of-fame" element={<HallOfFame />} />
           <Route path="awards" element={<Awards />} />
+          <Route path="franchises" element={<Franchises />} />
+          <Route path="franchises/:id" element={<FranchiseDetail />} />
           <Route path="managers" element={<Managers />} />
           <Route path="managers/:manager" element={<ManagerDetail />} />
           <Route path="head-to-head" element={<HeadToHead />} />

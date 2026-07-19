@@ -2,9 +2,11 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { StatCard } from '../components/StatCard'
 import { ManagerLink } from '../components/ManagerLink'
+import { FranchiseLink } from '../components/FranchiseLink'
 import { ResultBadge } from '../components/ResultBadge'
 import { LEAGUE_NAME, SEASON_YEARS, SEASONS, displayName } from '../data/league'
-import { allCareerStats, leagueTotals, seasonPodiums } from '../lib/stats'
+import { leagueTotals, seasonPodiums } from '../lib/stats'
+import { allFranchiseCareerStats } from '../lib/franchise'
 import { rankRivalries } from '../lib/rivalry'
 import { careerLuck } from '../lib/luck'
 import { firstPickLedger, firstPickEverWon } from '../lib/draftGrades'
@@ -40,8 +42,8 @@ function TeaserCard({
 
 export function Overview() {
   const totals = leagueTotals()
-  const careers = allCareerStats()
-  const mostTitles = [...careers].sort((a, b) => b.championships - a.championships)[0]
+  const franchises = allFranchiseCareerStats()
+  const mostTitles = [...franchises].sort((a, b) => b.championships - a.championships)[0]
   const podiums = seasonPodiums()
   const latest = podiums[podiums.length - 1]
 
@@ -95,7 +97,7 @@ export function Overview() {
           <StatCard
             label="Most Championships"
             value={mostTitles.championships}
-            meta={displayName(mostTitles.manager)}
+            meta={<FranchiseLink id={mostTitles.id} plain />}
           />
           <StatCard
             label="Games Played"

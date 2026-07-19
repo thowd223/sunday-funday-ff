@@ -7,6 +7,7 @@ const LINKS = [
   { to: '/seasons', label: 'Seasons' },
   { to: '/hall-of-fame', label: 'Hall of Fame' },
   { to: '/awards', label: 'Awards' },
+  { to: '/franchises', label: 'Franchises' },
   { to: '/managers', label: 'Managers' },
   { to: '/head-to-head', label: 'Head-to-Head' },
   { to: '/rivalries', label: 'Rivalries' },
