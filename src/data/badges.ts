@@ -69,6 +69,16 @@ export const BADGES: Badge[] = [
     badge: 'Too Early to Tell',
     why: 'Only 3 seasons in — the newest long-tenured manager still building a track record.',
   },
+  {
+    manager: 'JPeters19',
+    badge: 'The Founding Champion',
+    why: "Won the league's very first championship in 2012, then didn't sniff the podium again until back-to-back Runner-Up finishes in 2017 and 2023 — with a long playoff drought in between (5 of 12 seasons). Left the league after 2023.",
+  },
+  {
+    manager: 'Keughes',
+    badge: 'Sophomore Slump',
+    why: 'A strong rookie campaign in 2024 (2-seed, 4th Place) was followed immediately by a 3-11 last-place finish in 2025 — too small a sample yet to know which season is the outlier.',
+  },
 ]
 
 export const BADGE_BY_MANAGER: Record<string, Badge> = Object.fromEntries(
