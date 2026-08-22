@@ -51,6 +51,14 @@ Key files:
 - **`data/full_league_history.json`** — the canonical staging file everything else is
   derived from; not imported by the app directly.
 
+## Draft Day tool
+
+`draft-tool/` holds a standalone draft-day companion (not part of the deployed site):
+a single self-contained HTML file you open locally on draft day. Paste your own
+rankings, hit Refresh to sync the live Sleeper draft, and it crosses off drafted
+players, shows best available, the snake board, and your roster. See
+`draft-tool/README.md`.
+
 ## Notes
 
 - Routing uses `HashRouter`, so the built static site deep-links correctly from any host

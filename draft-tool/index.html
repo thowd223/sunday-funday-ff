@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunday Funday — Draft Day</title>
+<style>
+  :root {
+    --bg: #0e1117;
+    --panel: #161b24;
+    --panel-2: #1c2330;
+    --border: #2a3342;
+    --text: #e6e9ef;
+    --muted: #8b94a7;
+    --accent: #4da3ff;
+    --good: #3fb96a;
+    --warn: #e8b339;
+    --bad: #e05555;
+    --qb: #ef5f88; --rb: #45c489; --wr: #58a9ff; --te: #f0a13c; --k: #b48ce0; --def: #8b94a7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  h1, h2, h3 { margin: 0; font-weight: 700; }
+  button { font: inherit; cursor: pointer; border-radius: 6px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); padding: 6px 12px; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #08131f; font-weight: 700; }
+  button:disabled { opacity: .5; cursor: default; }
+  input[type=text], select, textarea { font: inherit; background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+  input[type=text]:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { width: 100%; min-height: 180px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  a { color: var(--accent); }
+
+  header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--panel);
+    position: sticky; top: 0; z-index: 20; }
+  header h1 { font-size: 17px; white-space: nowrap; }
+  header .sub { color: var(--muted); font-size: 12px; }
+  .spacer { flex: 1; }
+  .statusline { display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap; font-size: 13px; }
+  .statusline b { color: var(--accent); }
+  .statusline .clock { color: var(--warn); font-weight: 700; }
+  .statusline .mine { color: var(--good); font-weight: 700; }
+  #syncNote { color: var(--muted); font-size: 12px; }
+  #errorBar { display: none; padding: 8px 18px; background: #3a1a1a; color: #f2b8b8;
+    border-bottom: 1px solid #5c2626; font-size: 13px; white-space: pre-wrap; }
+
+  nav.tabs { display: flex; gap: 4px; padding: 8px 18px 0; background: var(--panel);
+    border-bottom: 1px solid var(--border); position: sticky; top: 57px; z-index: 19; }
+  nav.tabs button { border: 1px solid transparent; border-bottom: none; background: none;
+    color: var(--muted); padding: 7px 14px; border-radius: 8px 8px 0 0; }
+  nav.tabs button.active { background: var(--bg); color: var(--text); border-color: var(--border); font-weight: 700; }
+
+  main { padding: 16px 18px 60px; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .toolbar .chips { display: flex; gap: 4px; }
+  .toolbar .chips button { padding: 4px 10px; font-size: 12px; }
+  .toolbar .chips button.on { background: var(--accent); color: #08131f; border-color: var(--accent); font-weight: 700; }
+  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer; }
+
+  table.ranks { border-collapse: collapse; width: 100%; max-width: 980px; }
+  table.ranks th { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase;
+    letter-spacing: .06em; padding: 4px 10px; border-bottom: 1px solid var(--border); }
+  table.ranks td { padding: 5px 10px; border-bottom: 1px solid #1d2430; }
+  table.ranks tr:hover td { background: var(--panel); }
+  table.ranks tr.drafted td { opacity: .38; }
+  table.ranks tr.drafted .pname { text-decoration: line-through; }
+  table.ranks tr.mine td { opacity: 1; background: rgba(63,185,106,.08); }
+  table.ranks tr.mine .pname { text-decoration: none; color: var(--good); }
+  table.ranks .rk { color: var(--muted); width: 44px; font-variant-numeric: tabular-nums; }
+  table.ranks .pname { font-weight: 600; cursor: pointer; }
+  table.ranks .pickedby { color: var(--muted); font-size: 12px; }
+  tr.tier-break td { border-top: 2px solid var(--accent); }
+  .tierlabel { color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+
+  .pos { display: inline-block; min-width: 30px; text-align: center; font-size: 11px; font-weight: 700;
+    padding: 1px 5px; border-radius: 4px; color: #0b0e14; }
+  .pos.QB { background: var(--qb); } .pos.RB { background: var(--rb); } .pos.WR { background: var(--wr); }
+  .pos.TE { background: var(--te); } .pos.K { background: var(--k); } .pos.DEF { background: var(--def); }
+  .pos.NA { background: #3a4356; color: var(--text); }
+
+  .boardwrap { overflow-x: auto; }
+  table.board { border-collapse: collapse; font-size: 12px; }
+  table.board th { padding: 6px 8px; color: var(--muted); font-size: 11px; border: 1px solid var(--border);
+    background: var(--panel); white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+  table.board th.me { color: var(--good); }
+  table.board td { border: 1px solid var(--border); padding: 0; min-width: 106px; height: 44px; vertical-align: top; }
+  table.board td .cell { padding: 4px 6px; height: 100%; }
+  table.board td .pk { color: var(--muted); font-size: 10px; }
+  table.board td .nm { font-weight: 600; font-size: 11.5px; }
+  table.board td.QB .cell { background: rgba(239,95,136,.16); } table.board td.RB .cell { background: rgba(69,196,137,.16); }
+  table.board td.WR .cell { background: rgba(88,169,255,.16); } table.board td.TE .cell { background: rgba(240,161,60,.16); }
+  table.board td.K .cell { background: rgba(180,140,224,.16); } table.board td.DEF .cell { background: rgba(139,148,167,.16); }
+  table.board td.onclock .cell { outline: 2px dashed var(--warn); outline-offset: -2px; }
+  table.board td.mycol .cell { box-shadow: inset 3px 0 0 var(--good); }
+  table.board td .rknote { font-size: 10px; color: var(--muted); }
+
+  .cols { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .panel h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { padding: 3px 0; }
+  .mutednote { color: var(--muted); font-size: 12.5px; }
+  .settings-grid { display: grid; grid-template-columns: max-content 1fr; gap: 10px 14px; align-items: center; max-width: 720px; }
+  .settings-grid label { color: var(--muted); }
+  .warnrow { color: var(--warn); }
+  code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Sunday Funday — Draft Day</h1>
+    <div class="sub" id="draftMetaLine">no draft loaded yet</div>
+  </div>
+  <div class="statusline" id="statusLine"></div>
+  <div class="spacer"></div>
+  <div id="syncNote"></div>
+  <button class="primary" id="refreshBtn">&#8635; Refresh</button>
+</header>
+<div id="errorBar"></div>
+
+<nav class="tabs" id="tabs">
+  <button data-view="available" class="active">Best Available</button>
+  <button data-view="board">Draft Board</button>
+  <button data-view="myteam">My Team</button>
+  <button data-view="rankings">Rankings</button>
+  <button data-view="settings">Settings</button>
+</nav>
+
+<main>
+
+<section class="view active" id="view-available">
+  <div class="toolbar">
+    <div class="chips" id="posChips"></div>
+    <input type="text" id="searchBox" placeholder="Search player…" style="width:200px">
+    <label class="check"><input type="checkbox" id="hideDrafted"> hide drafted</label>
+    <span class="mutednote" id="availCount"></span>
+  </div>
+  <table class="ranks">
+    <thead><tr><th></th><th>Player</th><th>Pos</th><th>Team</th><th>Status</th></tr></thead>
+    <tbody id="availBody"></tbody>
+  </table>
+  <p class="mutednote" style="max-width:760px">Click a player's name to manually toggle them drafted/undrafted —
+  use this if a Sleeper pick didn't auto-match your spelling. Manual marks are remembered per draft.</p>
+</section>
+
+<section class="view" id="view-board">
+  <div class="boardwrap"><table class="board"><thead id="boardHead"></thead><tbody id="boardBody"></tbody></table></div>
+  <p class="mutednote" id="boardNote"></p>
+</section>
+
+<section class="view" id="view-myteam">
+  <div class="cols">
+    <div class="panel" style="min-width:300px">
+      <h3>My picks so far</h3>
+      <ul class="plain" id="myPicksList"></ul>
+    </div>
+    <div class="panel" style="min-width:300px">
+      <h3>My upcoming picks</h3>
+      <ul class="plain" id="myUpcomingList"></ul>
+    </div>
+    <div class="panel" style="min-width:300px">
+      <h3>Drafted but not in my rankings</h3>
+      <ul class="plain" id="unmatchedList"></ul>
+      <p class="mutednote">Players other teams drafted that didn't match any row of your rankings —
+      usually a spelling difference, or a player you didn't rank.</p>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-rankings">
+  <div class="cols">
+    <div style="flex:1; min-width:340px; max-width:760px">
+      <h2 style="font-size:15px; margin-bottom:8px">Paste your rankings</h2>
+      <p class="mutednote">CSV / TSV / plain lines all work. Recognized columns (any order, header optional):
+      <code>rank</code>, <code>tier</code>, <code>player</code>/<code>name</code>, <code>pos</code>,
+      <code>team</code>. Simple lists like <code>1. Ja'Marr Chase WR CIN</code> or just one name per
+      line work too — rank falls back to row order.</p>
+      <textarea id="rankingsText" placeholder="rank,name,pos,team,tier&#10;1,Ja'Marr Chase,WR,CIN,1&#10;2,Bijan Robinson,RB,ATL,1&#10;…"></textarea>
+      <div class="toolbar" style="margin-top:8px">
+        <button class="primary" id="applyRankings">Apply rankings</button>
+        <input type="file" id="rankingsFile" accept=".csv,.tsv,.txt" style="color:var(--muted)">
+        <span class="mutednote" id="rankingsNote"></span>
+      </div>
+    </div>
+    <div class="panel" style="min-width:280px; max-width:420px">
+      <h3>Parsed preview</h3>
+      <ul class="plain" id="rankingsPreview"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-settings">
+  <div class="settings-grid">
+    <label>Sleeper league ID</label>
+    <span><input type="text" id="leagueIdInput" style="width:220px">
+      <span class="mutednote">2026 Sunday Funday is prefilled</span></span>
+    <label>Draft</label>
+    <select id="draftSelect" style="max-width:420px"><option value="">— refresh to load drafts —</option></select>
+    <label>I am</label>
+    <select id="mySlotSelect" style="max-width:420px"><option value="">— refresh to load teams —</option></select>
+    <label></label>
+    <span class="mutednote">Everything (rankings, league, manual marks) is saved in this browser's
+    localStorage — nothing is uploaded anywhere. The only network calls are read-only GETs to
+    <code>api.sleeper.app</code> when you hit Refresh.</span>
+  </div>
+</section>
+
+</main>
+
+<script>
+'use strict';
+
+/* ---------------- persistence ---------------- */
+const LS = {
+  get(k, fallback) {
+    try { const v = localStorage.getItem('sfdraft.' + k); return v === null ? fallback : JSON.parse(v); }
+    catch (e) { return fallback; }
+  },
+  set(k, v) { try { localStorage.setItem('sfdraft.' + k, JSON.stringify(v)); } catch (e) {} },
+};
+
+const DEFAULT_LEAGUE = '1313676998056378368'; // Sunday Funday 2026
+
+const state = {
+  leagueId: LS.get('leagueId', DEFAULT_LEAGUE),
+  draftId: LS.get('draftId', ''),          // '' = auto (most recent)
+  mySlot: LS.get('mySlot', ''),            // draft slot number as string
+  rankingsText: LS.get('rankingsText', ''),
+  rankings: [],                            // parsed rows
+  hideDrafted: LS.get('hideDrafted', false),
+  posFilter: 'ALL',
+  search: '',
+  manualMarks: {},                         // normName -> true, per draft (loaded after draft id known)
+  // live sleeper data
+  drafts: [],
+  draft: null,                             // full draft object
+  picks: [],
+  users: [],                               // league users
+  lastSync: null,
+};
+
+/* ---------------- name matching ---------------- */
+const SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v']);
+function normName(s) {
+  if (!s) return '';
+  let t = s.toLowerCase()
+    .replace(/[.,'’’-]/g, ' ')
+    .replace(/[^a-z\s]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+  const parts = t.split(' ').filter(w => !SUFFIXES.has(w));
+  return parts.join(' ');
+}
+function normPos(p) {
+  if (!p) return '';
+  const t = String(p).toUpperCase().replace(/[^A-Z]/g, '');
+  if (t === 'DST' || t === 'D' || t === 'DEFENSE') return 'DEF';
+  if (t === 'PK') return 'K';
+  return t;
+}
+
+/* ---------------- rankings parser ---------------- */
+const POS_RE = /^(QB|RB|WR|TE|K|PK|DEF|DST|D\/ST)[0-9]*$/i;
+const TEAM_RE = /^[A-Z]{2,3}$/;
+
+function parseRankings(text) {
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+  if (!lines.length) return { rows: [], note: 'no input' };
+
+  // pick delimiter: tab > comma > semicolon > whitespace-run fallback
+  const delim = lines[0].includes('\t') ? '\t'
+    : (lines.some(l => l.includes(',')) ? ','
+    : (lines.some(l => l.includes(';')) ? ';' : null));
+
+  function splitLine(line) {
+    if (delim === null) return [line];
+    // minimal quoted-field CSV split
+    const out = []; let cur = ''; let q = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (q) {
+        if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else q = false; }
+        else cur += c;
+      } else if (c === '"') q = true;
+      else if (c === delim) { out.push(cur); cur = ''; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out.map(s => s.trim());
+  }
+
+  let rows = lines.map(splitLine);
+
+  // header detection + column mapping
+  let col = { rank: -1, tier: -1, name: -1, pos: -1, team: -1 };
+  const H = { rank: /^(rank|rk|#|overall|ovr)$/i, tier: /^tiers?$/i,
+    name: /^(player( name)?|name)$/i, pos: /^(pos|position)$/i, team: /^(team|tm|nfl( team)?)$/i };
+  const head = rows[0].map(c => c.toLowerCase().replace(/"/g, ''));
+  const looksHeader = head.some(c => H.rank.test(c) || H.name.test(c) || H.pos.test(c) || H.tier.test(c));
+  if (looksHeader) {
+    head.forEach((c, i) => { for (const k in H) if (H[k].test(c) && col[k] === -1) col[k] = i; });
+    rows = rows.slice(1);
+  }
+
+  // no explicit name column: infer per-row from the shape of each cell
+  const parsed = [];
+  for (const cells of rows) {
+    if (!cells.length) continue;
+    let rank = null, tier = null, name = '', pos = '', team = '';
+
+    if (col.name !== -1) {
+      name = cells[col.name] || '';
+      if (col.rank !== -1) rank = parseInt(cells[col.rank], 10);
+      if (col.tier !== -1) tier = parseInt(cells[col.tier], 10);
+      if (col.pos !== -1) pos = cells[col.pos] || '';
+      if (col.team !== -1) team = cells[col.team] || '';
+    } else {
+      // free-form: walk tokens of the whole line
+      const flat = cells.join(' ').replace(/^\s*(\d+)[.)]?\s+/, (m, d) => { rank = parseInt(d, 10); return ''; });
+      const toks = flat.split(/[\s,]+/).filter(Boolean);
+      const nameToks = [];
+      for (const tk of toks) {
+        if (POS_RE.test(tk) && !pos) { pos = tk; continue; }
+        if (TEAM_RE.test(tk) && nameToks.length >= 2 && !team) { team = tk; continue; }
+        if (/^\d+$/.test(tk)) { if (rank === null) rank = parseInt(tk, 10); continue; }
+        nameToks.push(tk);
+      }
+      name = nameToks.join(' ');
+    }
+
+    name = name.replace(/\s*\((.*?)\)\s*$/, (m, inner) => {  // "Name (CIN)" style
+      const t = inner.trim().toUpperCase();
+      if (!team && TEAM_RE.test(t)) team = t;
+      return '';
+    }).trim();
+    if (!name) continue;
+
+    parsed.push({
+      rank: Number.isFinite(rank) ? rank : null,
+      tier: Number.isFinite(tier) ? tier : null,
+      name, pos: normPos(pos.replace(/[0-9]+$/, '')), team: team.toUpperCase(),
+      norm: normName(name),
+    });
+  }
+
+  parsed.forEach((r, i) => { if (r.rank === null) r.rank = i + 1; });
+  parsed.sort((a, b) => a.rank - b.rank);
+  const note = parsed.length + ' players parsed' + (looksHeader ? ' (header row detected)' : '');
+  return { rows: parsed, note };
+}
+
+/* ---------------- sleeper sync ---------------- */
+const API = 'https://api.sleeper.app/v1';
+async function jget(path) {
+  const res = await fetch(API + path);
+  if (!res.ok) throw new Error('GET ' + path + ' → HTTP ' + res.status);
+  return res.json();
+}
+
+async function refresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true; btn.textContent = 'Syncing…';
+  showError('');
+  try {
+    const league = state.leagueId.trim();
+    if (!league) throw new Error('Set a Sleeper league ID in Settings first.');
+
+    const [drafts, users] = await Promise.all([
+      jget('/league/' + league + '/drafts'),
+      jget('/league/' + league + '/users'),
+    ]);
+    state.drafts = drafts || [];
+    state.users = users || [];
+    if (!state.drafts.length) throw new Error('Sleeper returned no drafts for league ' + league + ' — has the draft been created yet?');
+
+    let chosen = state.drafts.find(d => d.draft_id === state.draftId);
+    if (!chosen) chosen = state.drafts[0]; // most recent first
+    const [draft, picks] = await Promise.all([
+      jget('/draft/' + chosen.draft_id),
+      jget('/draft/' + chosen.draft_id + '/picks'),
+    ]);
+    state.draft = draft;
+    state.picks = (picks || []).slice().sort((a, b) => a.pick_no - b.pick_no);
+    state.manualMarks = LS.get('marks.' + draft.draft_id, {});
+    state.lastSync = new Date();
+    renderAll();
+  } catch (e) {
+    showError('Sync failed: ' + e.message +
+      (location.protocol === 'file:' ? '\nIf this is a CORS/network error while opened as a local file, serve the folder instead: npx serve draft-tool' : ''));
+  } finally {
+    btn.disabled = false; btn.innerHTML = '&#8635; Refresh';
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBar');
+  el.style.display = msg ? 'block' : 'none';
+  el.textContent = msg;
+}
+
+/* ---------------- derived draft math ---------------- */
+function draftDims() {
+  const d = state.draft;
+  if (!d) return null;
+  const teams = (d.settings && d.settings.teams) || Object.keys(d.draft_order || {}).length || 12;
+  const rounds = (d.settings && d.settings.rounds) || 15;
+  const reversal = (d.settings && d.settings.reversal_round) || 0;
+  return { teams, rounds, reversal, type: d.type };
+}
+
+// slot (1..teams) that owns overall pick n (1-based) for snake/linear drafts
+function slotForPick(n, dims) {
+  const r = Math.ceil(n / dims.teams);
+  const idx = (n - 1) % dims.teams; // 0-based within round
+  if (dims.type === 'linear') return idx + 1;
+  // snake, with optional third-round-reversal style setting
+  let reversed = (r % 2 === 0);
+  if (dims.reversal > 0 && r >= dims.reversal) reversed = !reversed;
+  return reversed ? dims.teams - idx : idx + 1;
+}
+
+function slotOwnerName(slot) {
+  const d = state.draft;
+  if (!d) return 'Slot ' + slot;
+  const order = d.draft_order || {};
+  const uid = Object.keys(order).find(u => order[u] === slot);
+  if (!uid) return 'Slot ' + slot;
+  const u = state.users.find(x => x.user_id === uid);
+  if (!u) return 'Slot ' + slot;
+  return (u.metadata && u.metadata.team_name) || u.display_name || ('Slot ' + slot);
+}
+
+function pickPlayerName(p) {
+  const m = p.metadata || {};
+  return ((m.first_name || '') + ' ' + (m.last_name || '')).trim() || ('player ' + p.player_id);
+}
+
+// Build lookup: normalized picked-player name -> pick
+function pickIndex() {
+  const map = new Map();
+  for (const p of state.picks) map.set(normName(pickPlayerName(p)), p);
+  return map;
+}
+
+/* ---------------- rendering ---------------- */
+function renderAll() {
+  renderHeader();
+  renderAvailable();
+  renderBoard();
+  renderMyTeam();
+  renderSettings();
+}
+
+function renderHeader() {
+  const meta = document.getElementById('draftMetaLine');
+  const status = document.getElementById('statusLine');
+  const sync = document.getElementById('syncNote');
+  const d = state.draft;
+  if (!d) {
+    meta.textContent = 'no draft loaded yet — hit Refresh';
+    status.innerHTML = ''; sync.textContent = '';
+    return;
+  }
+  const dims = draftDims();
+  meta.textContent = (d.metadata && d.metadata.name ? d.metadata.name + ' — ' : '') +
+    dims.teams + ' teams × ' + dims.rounds + ' rounds, ' + (d.type || 'snake') +
+    (dims.reversal ? ' (reversal rd ' + dims.reversal + ')' : '') + ' — status: ' + d.status;
+
+  const total = dims.teams * dims.rounds;
+  const made = state.picks.length;
+  let html = '<span><b>' + made + '</b>/' + total + ' picks</span>';
+  if (made < total && d.status !== 'complete') {
+    const next = made + 1;
+    const slot = slotForPick(next, dims);
+    const rd = Math.ceil(next / dims.teams);
+    html += '<span class="clock">On the clock: ' + esc(slotOwnerName(slot)) +
+      ' (rd ' + rd + ', pick ' + next + ')</span>';
+    if (state.mySlot) {
+      const mine = nextMyPick(next, dims);
+      if (mine === null) html += '<span class="mine">no picks left for you</span>';
+      else if (mine === next) html += '<span class="mine">&#9733; YOU ARE UP</span>';
+      else html += '<span class="mine">' + (mine - next) + ' picks until yours (#' + mine + ')</span>';
+    }
+  } else if (made >= total || d.status === 'complete') {
+    html += '<span class="mine">draft complete</span>';
+  }
+  status.innerHTML = html;
+  sync.textContent = state.lastSync ? 'synced ' + state.lastSync.toLocaleTimeString() : '';
+}
+
+function nextMyPick(fromPick, dims) {
+  const mySlot = parseInt(state.mySlot, 10);
+  if (!Number.isFinite(mySlot)) return null;
+  const total = dims.teams * dims.rounds;
+  for (let n = fromPick; n <= total; n++) if (slotForPick(n, dims) === mySlot) return n;
+  return null;
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function isDrafted(row, idx) {
+  if (state.manualMarks[row.norm]) return { manual: true };
+  const p = idx.get(row.norm);
+  if (!p) return null;
+  // if both sides know a position and they disagree, don't cross off (two players, same name)
+  const ppos = normPos(p.metadata && p.metadata.position);
+  if (row.pos && ppos && row.pos !== ppos) return null;
+  return { pick: p };
+}
+
+function renderAvailable() {
+  const body = document.getElementById('availBody');
+  const idx = pickIndex();
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+  const q = state.search.trim().toLowerCase();
+  const hasTiers = state.rankings.some(r => r.tier !== null);
+
+  const frag = document.createDocumentFragment();
+  let shown = 0, availCount = 0, lastTier = null;
+  for (const row of state.rankings) {
+    const hit = isDrafted(row, idx);
+    if (!hit) availCount++;
+    if (state.posFilter !== 'ALL' && row.pos !== state.posFilter) continue;
+    if (q && !row.name.toLowerCase().includes(q)) continue;
+    if (state.hideDrafted && hit) continue;
+
+    const tr = document.createElement('tr');
+    let cls = '';
+    if (hit) {
+      cls = 'drafted';
+      if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
+    }
+    tr.className = cls;
+    if (hasTiers && row.tier !== null && row.tier !== lastTier && state.posFilter === 'ALL' && !q) {
+      tr.classList.add('tier-break');
+    }
+    lastTier = row.tier;
+
+    let statusHtml = '<span class="mutednote">available</span>';
+    if (hit && hit.manual) statusHtml = '<span class="pickedby">marked drafted (manual)</span>';
+    else if (hit && hit.pick) {
+      const p = hit.pick;
+      const owner = dims ? slotOwnerName(slotForPick(p.pick_no, dims)) : '';
+      statusHtml = '<span class="pickedby">#' + p.pick_no + ' — ' + esc(owner) + '</span>';
+    }
+
+    tr.innerHTML =
+      '<td class="rk">' + row.rank + (hasTiers && row.tier !== null ? ' <span class="tierlabel">t' + row.tier + '</span>' : '') + '</td>' +
+      '<td><span class="pname" data-norm="' + esc(row.norm) + '">' + esc(row.name) + '</span></td>' +
+      '<td><span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span></td>' +
+      '<td class="mutednote">' + esc(row.team || '') + '</td>' +
+      '<td>' + statusHtml + '</td>';
+    frag.appendChild(tr);
+    shown++;
+  }
+  body.replaceChildren(frag);
+  document.getElementById('availCount').textContent =
+    state.rankings.length ? (availCount + ' of ' + state.rankings.length + ' still available') : 'no rankings loaded — see the Rankings tab';
+
+  body.querySelectorAll('.pname').forEach(el => el.addEventListener('click', () => {
+    const n = el.dataset.norm;
+    const idx2 = pickIndex();
+    if (idx2.has(n)) return; // synced picks can't be un-drafted by hand
+    if (state.manualMarks[n]) delete state.manualMarks[n]; else state.manualMarks[n] = true;
+    if (state.draft) LS.set('marks.' + state.draft.draft_id, state.manualMarks);
+    renderAvailable(); renderMyTeam();
+  }));
+}
+
+function renderBoard() {
+  const head = document.getElementById('boardHead');
+  const body = document.getElementById('boardBody');
+  const note = document.getElementById('boardNote');
+  const dims = draftDims();
+  if (!dims) { head.innerHTML = ''; body.innerHTML = ''; note.textContent = 'Refresh to load the draft.'; return; }
+  if (state.draft.type === 'auction') {
+    head.innerHTML = ''; body.innerHTML = '';
+    note.textContent = 'Auction draft — board view not applicable; use Best Available and My Team.';
+    return;
+  }
+  note.textContent = '';
+  const mySlot = parseInt(state.mySlot, 10);
+  const rankByNorm = new Map(state.rankings.map(r => [r.norm, r.rank]));
+
+  let h = '<tr><th></th>';
+  for (let s = 1; s <= dims.teams; s++) {
+    h += '<th class="' + (s === mySlot ? 'me' : '') + '" title="' + esc(slotOwnerName(s)) + '">' +
+      s + ' · ' + esc(slotOwnerName(s)) + '</th>';
+  }
+  head.innerHTML = h + '</tr>';
+
+  const byPickNo = new Map(state.picks.map(p => [p.pick_no, p]));
+  const nextPick = state.picks.length + 1;
+  const frag = document.createDocumentFragment();
+  for (let r = 1; r <= dims.rounds; r++) {
+    const tr = document.createElement('tr');
+    let cells = '<th>R' + r + '</th>';
+    for (let s = 1; s <= dims.teams; s++) {
+      // overall pick number for (round r, slot s)
+      let n = null;
+      for (let k = (r - 1) * dims.teams + 1; k <= r * dims.teams; k++) {
+        if (slotForPick(k, dims) === s) { n = k; break; }
+      }
+      const p = byPickNo.get(n);
+      const pos = p ? normPos(p.metadata && p.metadata.position) : '';
+      const cls = [pos, n === nextPick && state.draft.status !== 'complete' ? 'onclock' : '', s === mySlot ? 'mycol' : '']
+        .filter(Boolean).join(' ');
+      let inner = '<div class="cell"><div class="pk">' + n + '</div>';
+      if (p) {
+        const rk = rankByNorm.get(normName(pickPlayerName(p)));
+        inner += '<div class="nm">' + esc(pickPlayerName(p)) + '</div>' +
+          '<div class="rknote">' + (pos || '') + (rk ? ' · my rk ' + rk : '') + '</div>';
+      }
+      inner += '</div>';
+      cells += '<td class="' + cls + '">' + inner + '</td>';
+    }
+    tr.innerHTML = cells;
+    frag.appendChild(tr);
+  }
+  body.replaceChildren(frag);
+}
+
+function renderMyTeam() {
+  const picksEl = document.getElementById('myPicksList');
+  const upEl = document.getElementById('myUpcomingList');
+  const unEl = document.getElementById('unmatchedList');
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+
+  picksEl.innerHTML = ''; upEl.innerHTML = ''; unEl.innerHTML = '';
+
+  if (dims && Number.isFinite(mySlot)) {
+    const mine = state.picks.filter(p => slotForPick(p.pick_no, dims) === mySlot);
+    if (!mine.length) picksEl.innerHTML = '<li class="mutednote">none yet</li>';
+    for (const p of mine) {
+      const pos = normPos(p.metadata && p.metadata.position);
+      picksEl.insertAdjacentHTML('beforeend',
+        '<li><span class="pos ' + (pos || 'NA') + '">' + (pos || '—') + '</span> ' +
+        esc(pickPlayerName(p)) + ' <span class="mutednote">rd ' + p.round + ' · #' + p.pick_no + '</span></li>');
+    }
+    const upcoming = [];
+    for (let n = state.picks.length + 1; n <= dims.teams * dims.rounds; n++) {
+      if (slotForPick(n, dims) === mySlot) upcoming.push(n);
+    }
+    if (!upcoming.length) upEl.innerHTML = '<li class="mutednote">none left</li>';
+    for (const n of upcoming.slice(0, 8)) {
+      upEl.insertAdjacentHTML('beforeend',
+        '<li>#' + n + ' <span class="mutednote">rd ' + Math.ceil(n / dims.teams) +
+        ' · ' + (n - state.picks.length - 1) + ' picks away</span></li>');
+    }
+  } else {
+    picksEl.innerHTML = '<li class="mutednote">pick who you are in Settings</li>';
+  }
+
+  // picks that didn't match any ranking row
+  const known = new Set(state.rankings.map(r => r.norm));
+  const unmatched = state.picks.filter(p => !known.has(normName(pickPlayerName(p))));
+  if (!unmatched.length) unEl.innerHTML = '<li class="mutednote">every pick matched your rankings</li>';
+  for (const p of unmatched) {
+    const pos = normPos(p.metadata && p.metadata.position);
+    unEl.insertAdjacentHTML('beforeend',
+      '<li class="warnrow"><span class="pos ' + (pos || 'NA') + '">' + (pos || '—') + '</span> ' +
+      esc(pickPlayerName(p)) + ' <span class="mutednote">#' + p.pick_no + '</span></li>');
+  }
+}
+
+function renderSettings() {
+  document.getElementById('leagueIdInput').value = state.leagueId;
+
+  const ds = document.getElementById('draftSelect');
+  ds.innerHTML = '';
+  if (!state.drafts.length) ds.innerHTML = '<option value="">— refresh to load drafts —</option>';
+  else {
+    for (const d of state.drafts) {
+      const opt = document.createElement('option');
+      opt.value = d.draft_id;
+      opt.textContent = (d.metadata && d.metadata.name ? d.metadata.name + ' — ' : '') +
+        d.season + ' ' + d.type + ' (' + d.status + ')';
+      if (state.draft && d.draft_id === state.draft.draft_id) opt.selected = true;
+      ds.appendChild(opt);
+    }
+  }
+
+  const ms = document.getElementById('mySlotSelect');
+  ms.innerHTML = '<option value="">— not set —</option>';
+  const dims = draftDims();
+  if (dims) {
+    for (let s = 1; s <= dims.teams; s++) {
+      const opt = document.createElement('option');
+      opt.value = String(s);
+      opt.textContent = 'Slot ' + s + ' — ' + slotOwnerName(s);
+      if (String(s) === String(state.mySlot)) opt.selected = true;
+      ms.appendChild(opt);
+    }
+  }
+}
+
+/* ---------------- rankings tab ---------------- */
+function applyRankings(text) {
+  state.rankingsText = text;
+  LS.set('rankingsText', text);
+  const { rows, note } = parseRankings(text);
+  state.rankings = rows;
+  document.getElementById('rankingsNote').textContent = note;
+  const prev = document.getElementById('rankingsPreview');
+  prev.innerHTML = '';
+  for (const r of rows.slice(0, 15)) {
+    prev.insertAdjacentHTML('beforeend',
+      '<li><span class="mutednote">' + r.rank + (r.tier !== null ? ' · t' + r.tier : '') + '</span> ' +
+      esc(r.name) + ' <span class="pos ' + (r.pos || 'NA') + '">' + (r.pos || '—') + '</span> ' +
+      '<span class="mutednote">' + esc(r.team) + '</span></li>');
+  }
+  if (rows.length > 15) prev.insertAdjacentHTML('beforeend', '<li class="mutednote">… ' + (rows.length - 15) + ' more</li>');
+  renderAvailable(); renderMyTeam(); renderBoard();
+}
+
+/* ---------------- wiring ---------------- */
+document.getElementById('refreshBtn').addEventListener('click', refresh);
+
+document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + b.dataset.view));
+}));
+
+const POSITIONS = ['ALL', 'QB', 'RB', 'WR', 'TE', 'K', 'DEF'];
+const chips = document.getElementById('posChips');
+for (const p of POSITIONS) {
+  const b = document.createElement('button');
+  b.textContent = p;
+  b.classList.toggle('on', p === state.posFilter);
+  b.addEventListener('click', () => {
+    state.posFilter = p;
+    chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    renderAvailable();
+  });
+  chips.appendChild(b);
+}
+
+document.getElementById('searchBox').addEventListener('input', e => { state.search = e.target.value; renderAvailable(); });
+const hideCb = document.getElementById('hideDrafted');
+hideCb.checked = state.hideDrafted;
+hideCb.addEventListener('change', e => { state.hideDrafted = e.target.checked; LS.set('hideDrafted', state.hideDrafted); renderAvailable(); });
+
+document.getElementById('applyRankings').addEventListener('click', () =>
+  applyRankings(document.getElementById('rankingsText').value));
+document.getElementById('rankingsFile').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => { document.getElementById('rankingsText').value = rd.result; applyRankings(rd.result); };
+  rd.readAsText(f);
+});
+
+document.getElementById('leagueIdInput').addEventListener('change', e => {
+  state.leagueId = e.target.value.trim(); LS.set('leagueId', state.leagueId);
+});
+document.getElementById('draftSelect').addEventListener('change', e => {
+  state.draftId = e.target.value; LS.set('draftId', state.draftId); refresh();
+});
+document.getElementById('mySlotSelect').addEventListener('change', e => {
+  state.mySlot = e.target.value; LS.set('mySlot', state.mySlot); renderAll();
+});
+
+/* ---------------- boot ---------------- */
+document.getElementById('rankingsText').value = state.rankingsText;
+if (state.rankingsText) applyRankings(state.rankingsText);
+renderHeader();
+renderSettings();
+</script>
+</body>
+</html>
