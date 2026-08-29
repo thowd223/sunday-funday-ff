@@ -84,6 +84,11 @@
   .pos.TE { background: var(--te); } .pos.K { background: var(--k); } .pos.DEF { background: var(--def); }
   .pos.NA { background: #3a4356; color: var(--text); }
 
+  .posrk { color: var(--muted); font-size: 11px; margin-left: 3px; font-variant-numeric: tabular-nums; }
+  .tierchip { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 4px; padding: 0 4px; margin-left: 4px; opacity: .85; }
+  #boardAvailList li.tier-break { border-top: 2px solid var(--accent); }
+
   .adpcol { display: none; }
   table.ranks.has-adp .adpcol { display: table-cell; }
   .adpval { color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -685,11 +690,13 @@ function parseRankings(text) {
   let rows = lines.map(splitLine);
 
   // header detection + column mapping
-  let col = { rank: -1, tier: -1, name: -1, pos: -1, team: -1, adp: -1 };
+  let col = { rank: -1, tier: -1, name: -1, pos: -1, team: -1, adp: -1, posrank: -1, proj: -1 };
   const H = { rank: /^(rank|rk|#|overall|ovr)$/i, tier: /^tiers?$/i,
     name: /^(player( name)?|name|full name)$/i, pos: /^(pos|position)$/i,
     team: /^(team|tm|nfl( team)?|team abbrev)$/i,
-    adp: /^adp$/i }; // exact match only — "ADP Trend" is a different column, not ADP itself
+    adp: /^adp$/i, // exact match only — "ADP Trend" is a different column, not ADP itself
+    posrank: /^(positional rank|pos(itional)? rank|prk)$/i,
+    proj: /^(projected fantasy points|proj(ected)?( fantasy)? points|proj|fpts)$/i };
   const head = rows[0].map(c => c.toLowerCase().replace(/"/g, ''));
   const looksHeader = head.some(c => H.rank.test(c) || H.name.test(c) || H.pos.test(c) || H.tier.test(c));
   if (looksHeader) {
@@ -701,7 +708,7 @@ function parseRankings(text) {
   const parsed = [];
   for (const cells of rows) {
     if (!cells.length) continue;
-    let rank = null, tier = null, name = '', pos = '', team = '', adp = null;
+    let rank = null, tier = null, name = '', pos = '', team = '', adp = null, posRank = null, proj = null;
 
     if (col.name !== -1) {
       name = cells[col.name] || '';
@@ -710,6 +717,8 @@ function parseRankings(text) {
       if (col.pos !== -1) pos = cells[col.pos] || '';
       if (col.team !== -1) team = cells[col.team] || '';
       if (col.adp !== -1) adp = parseFloat(cells[col.adp]);
+      if (col.posrank !== -1) posRank = parseInt(cells[col.posrank], 10);
+      if (col.proj !== -1) proj = parseFloat(cells[col.proj]);
     } else {
       // free-form: walk tokens of the whole line
       const flat = cells.join(' ').replace(/^\s*(\d+)[.)]?\s+/, (m, d) => { rank = parseInt(d, 10); return ''; });
@@ -736,14 +745,54 @@ function parseRankings(text) {
       tier: Number.isFinite(tier) ? tier : null,
       name, pos: normPos(pos.replace(/[0-9]+$/, '')), team: team.toUpperCase(),
       adp: Number.isFinite(adp) ? adp : null,
+      posRank: Number.isFinite(posRank) ? posRank : null,
+      proj: Number.isFinite(proj) ? proj : null,
       norm: normName(name),
     });
   }
 
   parsed.forEach((r, i) => { if (r.rank === null) r.rank = i + 1; });
   parsed.sort((a, b) => a.rank - b.rank);
+
+  // positional rank: use the source's own column when present, otherwise
+  // count off within each position in overall-rank order
+  const posCounts = {};
+  for (const r of parsed) {
+    if (!r.pos) continue;
+    posCounts[r.pos] = (posCounts[r.pos] || 0) + 1;
+    if (r.posRank === null) r.posRank = posCounts[r.pos];
+  }
+
+  if (!parsed.some(r => r.tier !== null)) derivePosTiers(parsed);
+
   const note = parsed.length + ' players parsed' + (looksHeader ? ' (header row detected)' : '');
   return { rows: parsed, note };
+}
+
+// Derived positional tiers from projected-points cliffs, used only when the
+// rankings carry no explicit tier column. A new tier starts when a player's
+// projection falls at least max(15 pts, 7% of the current tier's best
+// projection) below that best; players projected under 45% of their
+// position's top projection are left untiered (the deep tail declines
+// continuously — "tiers" there would be noise). Constants were calibrated
+// against the shipped 2026 half-PPR projections (see draft-tool README).
+function derivePosTiers(rows) {
+  const byPos = {};
+  for (const r of rows) { if (r.pos) (byPos[r.pos] = byPos[r.pos] || []).push(r); }
+  for (const pos in byPos) {
+    const group = byPos[pos]; // already in overall-rank order
+    const projs = group.map(r => r.proj).filter(p => p !== null);
+    if (!projs.length) continue;
+    const cutoff = Math.max(...projs) * 0.45;
+    let tierNum = 0, tierMax = null;
+    for (const r of group) {
+      if (r.proj === null || r.proj < cutoff) { r.posTier = null; continue; }
+      if (tierMax === null) { tierNum = 1; tierMax = r.proj; }
+      else if (tierMax - r.proj >= Math.max(15, tierMax * 0.07)) { tierNum++; tierMax = r.proj; }
+      else tierMax = Math.max(tierMax, r.proj);
+      r.posTier = tierNum;
+    }
+  }
 }
 
 /* ---------------- sleeper sync ---------------- */
@@ -1003,10 +1052,17 @@ function renderAvailable() {
       if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
     }
     tr.className = cls;
-    if (hasTiers && row.tier !== null && row.tier !== lastTier && state.posFilter === 'ALL' && !q) {
+    // explicit (overall) tiers break the ALL view; derived positional tiers
+    // break the view when it's filtered to that one position. lastTier===null
+    // means this is the first visible row — a boundary line there is noise.
+    if (hasTiers && row.tier !== null && lastTier !== null && row.tier !== lastTier && state.posFilter === 'ALL' && !q) {
       tr.classList.add('tier-break');
     }
-    lastTier = row.tier;
+    if (!hasTiers && state.posFilter !== 'ALL' && !q && lastTier !== null &&
+        row.posTier !== null && row.posTier !== undefined && row.posTier !== lastTier) {
+      tr.classList.add('tier-break');
+    }
+    lastTier = hasTiers ? row.tier : (state.posFilter !== 'ALL' ? row.posTier : lastTier);
 
     let statusHtml = '<span class="mutednote">available</span>';
     if (hit && hit.manual) statusHtml = '<span class="pickedby">marked drafted (manual)</span>';
@@ -1022,10 +1078,15 @@ function renderAvailable() {
       if (tag) adpTagHtml = '<span class="avail-tag ' + tag + '">' + AVAIL_TAG_LABEL[tag] + '</span>';
     }
 
+    const posCellHtml =
+      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span>' +
+      (row.posRank ? '<span class="posrk">' + row.posRank + '</span>' : '') +
+      (!hasTiers && row.posTier ? ' <span class="tierchip">T' + row.posTier + '</span>' : '');
+
     tr.innerHTML =
       '<td class="rk">' + row.rank + (hasTiers && row.tier !== null ? ' <span class="tierlabel">t' + row.tier + '</span>' : '') + '</td>' +
       '<td><span class="pname" data-norm="' + esc(row.norm) + '">' + esc(row.name) + '</span></td>' +
-      '<td><span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span></td>' +
+      '<td>' + posCellHtml + '</td>' +
       '<td class="mutednote">' + esc(row.team || '') + '</td>' +
       '<td class="adpcol adpval">' + (row.adp !== null ? row.adp.toFixed(1) : '—') + '</td>' +
       '<td class="adpcol">' + adpTagHtml + '</td>' +
@@ -1058,8 +1119,9 @@ function renderBoardSidebar() {
   const q = state.search.trim().toLowerCase();
   const myNextPick = dims ? nextMyPick(state.picks.length + 1, dims) : null;
 
+  const hasTiers = state.rankings.some(r => r.tier !== null);
   const frag = document.createDocumentFragment();
-  let availCount = 0;
+  let availCount = 0, lastPosTier = null;
   for (const row of state.rankings) {
     const hit = isDrafted(row, idx);
     if (!hit) availCount++;
@@ -1074,6 +1136,11 @@ function renderBoardSidebar() {
       if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
     }
     li.className = cls;
+    if (!hasTiers && state.posFilter !== 'ALL' && !q && lastPosTier !== null &&
+        row.posTier !== null && row.posTier !== undefined && row.posTier !== lastPosTier) {
+      li.classList.add('tier-break');
+    }
+    if (state.posFilter !== 'ALL') lastPosTier = row.posTier;
     let tagHtml = '';
     if (!hit) {
       const tag = availabilityTag(row.adp, myNextPick);
@@ -1081,7 +1148,7 @@ function renderBoardSidebar() {
     }
     li.innerHTML =
       '<span class="rk">' + row.rank + '</span>' +
-      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span>' +
+      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + (row.posRank || '') + '</span>' +
       '<span class="nm">' + esc(row.name) + '</span>' + tagHtml;
     frag.appendChild(li);
   }

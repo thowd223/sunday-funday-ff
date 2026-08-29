@@ -58,7 +58,21 @@ and matching still work identically either way.
 
 - **Best Available** — your rankings in your order, drafted players struck through with
   who took them and at what pick (your own picks highlighted green). Position filter,
-  search, "hide drafted", and tier breaks if your rankings include tiers.
+  search, "hide drafted", and tier breaks if your rankings include tiers. Each row shows
+  the overall rank plus a positional rank next to the position badge (read from the
+  rankings' own `Positional Rank` column when present, counted off per position
+  otherwise).
+
+  **Tiers**: if your rankings carry an explicit `tier` column, those are used as-is
+  (overall tiers, break lines in the ALL view). Otherwise, when a `Projected Fantasy
+  Points` column exists — the shipped rankings have one — per-position tiers are
+  *derived* from the natural cliffs in projected points: a new tier starts when a
+  player's projection falls at least max(15 pts, 7% of the tier's best projection)
+  below that best, and players under 45% of their position's top projection stay
+  untiered (the deep tail declines continuously; tiers there would be noise). Those
+  constants were calibrated by eye against the shipped 2026 projections (Josh Allen
+  alone in QB T1; Gibbs+Bijan as RB T1 with CMC his own T2). Derived tiers show as a
+  `T#` chip per row, with break lines when you filter to a single position.
 - **Draft Board** — the full round-by-slot grid, snake-aware (including a
   `reversal_round` setting if the draft has one), color-coded by position, with each
   picked player annotated with *your* rank for them. The on-the-clock cell is outlined.
