@@ -23,12 +23,19 @@ Your rankings never leave the browser — everything is kept in localStorage.
 
 ## Draft-day flow
 
-1. **Rankings tab** — paste your rankings (or upload a `.csv`/`.txt` file) and hit
-   *Apply rankings*. The parser is deliberately forgiving:
-   - full CSV/TSV with headers (`rank`, `tier`, `player`/`name`, `pos`, `team` in any order),
+It ships with rankings already loaded (a 332-player half-PPR seasonal set, `rankings.csv`
+in this folder, embedded directly into `index.html` so it works with no server) — open
+it and Best Available is populated immediately, no setup step required.
+
+1. **Rankings tab** — to use different rankings, paste new ones (or upload a
+   `.csv`/`.txt` file) and hit *Apply rankings* — this replaces the shipped default and
+   is remembered in your browser going forward. The parser is deliberately forgiving:
+   - full CSV/TSV with headers (`rank`, `tier`, `player`/`name`/`full name`, `pos`,
+     `team`/`team abbrev` in any order — matching your ranking source's usual export
+     columns),
    - or plain lines like `1. Ja'Marr Chase WR CIN`,
    - or just one player name per line (rank = row order).
-   Tiers, positions, and teams are all optional. See `sample-rankings.csv`.
+   Tiers, positions, and teams are all optional.
 2. **Settings tab** — the 2026 Sunday Funday league ID (`1313676998056378368`) is
    prefilled; pick which team is *you* (used for "picks until yours", your column
    highlight, and the My Team tab). The latest draft is auto-selected on first refresh.
@@ -54,6 +61,16 @@ Jr/Sr/II/III/IV suffixes ignored). If your row has a position and it disagrees w
 Sleeper's, the match is rejected (two different players can share a name). Anything
 that doesn't match shows up in the My Team tab's mismatch panel — and you can click any
 player's name in Best Available to manually mark them drafted (remembered per draft).
+
+## Updating the shipped rankings
+
+`rankings.csv` is kept in the repo as a readable record of what's currently embedded —
+it isn't read at runtime (opening the tool as a local file can't fetch a sibling file
+in most browsers), so editing it alone won't change the app. To update the shipped
+default: paste your new rankings into the Rankings tab (that's enough for your own
+browser — it persists in localStorage), and if you also want the file that ships to a
+fresh browser/computer updated, ask Claude to re-embed the new CSV into `index.html` and
+replace `rankings.csv` to match.
 
 ## Reusing for another league
 
