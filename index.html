@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunday Funday — Draft Day</title>
+<style>
+  :root {
+    --bg: #0e1117;
+    --panel: #161b24;
+    --panel-2: #1c2330;
+    --border: #2a3342;
+    --text: #e6e9ef;
+    --muted: #8b94a7;
+    --accent: #4da3ff;
+    --good: #3fb96a;
+    --warn: #e8b339;
+    --bad: #e05555;
+    --qb: #ef5f88; --rb: #45c489; --wr: #58a9ff; --te: #f0a13c; --k: #b48ce0; --def: #8b94a7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  h1, h2, h3 { margin: 0; font-weight: 700; }
+  button { font: inherit; cursor: pointer; border-radius: 6px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); padding: 6px 12px; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #08131f; font-weight: 700; }
+  button:disabled { opacity: .5; cursor: default; }
+  input[type=text], select, textarea { font: inherit; background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px;
+    max-width: 100%; box-sizing: border-box; } /* caps any fixed inline width on narrow screens */
+  input[type=text]:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { width: 100%; min-height: 180px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  a { color: var(--accent); }
+
+  header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--panel);
+    position: sticky; top: 0; z-index: 20; }
+  header h1 { font-size: 17px; white-space: nowrap; }
+  header .sub { color: var(--muted); font-size: 12px; }
+  .spacer { flex: 1; }
+  .statusline { display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap; font-size: 13px; }
+  .statusline b { color: var(--accent); }
+  .statusline .clock { color: var(--warn); font-weight: 700; }
+  .statusline .mine { color: var(--good); font-weight: 700; }
+  #syncNote { color: var(--muted); font-size: 12px; }
+  #errorBar { display: none; padding: 8px 18px; background: #3a1a1a; color: #f2b8b8;
+    border-bottom: 1px solid #5c2626; font-size: 13px; white-space: pre-wrap; }
+
+  nav.tabs { display: flex; gap: 4px; padding: 8px 18px 0; background: var(--panel);
+    border-bottom: 1px solid var(--border); position: sticky; top: 57px; z-index: 19; }
+  nav.tabs button { border: 1px solid transparent; border-bottom: none; background: none;
+    color: var(--muted); padding: 7px 14px; border-radius: 8px 8px 0 0; }
+  nav.tabs button.active { background: var(--bg); color: var(--text); border-color: var(--border); font-weight: 700; }
+
+  main { padding: 16px 18px 60px; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .toolbar .chips { display: flex; gap: 4px; }
+  .toolbar .chips button { padding: 4px 10px; font-size: 12px; }
+  .toolbar .chips button.on { background: var(--accent); color: #08131f; border-color: var(--accent); font-weight: 700; }
+  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer; }
+
+  table.ranks { border-collapse: collapse; width: 100%; max-width: 980px; }
+  table.ranks th { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase;
+    letter-spacing: .06em; padding: 4px 10px; border-bottom: 1px solid var(--border); }
+  table.ranks td { padding: 5px 10px; border-bottom: 1px solid #1d2430; }
+  table.ranks tr:hover td { background: var(--panel); }
+  table.ranks tr.drafted td { opacity: .38; }
+  table.ranks tr.drafted .pname { text-decoration: line-through; }
+  table.ranks tr.mine td { opacity: 1; background: rgba(63,185,106,.08); }
+  table.ranks tr.mine .pname { text-decoration: none; color: var(--good); }
+  table.ranks .rk { color: var(--muted); width: 44px; font-variant-numeric: tabular-nums; }
+  table.ranks .pname { font-weight: 600; cursor: pointer; }
+  table.ranks .pickedby { color: var(--muted); font-size: 12px; }
+  tr.tier-break td { border-top: 2px solid var(--accent); }
+  .tierlabel { color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+
+  .pos { display: inline-block; min-width: 30px; text-align: center; font-size: 11px; font-weight: 700;
+    padding: 1px 5px; border-radius: 4px; color: #0b0e14; }
+  .pos.QB { background: var(--qb); } .pos.RB { background: var(--rb); } .pos.WR { background: var(--wr); }
+  .pos.TE { background: var(--te); } .pos.K { background: var(--k); } .pos.DEF { background: var(--def); }
+  .pos.NA { background: #3a4356; color: var(--text); }
+
+  .posrk { color: var(--muted); font-size: 11px; margin-left: 3px; font-variant-numeric: tabular-nums; }
+  .tierchip { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 4px; padding: 0 4px; margin-left: 4px; opacity: .85; }
+  #boardAvailList li.tier-break { border-top: 2px solid var(--accent); }
+
+  .adpcol { display: none; }
+  table.ranks.has-adp .adpcol { display: table-cell; }
+  .adpval { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .avail-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px;
+    border-radius: 4px; letter-spacing: .02em; }
+  .avail-tag.gone { background: rgba(224,85,85,.16); color: var(--bad); }
+  .avail-tag.toss-up { background: rgba(232,179,57,.16); color: var(--warn); }
+  .avail-tag.there { background: rgba(63,185,106,.16); color: var(--good); }
+  #boardAvailList .avail-tag { font-size: 9px; padding: 0 4px; margin-left: auto; flex: 0 0 auto; }
+
+  .boardwrap, .tablewrap { overflow-x: auto; }
+  .tablewrap table.ranks { width: max-content; min-width: 100%; }
+  table.board { border-collapse: collapse; font-size: 12px; }
+  table.board th { padding: 6px 8px; color: var(--muted); font-size: 11px; border: 1px solid var(--border);
+    background: var(--panel); white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+  table.board th.me { color: var(--good); }
+  table.board td { border: 1px solid var(--border); padding: 0; min-width: 106px; height: 44px; vertical-align: top; }
+  table.board td .cell { padding: 4px 6px; height: 100%; }
+  table.board td .pk { color: var(--muted); font-size: 10px; }
+  table.board td .nm { font-weight: 600; font-size: 11.5px; }
+  table.board td.QB .cell { background: rgba(239,95,136,.16); } table.board td.RB .cell { background: rgba(69,196,137,.16); }
+  table.board td.WR .cell { background: rgba(88,169,255,.16); } table.board td.TE .cell { background: rgba(240,161,60,.16); }
+  table.board td.K .cell { background: rgba(180,140,224,.16); } table.board td.DEF .cell { background: rgba(139,148,167,.16); }
+  table.board td.onclock .cell { outline: 2px dashed var(--warn); outline-offset: -2px; }
+  table.board td.mycol .cell { box-shadow: inset 3px 0 0 var(--good); }
+  table.board td .rknote { font-size: 10px; color: var(--muted); }
+
+  .board-layout { display: flex; gap: 16px; align-items: flex-start; }
+  .board-sidebar { flex: 0 0 300px; position: sticky; top: 74px; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .board-sidebar .toolbar { margin-bottom: 8px; }
+  .board-sidebar input[type=text] { width: 100%; margin-bottom: 8px; }
+  .board-sidebar label.check { margin-bottom: 8px; }
+  #boardAvailList { max-height: 55vh; overflow-y: auto; }
+  #boardAvailList li { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid #1d2430; font-size: 12.5px; }
+  #boardAvailList li.drafted { opacity: .35; text-decoration: line-through; }
+  #boardAvailList li.mine { opacity: 1; text-decoration: none; color: var(--good); font-weight: 600; }
+  #boardAvailList .rk { color: var(--muted); width: 24px; flex: 0 0 24px; font-variant-numeric: tabular-nums; }
+  #boardAvailList .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .cols { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .panel h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { padding: 3px 0; }
+  .mutednote { color: var(--muted); font-size: 12.5px; }
+  .settings-grid { display: grid; grid-template-columns: max-content 1fr; gap: 10px 14px; align-items: center; max-width: 720px; }
+  .settings-grid label { color: var(--muted); }
+  .warnrow { color: var(--warn); }
+  code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+
+  /* Phone-width layout: the desktop assumptions (fixed-width sidebar sitting
+     beside the board, a two-column settings grid, a single-row tab strip)
+     don't fit a ~390px viewport — they were forcing the whole page to
+     scroll horizontally, cutting off Settings and the Draft Board. Stack
+     instead of squeezing sideways; wide tables (ranks, board) still get
+     their own horizontal scroll via .tablewrap/.boardwrap. */
+  @media (max-width: 820px) {
+    header { padding: 10px 12px; gap: 10px; }
+    header h1 { font-size: 15px; }
+    nav.tabs { flex-wrap: wrap; padding: 6px 12px 0; top: 0; position: static; }
+    main { padding: 12px; }
+    .board-layout { flex-direction: column; }
+    .board-sidebar { flex: 1 1 auto; width: 100%; position: static; max-height: 50vh; }
+    .settings-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .settings-grid label { margin-top: 6px; }
+    .cols { gap: 12px; }
+    .cols > div, .cols > .panel { min-width: 0 !important; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Sunday Funday — Draft Day</h1>
+    <div class="sub" id="draftMetaLine">no draft loaded yet</div>
+  </div>
+  <div class="statusline" id="statusLine"></div>
+  <div class="spacer"></div>
+  <div id="syncNote"></div>
+  <button class="primary" id="refreshBtn">&#8635; Refresh</button>
+</header>
+<div id="errorBar"></div>
+
+<nav class="tabs" id="tabs">
+  <button data-view="available" class="active">Best Available</button>
+  <button data-view="board">Draft Board</button>
+  <button data-view="myteam">My Team</button>
+  <button data-view="rankings">Rankings</button>
+  <button data-view="settings">Settings</button>
+</nav>
+
+<main>
+
+<section class="view active" id="view-available">
+  <div class="toolbar">
+    <div class="chips" id="posChips"></div>
+    <input type="text" id="searchBox" placeholder="Search player…" style="width:200px">
+    <label class="check"><input type="checkbox" id="hideDrafted"> hide drafted</label>
+    <span class="mutednote" id="availCount"></span>
+  </div>
+  <div class="tablewrap">
+    <table class="ranks">
+      <thead><tr><th></th><th>Player</th><th>Pos</th><th>Team</th><th class="adpcol">ADP</th><th class="adpcol">At your pick</th><th>Status</th></tr></thead>
+      <tbody id="availBody"></tbody>
+    </table>
+  </div>
+  <p class="mutednote" style="max-width:760px">Click a player's name to manually toggle them drafted/undrafted —
+  use this if a Sleeper pick didn't auto-match your spelling. Manual marks are remembered per draft.</p>
+  <p class="mutednote" style="max-width:760px" id="adpExplainer"></p>
+</section>
+
+<section class="view" id="view-board">
+  <div class="board-layout">
+    <div style="flex: 1; min-width: 0">
+      <div class="boardwrap"><table class="board"><thead id="boardHead"></thead><tbody id="boardBody"></tbody></table></div>
+      <p class="mutednote" id="boardNote"></p>
+    </div>
+    <aside class="panel board-sidebar">
+      <h3>Best Available</h3>
+      <div class="toolbar"><div class="chips" id="boardPosChips"></div></div>
+      <input type="text" id="boardSearchBox" placeholder="Search player…">
+      <label class="check"><input type="checkbox" id="boardHideDrafted"> hide drafted</label>
+      <p class="mutednote" id="boardAvailCount" style="margin-bottom:6px"></p>
+      <ul class="plain" id="boardAvailList"></ul>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="view-myteam">
+  <div class="cols">
+    <div class="panel" style="min-width:300px">
+      <h3>My picks so far</h3>
+      <ul class="plain" id="myPicksList"></ul>
+    </div>
+    <div class="panel" style="min-width:300px">
+      <h3>My upcoming picks</h3>
+      <ul class="plain" id="myUpcomingList"></ul>
+    </div>
+    <div class="panel" style="min-width:300px">
+      <h3>Drafted but not in my rankings</h3>
+      <ul class="plain" id="unmatchedList"></ul>
+      <p class="mutednote">Players other teams drafted that didn't match any row of your rankings —
+      usually a spelling difference, or a player you didn't rank.</p>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-rankings">
+  <div class="cols">
+    <div style="flex:1; min-width:340px; max-width:760px">
+      <h2 style="font-size:15px; margin-bottom:8px">Paste your rankings</h2>
+      <p class="mutednote">CSV / TSV / plain lines all work. Recognized columns (any order, header optional):
+      <code>rank</code>, <code>tier</code>, <code>player</code>/<code>name</code>, <code>pos</code>,
+      <code>team</code>. Simple lists like <code>1. Ja'Marr Chase WR CIN</code> or just one name per
+      line work too — rank falls back to row order.</p>
+      <textarea id="rankingsText" placeholder="rank,name,pos,team,tier&#10;1,Ja'Marr Chase,WR,CIN,1&#10;2,Bijan Robinson,RB,ATL,1&#10;…"></textarea>
+      <div class="toolbar" style="margin-top:8px">
+        <button class="primary" id="applyRankings">Apply rankings</button>
+        <input type="file" id="rankingsFile" accept=".csv,.tsv,.txt" style="color:var(--muted)">
+        <button id="resetRankings" title="Discards whatever's pasted/saved and reloads the rankings shipped with this version of the tool">Reset to shipped default</button>
+        <span class="mutednote" id="rankingsNote"></span>
+      </div>
+    </div>
+    <div class="panel" style="min-width:280px; max-width:420px">
+      <h3>Parsed preview</h3>
+      <ul class="plain" id="rankingsPreview"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-settings">
+  <div class="settings-grid">
+    <label>Draft link or ID</label>
+    <span><input type="text" id="draftLinkInput" style="width:420px"
+      placeholder="e.g. https://sleeper.com/beta/draft/nfl/1399261781234364416">
+      <div class="mutednote" style="margin-top:4px">Paste any Sleeper draft URL (or just the ID) to point
+      at that exact draft — <b>this works for mock drafts too</b>, which aren't tied to a real league.
+      Takes priority over the league ID below when set.</div></span>
+    <label>— or — Sleeper league ID</label>
+    <span><input type="text" id="leagueIdInput" style="width:220px">
+      <span class="mutednote">2026 Sunday Funday is prefilled; auto-picks that league's latest draft
+      when no draft link is set above</span></span>
+    <label>Draft</label>
+    <select id="draftSelect" style="max-width:420px"><option value="">— refresh to load drafts —</option></select>
+    <label>I am</label>
+    <select id="mySlotSelect" style="max-width:420px"><option value="">— refresh to load teams —</option></select>
+    <label></label>
+    <span class="mutednote">Everything (rankings, league/draft link, manual marks) is saved in this
+    browser's localStorage — nothing is uploaded anywhere. The only network calls are read-only GETs to
+    <code>api.sleeper.app</code> when you hit Refresh.</span>
+  </div>
+</section>
+
+</main>
+
+<script>
+'use strict';
+
+/* ---------------- persistence ---------------- */
+const LS = {
+  get(k, fallback) {
+    try { const v = localStorage.getItem('sfdraft.' + k); return v === null ? fallback : JSON.parse(v); }
+    catch (e) { return fallback; }
+  },
+  set(k, v) { try { localStorage.setItem('sfdraft.' + k, JSON.stringify(v)); } catch (e) {} },
+};
+
+const DEFAULT_LEAGUE = '1313676998056378368'; // Sunday Funday 2026
+
+// Shipped default: the league owner's rankings as of 2026-08-29.
+// Replace via the Rankings tab (paste/upload) — that overrides this and persists in localStorage.
+// Shipped default: the league owner's rankings as of 2026-08-29, with real Sleeper ADP merged in (see rankings.csv provenance note).
+// Replace via the Rankings tab (paste/upload) — that overrides this and persists in localStorage.
+const DEFAULT_RANKINGS_CSV = `Rank,Full Name,Team Abbrev,Position,Auction Value,Fantasy Points Per Game,Projected Fantasy Points,Positional Rank,ADP,ADP Trend
+1,Jahmyr Gibbs,DET,RB,65,21.6,326.6,1,1.3,-
+2,Bijan Robinson,ATL,RB,64,21.8,340.8,2,2.8,-
+3,Puka Nacua,LAR,WR,62,23.4,308.0,1,4.6,-
+4,Christian McCaffrey,SF,RB,60,24.5,312.0,3,5.0,-
+5,Jaxon Smith-Njigba,SEA,WR,59,21.2,294.5,2,7.9,-
+6,Ja'Marr Chase,CIN,WR,57,19.6,285.8,3,3.3,-
+7,Amon-Ra St. Brown,DET,WR,55,19.1,244.2,4,7.9,-
+8,Jonathan Taylor,IND,RB,54,21.3,287.7,4,6.6,-
+9,CeeDee Lamb,DAL,WR,52,14.4,255.4,5,10.3,-
+10,James Cook,BUF,RB,51,17.8,281.6,5,9.4,-
+11,Chase Brown,CIN,RB,50,16.6,252.6,6,17.4,-
+12,Saquon Barkley,PHI,RB,48,14.5,257.7,7,11.8,-
+13,George Pickens,DAL,WR,47,17.2,237.1,6,25.8,-
+14,A.J. Brown,NE,WR,46,14.7,224.6,7,19.0,-
+15,De'Von Achane,MIA,RB,44,20.2,263.4,8,14.2,-
+16,Justin Jefferson,MIN,WR,43,11.9,218.4,8,12.1,-
+17,Nico Collins,HOU,WR,42,15.1,224.7,9,23.1,-
+18,Omarion Hampton,LAC,RB,41,15.1,233.1,9,15.8,-
+19,Derrick Henry,BAL,RB,40,16.4,247.3,10,15.2,-
+20,Chris Olave,NO,WR,39,16.8,216.5,10,31.1,-
+21,Drake London,ATL,WR,38,16.8,201.5,11,20.3,-
+22,Kenneth Walker,KC,RB,37,11.3,230.0,11,18.0,-
+23,Brock Bowers,LV,TE,36,14.7,184.0,1,22.8,-
+24,Ashton Jeanty,LV,RB,35,14.4,213.0,12,13.0,-
+25,Zay Flowers,BAL,WR,34,14.3,206.5,12,42.1,-
+26,Malik Nabers,NYG,WR,33,14.3,170.4,13,30.0,-
+27,Tee Higgins,CIN,WR,32,14.1,210.5,14,38.8,-
+28,Javonte Williams,DAL,RB,31,15.2,216.2,13,33.1,-
+29,Rashee Rice,KC,WR,30,18.8,209.0,15,29.0,-
+30,Travis Etienne,NO,RB,29,14.9,202.8,14,41.0,-
+31,Garrett Wilson,NYJ,WR,28,14.2,205.5,16,44.5,-
+32,Trey McBride,ARI,TE,28,18.6,186.0,2,23.2,-
+33,D'Andre Swift,CHI,RB,27,14.3,200.6,15,49.1,-
+34,DeVonta Smith,PHI,WR,26,11.9,189.2,17,34.2,-
+35,Kyren Williams,LAR,RB,25,15.5,204.5,16,26.8,-
+36,Josh Allen,BUF,QB,25,22.0,364.3,1,21.3,-
+37,Terry McLaurin,WAS,WR,24,11.4,194.7,18,53.2,-
+38,Breece Hall,NYJ,RB,23,13.0,195.4,17,31.6,-
+39,Cam Skattebo,NYG,RB,23,16.0,195.9,18,37.0,-
+40,Tetairoa McMillan,CAR,WR,22,12.4,188.5,19,36.4,-
+41,David Montgomery,HOU,RB,22,9.8,196.5,19,46.4,-
+42,Jeremiyah Love,ARI,RB,21,-,149.8,20,27.1,-
+43,Ladd McConkey,LAC,WR,20,11.3,187.6,20,39.8,-
+44,Jaylen Waddle,DEN,WR,20,12.1,180.2,21,47.6,-
+45,Bucky Irving,TB,RB,19,13.9,196.9,21,45.3,-
+46,Colston Loveland,CHI,TE,19,10.3,180.4,3,43.2,-
+47,Emeka Egbuka,TB,WR,18,11.5,179.1,22,39.4,-
+48,Bhayshul Tuten,JAX,RB,18,5.9,161.7,22,60.7,-
+49,Luther Burden III,CHI,WR,17,8.5,186.5,23,58.7,-
+50,Parker Washington,JAX,WR,17,11.5,187.9,24,71.1,-
+51,Davante Adams,LAR,WR,16,15.9,183.8,25,55.2,-
+52,Mike Evans,SF,WR,16,10.6,197.8,26,61.9,-
+53,Quinshon Judkins,CLE,RB,16,12.1,175.4,23,47.6,-
+54,Jameson Williams,DET,WR,15,12.9,178.2,27,57.1,-
+55,Rome Odunze,CHI,WR,15,12.2,179.0,28,63.1,-
+56,Lamar Jackson,BAL,QB,14,17.1,315.1,2,35.6,-
+57,Christian Watson,GB,WR,14,13.2,173.8,29,68.0,-
+58,TreVeyon Henderson,NE,RB,14,12.1,174.1,24,50.1,-
+59,D.J. Moore,BUF,WR,13,10.0,171.9,30,55.8,-
+60,Jadarian Price,SEA,RB,13,-,161.0,25,59.2,-
+61,Tyler Warren,IND,TE,13,11.1,162.8,4,51.2,-
+62,Jayden Daniels,WAS,QB,12,16.8,333.0,3,65.7,-
+63,Jalen Hurts,PHI,QB,12,19.1,342.7,4,62.3,-
+64,Drake Maye,NE,QB,12,21.2,323.8,5,52.5,-
+65,Josh Jacobs,GB,RB,11,15.8,195.9,26,28.7,-
+66,Brian Thomas Jr.,JAX,WR,11,9.9,156.1,31,71.9,-
+67,Caleb Williams,CHI,QB,11,19.1,317.0,6,75.2,-
+68,Carnell Tate,TEN,WR,10,-,177.9,32,67.0,-
+69,Rhamondre Stevenson,NE,RB,10,12.8,158.0,27,76.4,-
+70,Chris Godwin,TB,WR,10,9.2,190.6,33,94.9,-
+71,Rico Dowdle,PIT,RB,10,12.7,165.4,28,83.5,-
+72,Justin Herbert,LAC,QB,9,18.7,329.1,7,79.2,-
+73,Courtland Sutton,DEN,WR,9,12.9,163.0,34,82.0,-
+74,DK Metcalf,PIT,WR,9,12.5,158.7,35,78.2,-
+75,Tony Pollard,TEN,RB,9,10.9,155.6,29,79.4,-
+76,Jaylen Warren,PIT,RB,8,13.6,165.6,30,69.9,-
+77,Jayden Reed,GB,WR,8,6.9,151.9,36,102.7,-
+78,Michael Wilson,ARI,WR,8,13.0,155.1,37,89.8,-
+79,Josh Downs,IND,WR,8,8.5,159.8,38,107.5,-
+80,Jonathon Brooks,CAR,RB,8,-,131.8,31,88.0,-
+81,Joe Burrow,CIN,QB,7,17.4,316.1,8,54.3,-
+82,Jalen Coker,CAR,WR,7,8.2,162.0,39,145.5,-
+83,Jordan Mason,MIN,RB,7,8.1,133.0,32,99.1,-
+84,Blake Corum,LAR,RB,7,7.2,98.8,33,93.0,-
+85,Tucker Kraft,GB,TE,7,14.7,149.9,5,66.0,-
+86,Sam LaPorta,DET,TE,6,11.9,149.7,6,63.6,-
+87,Marvin Harrison Jr.,ARI,WR,6,10.7,137.5,40,73.5,-
+88,Jacory Croskey-Merritt,WAS,RB,6,8.3,123.1,34,98.1,-
+89,Chuba Hubbard,CAR,RB,6,8.4,131.0,35,77.1,-
+90,Wan'Dale Robinson,TEN,WR,6,13.6,145.8,41,116.0,-
+91,J.K. Dobbins,DEN,RB,6,11.6,128.0,36,85.1,-
+92,Makai Lemon,PHI,WR,5,-,136.0,42,86.7,-
+93,MarShawn Lloyd,GB,RB,5,-,81.7,37,180.7,-
+94,Jordan Addison,MIN,WR,5,9.7,153.9,43,100.4,-
+95,Michael Pittman,PIT,WR,5,11.9,161.0,44,103.9,-
+96,Alec Pierce,IND,WR,5,12.2,159.5,45,95.8,-
+97,Stefon Diggs,WAS,WR,5,12.4,141.6,46,115.9,-
+98,RJ Harvey,DEN,RB,5,12.2,136.8,38,81.6,-
+99,Tyler Allgeier,ARI,RB,5,7.2,109.4,39,132.7,-
+100,Quentin Johnston,LAC,WR,4,12.2,141.6,47,105.9,-
+101,Dak Prescott,DAL,QB,4,19.1,316.1,9,84.2,-
+102,KC Concepcion,CLE,WR,4,-,127.4,48,114.4,-
+103,Patrick Mahomes,KC,QB,4,21.2,273.9,10,111.3,-
+104,Kyle Monangai,CHI,RB,4,8.6,106.3,40,90.6,-
+105,Harold Fannin Jr.,CLE,TE,4,11.7,140.0,7,74.0,-
+106,Kyle Pitts,ATL,TE,4,12.4,134.8,8,70.9,-
+107,Rachaad White,WAS,RB,4,8.4,142.6,41,119.9,-
+108,George Kittle,SF,TE,4,14.7,140.4,9,87.8,-
+109,Mike Washington Jr.,LV,RB,4,-,70.5,42,159.3,-
+110,Mark Andrews,BAL,TE,3,7.7,130.0,10,122.2,-
+111,Dalton Kincaid,BUF,TE,3,10.5,134.2,11,92.7,-
+112,Jonah Coleman,DEN,RB,3,-,67.1,43,143.7,-
+113,Woody Marks,HOU,RB,3,9.4,115.9,44,142.0,-
+114,Trevor Lawrence,JAX,QB,3,20.6,312.8,11,97.4,-
+115,Dallas Goedert,PHI,TE,3,12.3,121.7,12,125.5,-
+116,Jake Ferguson,DAL,TE,3,11.1,122.5,13,108.5,-
+117,Chris Rodriguez,JAX,RB,3,7.1,101.8,45,129.1,-
+118,Brock Purdy,SF,QB,3,20.8,312.5,12,121.5,-
+119,Aaron Jones,MIN,RB,3,9.9,115.4,46,111.1,-
+120,Xavier Worthy,KC,WR,3,7.9,116.9,49,127.9,-
+121,Kyler Murray,MIN,QB,3,16.2,292.6,13,147.2,-
+122,De'Zhaun Stribling,SF,WR,3,-,101.9,50,126.9,-
+123,Braelon Allen,NYJ,RB,3,3.8,78.9,47,191.6,-
+124,Rashid Shaheed,SEA,WR,2,8.7,137.0,51,150.9,-
+125,Kenneth Gainwell,TB,RB,2,13.0,113.5,48,109.8,-
+126,Jakobi Meyers,JAX,WR,2,11.0,134.6,52,119.6,-
+127,Zach Charbonnet,SEA,RB,2,11.3,109.1,49,133.7,-
+128,Matthew Stafford,LAR,QB,2,21.1,301.2,14,106.5,-
+129,Romeo Doubs,NE,WR,2,10.3,127.8,53,127.3,-
+130,Isaiah Likely,NYG,TE,2,4.4,116.5,14,113.2,-
+131,Juwan Johnson,NO,TE,2,10.6,122.7,15,186.7,-
+132,Tyrone Tracy Jr.,NYG,RB,2,10.7,86.1,50,134.5,-
+133,Travis Kelce,KC,TE,2,11.4,106.6,16,95.0,-
+134,Khalil Shakir,BUF,WR,2,10.4,141.8,54,143.9,-
+135,Tank Bigsby,PHI,RB,2,3.2,36.3,51,166.1,-
+136,Dylan Sampson,CLE,RB,2,5.8,92.6,52,191.1,-
+137,Tre Harris,LAC,WR,2,4.1,121.9,55,218.8,-
+138,Hunter Henry,NE,TE,2,10.5,112.9,17,148.9,-
+139,Jaxson Dart,NYG,QB,2,17.6,310.8,15,103.3,-
+140,Keaton Mitchell,LAC,RB,2,4.3,79.8,53,162.6,-
+141,Brenton Strange,JAX,TE,2,9.8,108.9,18,155.6,-
+142,Dalton Schultz,HOU,TE,2,10.5,118.4,19,210.5,-
+143,Bo Nix,DEN,QB,2,18.6,303.4,16,118.5,-
+144,Matthew Golden,GB,WR,2,5.0,95.9,56,123.1,-
+145,Terrance Ferguson,LAR,TE,2,3.7,92.3,20,207.4,-
+146,George Holani,SEA,RB,2,1.9,43.2,54,-,-
+147,Denzel Boston,CLE,WR,1,-,110.8,57,158.2,-
+148,Cyrus Allen,KC,WR,1,-,90.5,58,-,-
+149,Ja'kobi Lane,BAL,WR,1,-,78.5,59,161.0,-
+150,Brian Robinson,ATL,RB,1,3.7,91.9,55,172.0,-
+151,Adonai Mitchell,NYJ,WR,1,5.6,85.2,60,231.6,-
+152,Kayshon Boutte,HOU,WR,1,8.9,97.7,61,231.8,-
+153,Tyjae Spears,TEN,RB,1,8.6,109.9,56,170.0,-
+154,Chigoziem Okonkwo,WAS,TE,1,7.3,88.7,21,-,-
+155,Kaelon Black,SF,RB,1,-,34.9,57,-,-
+156,Devaughn Vele,NO,WR,1,5.1,123.2,62,-,-
+157,Deebo Samuel,SF,WR,1,11.8,110.9,63,131.6,-
+158,Kimani Vidal,LAC,RB,1,9.1,30.8,58,239.6,-
+159,Jalen Nailor,LV,WR,1,5.9,114.0,64,165.9,-
+160,Isiah Pacheco,DET,RB,1,6.7,87.3,59,171.6,-
+161,Ryan Flournoy,DAL,WR,1,7.1,94.7,65,241.9,-
+162,Jalen McMillan,TB,WR,1,7.5,92.8,66,198.1,-
+163,Jared Goff,DET,QB,1,17.9,288.5,17,140.6,-
+164,Baker Mayfield,TB,QB,1,16.6,290.3,18,151.4,-
+165,Kaytron Allen,WAS,RB,1,-,47.3,60,235.3,-
+166,Oronde Gadsden II,LAC,TE,1,8.8,93.7,22,146.8,-
+167,Ray Davis,BUF,RB,1,3.8,55.6,61,211.6,-
+168,Dontayvion Wicks,PHI,WR,1,5.4,81.4,67,206.5,-
+169,AJ Barner,SEA,TE,0,8.7,109.2,23,193.8,-
+170,Omar Cooper Jr,NYJ,WR,0,-,100.6,68,177.0,-
+171,Tank Dell,HOU,WR,0,-,101.4,69,183.4,-
+172,Caleb Douglas,MIA,WR,0,-,77.5,70,203.5,-
+173,Kenyon Sadiq,NYJ,TE,0,-,82.5,24,174.5,-
+174,Ted Hurst,TB,WR,0,-,69.7,71,238.4,-
+175,Malachi Fields,NYG,WR,0,-,76.9,72,226.6,-
+176,T.J. Hockenson,MIN,TE,0,7.5,92.1,25,183.7,-
+177,Malik Davis,DAL,RB,0,4.1,36.2,62,-,-
+178,Malik Washington,MIA,WR,0,6.9,91.5,73,181.2,-
+179,Jordan James,SF,RB,0,0.0,43.9,63,229.9,-
+180,Tre Tucker,LV,WR,0,9.5,80.3,74,189.9,-
+181,Jauan Jennings,MIN,WR,0,11.6,101.4,75,199.4,-
+182,Jaydon Blue,DAL,RB,0,4.1,39.9,64,213.1,-
+183,Sean Tucker,TB,RB,0,5.4,36.0,65,249.2,-
+184,Nicholas Singleton,TEN,RB,0,-,33.3,66,197.0,-
+185,Demond Claiborne,MIN,RB,0,-,36.5,67,242.5,-
+186,Tyler Shough,NO,QB,0,14.9,280.2,19,188.5,-
+187,Chris Brooks,GB,RB,0,1.9,35.2,68,-,-
+188,Alvin Kamara,NO,RB,0,9.2,44.8,69,154.9,-
+189,Emmett Johnson,KC,RB,0,-,48.2,70,199.6,-
+190,Isaiah Davis,NYJ,RB,0,4.5,49.8,71,-,-
+191,Pat Freiermuth,PIT,TE,0,6.7,84.6,26,234.2,-
+192,Greg Dulcich,MIA,TE,0,6.3,80.9,27,244.1,-
+193,Pat Bryant,DEN,WR,0,5.0,82.5,76,209.6,-
+194,Jordyn Tyson,NO,WR,0,-,38.1,77,91.5,-
+195,Jordan Love,GB,QB,0,16.1,261.8,20,167.1,-
+196,Ollie Gordon II,MIA,RB,0,3.2,40.5,72,-,-
+197,Travis Hunter,JAX,WR,0,9.1,70.8,78,175.4,-
+198,David Njoku,LAC,TE,0,7.2,65.0,28,230.6,-
+199,Isaac TeSlaa,DET,WR,0,4.5,58.1,79,217.4,-
+200,Malik Willis,MIA,QB,0,12.8,261.7,21,194.1,-
+201,Gunnar Helm,TEN,TE,0,5.7,78.3,29,240.0,-
+202,Tahj Brooks,CIN,RB,0,0.4,24.6,73,-,-
+203,Jaylin Noel,HOU,WR,0,4.0,38.6,80,-,-
+204,Daniel Jones,IND,QB,0,18.0,261.5,22,212.7,-
+205,Jaylen Wright,MIA,RB,0,4.8,33.5,74,243.8,-
+206,Cade Otton,TB,TE,0,7.6,68.3,30,247.3,-
+207,Antonio Williams,WAS,WR,0,-,65.7,81,246.2,-
+208,Mason Taylor,NYJ,TE,0,6.8,55.0,31,-,-
+209,Mike Gesicki,CIN,TE,0,5.4,62.0,32,-,-
+210,Emari Demercado,KC,RB,0,4.5,36.2,75,-,-
+211,Darren Waller,CAR,TE,0,9.9,62.4,33,-,-
+212,Zachariah Branch,ATL,WR,0,-,49.1,82,215.4,-
+213,Najee Harris,NYG,RB,0,3.9,25.2,76,-,-
+214,James Conner,ARI,RB,0,11.1,53.3,77,220.0,-
+215,Elijah Arroyo,SEA,TE,0,2.8,44.5,34,-,-
+216,Sam Darnold,SEA,QB,0,14.7,279.1,23,169.1,-
+217,C.J. Stroud,HOU,QB,0,15.5,279.2,24,207.8,-
+218,Trevor Etienne,CAR,RB,0,0.8,41.5,78,-,-
+219,Colby Parkinson,LAR,TE,0,8.7,50.4,35,261.8,-
+220,Cameron Ward,TEN,QB,0,11.4,250.0,25,215.9,-
+221,Phil Mafah,DAL,RB,0,10.9,19.4,79,-,-
+222,Michael Mayer,LV,TE,0,5.7,47.5,36,-,-
+223,Seth McGowan,IND,RB,0,-,25.2,80,-,-
+224,Malik Benson,LV,WR,0,-,34.7,83,-,-
+225,Emanuel Wilson,SEA,RB,0,5.6,23.9,81,265.7,-
+226,Evan Engram,DEN,TE,0,6.4,69.7,37,-,-
+227,Rashod Bateman,BAL,WR,0,4.3,85.2,84,-,-
+228,Dylan Laube,LV,RB,0,0.2,4.9,82,-,-
+229,Erick All,CIN,TE,0,-,33.5,38,-,-
+230,Devin Neal,NO,RB,0,5.5,30.6,83,-,-
+231,Justice Hill,BAL,RB,0,6.5,75.8,84,228.4,-
+232,Tyquan Thornton,KC,WR,0,5.8,47.5,85,-,-
+233,LeQuint Allen,JAX,RB,0,1.5,40.9,85,-,-
+234,Adam Randall,BAL,RB,0,-,9.5,86,-,-
+235,Roschon Johnson,CHI,RB,0,0.2,23.8,87,-,-
+236,Calvin Ridley,TEN,WR,0,6.8,31.7,86,250.7,-
+237,Jarquez Hunter,MIA,RB,0,0.0,10.4,88,-,-
+238,Fernando Mendoza,LV,QB,0,-,135.4,26,187.0,-
+239,Germie Bernard,PIT,WR,0,-,58.3,87,245.4,-
+240,Isaiah Bond,CLE,WR,0,3.4,37.9,88,-,-
+241,Jerry Jeudy,CLE,WR,0,7.1,80.1,89,214.2,-
+242,Raheim Sanders,CLE,RB,0,5.1,30.1,89,-,-
+243,Justin Joly,DEN,TE,0,-,19.2,39,-,-
+244,Will Shipley,PHI,RB,0,1.2,19.6,90,-,-
+245,Tory Horton,SEA,WR,0,8.1,34.7,90,260.2,-
+246,Bryce Young,CAR,QB,0,14.3,260.4,27,233.3,-
+247,Roman Wilson,PIT,WR,0,3.0,47.0,91,-,-
+248,Eli Stowers,PHI,TE,0,-,31.3,40,247.1,-
+249,Geno Smith,NYJ,QB,0,12.7,227.0,28,257.0,-
+250,Jam Miller,NE,RB,0,-,9.2,91,-,-
+251,Darnell Mooney,NYG,WR,0,5.5,56.4,92,259.3,-
+252,DJ Giddens,IND,RB,0,1.0,23.0,92,-,-
+253,Oscar Delp,NO,TE,0,-,21.4,41,-,-
+254,Eli Raridon,NE,TE,0,-,21.2,42,-,-
+255,Chimere Dike,TEN,WR,0,7.4,57.2,93,-,-
+256,Kyle Williams,NE,WR,0,2.9,47.1,94,-,-
+257,Darnell Washington,PIT,TE,0,4.6,63.0,43,-,-
+258,Samaje Perine,CIN,RB,0,5.2,74.7,93,-,-
+259,Elijah Sarratt,BAL,WR,0,-,49.2,95,-,-
+260,Aaron Rodgers,PIT,QB,0,14.6,254.1,29,236.8,-
+261,Jacoby Brissett,ARI,QB,0,16.8,234.1,30,251.2,-
+262,Shedeur Sanders,CLE,QB,0,11.9,152.3,31,-,-
+263,Brenen Thompson,LAC,WR,0,-,38.9,96,-,-
+264,Ashton Dulin,IND,WR,0,1.7,55.7,97,-,-
+265,Michael Penix Jr.,ATL,QB,0,13.7,198.4,32,-,-
+266,Troy Franklin,DEN,WR,0,10.4,69.9,98,263.6,-
+267,Skyler Bell,BUF,WR,0,-,14.0,99,-,-
+268,Travis Homer,PIT,RB,0,0.0,12.2,94,-,-
+269,Chris Bell,MIA,WR,0,-,44.7,100,237.1,-
+270,Jack Bech,LV,WR,0,2.7,41.0,101,-,-
+271,Andrei Iosivas,CIN,WR,0,5.3,55.9,102,-,-
+272,Keon Coleman,BUF,WR,0,7.9,44.1,103,242.2,-
+273,Tua Tagovailoa,ATL,QB,0,12.6,40.3,33,258.4,-
+274,Darius Slayton,NYG,WR,0,7.1,58.8,104,-,-
+275,Tez Johnson,TB,WR,0,5.8,17.9,105,-,-
+276,Ty Johnson,BUF,RB,0,5.9,42.6,95,-,-
+277,Cooper Kupp,SEA,WR,0,7.3,79.7,106,205.5,-
+278,Deshaun Watson,CLE,QB,0,-,82.5,34,-,-
+279,J.J. McCarthy,MIN,QB,0,13.7,18.6,35,-,-
+280,Jalen Tolbert,MIA,WR,0,3.6,76.9,107,-,-
+281,Kirk Cousins,LV,QB,0,9.9,102.7,36,-,-
+282,Elic Ayomanor,TEN,WR,0,7.3,53.6,108,-,-
+283,Trey Benson,ARI,RB,0,8.9,10.4,96,263.6,-
+284,Kalif Raymond,CHI,WR,0,4.5,53.9,109,-,-
+285,Jimmy Horn Jr.,CAR,WR,0,2.2,39.8,110,-,-
+286,Theo Johnson,NYG,TE,0,8.5,37.0,44,262.8,-
+287,Brashard Smith,KC,RB,0,3.7,13.5,97,-,-
+288,Tyreek Hill,FA,WR,0,13.4,98.4,111,219.1,-
+289,Ja'Tavion Sanders,CAR,TE,0,4.2,44.9,45,-,-
+290,Eli Heidenreich,PIT,RB,0,-,15.3,98,-,-
+291,Marvin Mims,DEN,WR,0,6.2,40.0,112,-,-
+292,Keenan Allen,IND,WR,0,10.8,70.7,113,202.3,-
+293,Dont'e Thornton,LV,WR,0,1.6,15.3,114,-,-
+294,Zavion Thomas,CHI,WR,0,-,16.7,115,-,-
+295,Marquise Brown,PHI,WR,0,8.6,24.7,116,-,-
+296,Jahan Dotson,ATL,WR,0,3.0,57.4,117,-,-
+297,Olamide Zaccheaus,ATL,WR,0,5.3,57.7,118,-,-
+298,Christian Kirk,SF,WR,0,4.5,25.9,119,-,-
+299,Xavier Hutchinson,HOU,WR,0,5.8,16.8,120,-,-
+300,Bryce Lance,NO,WR,0,-,31.8,121,-,-
+301,Texans DST,HOU,DST,0,-,142.8,1,-,-
+302,Seahawks DST,SEA,DST,0,-,139.4,2,-,-
+303,Rams DST,LAR,DST,0,-,132.6,3,-,-
+304,Broncos DST,DEN,DST,0,-,130.9,4,-,-
+305,Vikings DST,MIN,DST,0,-,125.8,5,-,-
+306,Jaguars DST,JAX,DST,0,-,122.4,6,-,-
+307,Steelers DST,PIT,DST,0,-,122.4,7,-,-
+308,Chargers DST,LAC,DST,0,-,120.7,8,-,-
+309,Eagles DST,PHI,DST,0,-,120.7,9,-,-
+310,Bills DST,BUF,DST,0,-,119.0,10,-,-
+311,Bears DST,CHI,DST,0,-,119.0,11,-,-
+312,Lions DST,DET,DST,0,-,117.3,12,-,-
+313,Giants DST,NYG,DST,0,-,117.3,13,-,-
+314,Buccaneers DST,TB,DST,0,-,117.3,14,-,-
+315,Falcons DST,ATL,DST,0,-,115.6,15,-,-
+316,Ravens DST,BAL,DST,0,-,115.6,16,-,-
+317,Brandon Aubrey,DAL,K,0,-,161.5,1,-,-
+318,Ka'imi Fairbairn,HOU,K,0,-,159.8,2,-,-
+319,Jason Myers,SEA,K,0,-,158.1,3,-,-
+320,Cameron Dicker,LAC,K,0,-,156.4,4,-,-
+321,Cairo Santos,CHI,K,0,-,154.7,5,-,-
+322,Cam Little,JAX,K,0,-,153.0,6,-,-
+323,Tyler Loop,BAL,K,0,-,151.3,7,-,-
+324,Harrison Mevis,LAR,K,0,-,151.3,8,-,-
+325,Eddy Pineiro,SF,K,0,-,151.3,9,-,-
+326,Evan McPherson,CIN,K,0,-,149.6,10,-,-
+327,Spencer Shrader,IND,K,0,-,149.6,11,-,-
+328,Charlie Smyth,NO,K,0,-,149.6,12,-,-
+329,Chase McLaughlin,TB,K,0,-,147.9,13,-,-
+330,Tyler Bass,BUF,K,0,-,146.2,14,-,-
+331,Jake Moody,WAS,K,0,-,146.2,15,-,-
+332,Will Reichard,MIN,K,0,-,144.5,16,-,-`;
+
+const state = {
+  draftLink: LS.get('draftLink', ''),      // pasted URL or ID — a specific draft (mock or real), takes priority
+  leagueId: LS.get('leagueId', DEFAULT_LEAGUE),
+  draftId: LS.get('draftId', ''),          // '' = auto (most recent), only used when draftLink is empty
+  mySlot: LS.get('mySlot', ''),            // draft slot number as string
+  rankingsText: LS.get('rankingsText', DEFAULT_RANKINGS_CSV),
+  rankings: [],                            // parsed rows
+  hideDrafted: LS.get('hideDrafted', false),
+  posFilter: 'ALL',
+  search: '',
+  manualMarks: {},                         // normName -> true, per draft (loaded after draft id known)
+  // live sleeper data
+  drafts: [],
+  draft: null,                             // full draft object
+  picks: [],
+  users: [],                               // league users
+  lastSync: null,
+};
+
+/* ---------------- name matching ---------------- */
+const SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v']);
+function normName(s) {
+  if (!s) return '';
+  // periods are dropped with no replacement (not turned into a space) so
+  // "D.J. Moore" and "DJ Moore" normalize identically — different sources
+  // spell initials both ways and would otherwise fail to match.
+  let t = s.toLowerCase()
+    .replace(/\./g, '')
+    .replace(/[,'’’-]/g, ' ')
+    .replace(/[^a-z\s]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+  const parts = t.split(' ').filter(w => !SUFFIXES.has(w));
+  return parts.join(' ');
+}
+function normPos(p) {
+  if (!p) return '';
+  const t = String(p).toUpperCase().replace(/[^A-Z]/g, '');
+  if (t === 'DST' || t === 'D' || t === 'DEFENSE') return 'DEF';
+  if (t === 'PK') return 'K';
+  return t;
+}
+
+/* ---------------- rankings parser ---------------- */
+const POS_RE = /^(QB|RB|WR|TE|K|PK|DEF|DST|D\/ST)[0-9]*$/i;
+const TEAM_RE = /^[A-Z]{2,3}$/;
+
+function parseRankings(text) {
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+  if (!lines.length) return { rows: [], note: 'no input' };
+
+  // pick delimiter: tab > comma > semicolon > whitespace-run fallback
+  const delim = lines[0].includes('\t') ? '\t'
+    : (lines.some(l => l.includes(',')) ? ','
+    : (lines.some(l => l.includes(';')) ? ';' : null));
+
+  function splitLine(line) {
+    if (delim === null) return [line];
+    // minimal quoted-field CSV split
+    const out = []; let cur = ''; let q = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (q) {
+        if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else q = false; }
+        else cur += c;
+      } else if (c === '"') q = true;
+      else if (c === delim) { out.push(cur); cur = ''; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out.map(s => s.trim());
+  }
+
+  let rows = lines.map(splitLine);
+
+  // header detection + column mapping
+  let col = { rank: -1, tier: -1, name: -1, pos: -1, team: -1, adp: -1, posrank: -1, proj: -1 };
+  const H = { rank: /^(rank|rk|#|overall|ovr)$/i, tier: /^tiers?$/i,
+    name: /^(player( name)?|name|full name)$/i, pos: /^(pos|position)$/i,
+    team: /^(team|tm|nfl( team)?|team abbrev)$/i,
+    adp: /^adp$/i, // exact match only — "ADP Trend" is a different column, not ADP itself
+    posrank: /^(positional rank|pos(itional)? rank|prk)$/i,
+    proj: /^(projected fantasy points|proj(ected)?( fantasy)? points|proj|fpts)$/i };
+  const head = rows[0].map(c => c.toLowerCase().replace(/"/g, ''));
+  const looksHeader = head.some(c => H.rank.test(c) || H.name.test(c) || H.pos.test(c) || H.tier.test(c));
+  if (looksHeader) {
+    head.forEach((c, i) => { for (const k in H) if (H[k].test(c) && col[k] === -1) col[k] = i; });
+    rows = rows.slice(1);
+  }
+
+  // no explicit name column: infer per-row from the shape of each cell
+  const parsed = [];
+  for (const cells of rows) {
+    if (!cells.length) continue;
+    let rank = null, tier = null, name = '', pos = '', team = '', adp = null, posRank = null, proj = null;
+
+    if (col.name !== -1) {
+      name = cells[col.name] || '';
+      if (col.rank !== -1) rank = parseInt(cells[col.rank], 10);
+      if (col.tier !== -1) tier = parseInt(cells[col.tier], 10);
+      if (col.pos !== -1) pos = cells[col.pos] || '';
+      if (col.team !== -1) team = cells[col.team] || '';
+      if (col.adp !== -1) adp = parseFloat(cells[col.adp]);
+      if (col.posrank !== -1) posRank = parseInt(cells[col.posrank], 10);
+      if (col.proj !== -1) proj = parseFloat(cells[col.proj]);
+    } else {
+      // free-form: walk tokens of the whole line
+      const flat = cells.join(' ').replace(/^\s*(\d+)[.)]?\s+/, (m, d) => { rank = parseInt(d, 10); return ''; });
+      const toks = flat.split(/[\s,]+/).filter(Boolean);
+      const nameToks = [];
+      for (const tk of toks) {
+        if (POS_RE.test(tk) && !pos) { pos = tk; continue; }
+        if (TEAM_RE.test(tk) && nameToks.length >= 2 && !team) { team = tk; continue; }
+        if (/^\d+$/.test(tk)) { if (rank === null) rank = parseInt(tk, 10); continue; }
+        nameToks.push(tk);
+      }
+      name = nameToks.join(' ');
+    }
+
+    name = name.replace(/\s*\((.*?)\)\s*$/, (m, inner) => {  // "Name (CIN)" style
+      const t = inner.trim().toUpperCase();
+      if (!team && TEAM_RE.test(t)) team = t;
+      return '';
+    }).trim();
+    if (!name) continue;
+
+    parsed.push({
+      rank: Number.isFinite(rank) ? rank : null,
+      tier: Number.isFinite(tier) ? tier : null,
+      name, pos: normPos(pos.replace(/[0-9]+$/, '')), team: team.toUpperCase(),
+      adp: Number.isFinite(adp) ? adp : null,
+      posRank: Number.isFinite(posRank) ? posRank : null,
+      proj: Number.isFinite(proj) ? proj : null,
+      norm: normName(name),
+    });
+  }
+
+  parsed.forEach((r, i) => { if (r.rank === null) r.rank = i + 1; });
+  parsed.sort((a, b) => a.rank - b.rank);
+
+  // positional rank: use the source's own column when present, otherwise
+  // count off within each position in overall-rank order
+  const posCounts = {};
+  for (const r of parsed) {
+    if (!r.pos) continue;
+    posCounts[r.pos] = (posCounts[r.pos] || 0) + 1;
+    if (r.posRank === null) r.posRank = posCounts[r.pos];
+  }
+
+  if (!parsed.some(r => r.tier !== null)) derivePosTiers(parsed);
+
+  const note = parsed.length + ' players parsed' + (looksHeader ? ' (header row detected)' : '');
+  return { rows: parsed, note };
+}
+
+// Derived positional tiers from projected-points cliffs, used only when the
+// rankings carry no explicit tier column. A new tier starts when a player's
+// projection falls at least max(15 pts, 7% of the current tier's best
+// projection) below that best; players projected under 45% of their
+// position's top projection are left untiered (the deep tail declines
+// continuously — "tiers" there would be noise). Constants were calibrated
+// against the shipped 2026 half-PPR projections (see draft-tool README).
+function derivePosTiers(rows) {
+  const byPos = {};
+  for (const r of rows) { if (r.pos) (byPos[r.pos] = byPos[r.pos] || []).push(r); }
+  for (const pos in byPos) {
+    const group = byPos[pos]; // already in overall-rank order
+    const projs = group.map(r => r.proj).filter(p => p !== null);
+    if (!projs.length) continue;
+    const cutoff = Math.max(...projs) * 0.45;
+    let tierNum = 0, tierMax = null;
+    for (const r of group) {
+      if (r.proj === null || r.proj < cutoff) { r.posTier = null; continue; }
+      if (tierMax === null) { tierNum = 1; tierMax = r.proj; }
+      else if (tierMax - r.proj >= Math.max(15, tierMax * 0.07)) { tierNum++; tierMax = r.proj; }
+      else tierMax = Math.max(tierMax, r.proj);
+      r.posTier = tierNum;
+    }
+  }
+}
+
+/* ---------------- sleeper sync ---------------- */
+const API = 'https://api.sleeper.app/v1';
+async function jget(path) {
+  const res = await fetch(API + path);
+  if (!res.ok) throw new Error('GET ' + path + ' → HTTP ' + res.status);
+  return res.json();
+}
+
+// Accepts a pasted Sleeper draft URL (any path shape) or a bare draft ID.
+// Sleeper draft/league/user IDs are long numeric snowflakes — grab the
+// longest digit run, preferring the URL's final path segment if it's numeric.
+function parseDraftIdInput(raw) {
+  if (!raw) return '';
+  const s = raw.trim();
+  const lastSeg = s.split(/[/?#]/).filter(Boolean).pop() || '';
+  if (/^\d{6,}$/.test(lastSeg)) return lastSeg;
+  const matches = s.match(/\d{6,}/g);
+  if (!matches) return '';
+  return matches.reduce((a, b) => (b.length > a.length ? b : a));
+}
+
+async function refresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true; btn.textContent = 'Syncing…';
+  showError('');
+  try {
+    const directId = parseDraftIdInput(state.draftLink);
+    let draft, picks, users, drafts;
+
+    if (directId) {
+      // A specific draft link/ID — works for mock drafts, which have no real
+      // league behind them, as well as any other draft you're not the owner of.
+      draft = await jget('/draft/' + directId);
+      if (!draft || !draft.draft_id) throw new Error('No draft found for "' + state.draftLink + '" — check the link/ID and try again.');
+      picks = (await jget('/draft/' + directId + '/picks')) || [];
+      drafts = [draft];
+      users = [];
+      if (draft.league_id) {
+        try { users = (await jget('/league/' + draft.league_id + '/users')) || []; }
+        catch (e) { users = []; } // mock-draft "leagues" often don't expose a real users list
+      }
+      if (!users.length) users = await resolveUsersIndividually(draft.draft_order);
+    } else {
+      const league = state.leagueId.trim();
+      if (!league) throw new Error('Set a Sleeper league ID, or a draft link/ID, in Settings first.');
+
+      [drafts, users] = await Promise.all([
+        jget('/league/' + league + '/drafts'),
+        jget('/league/' + league + '/users'),
+      ]);
+      drafts = drafts || []; users = users || [];
+      if (!drafts.length) throw new Error('Sleeper returned no drafts for league ' + league + ' — has the draft been created yet?');
+
+      let chosen = drafts.find(d => d.draft_id === state.draftId);
+      if (!chosen) chosen = drafts[0]; // most recent first
+      [draft, picks] = await Promise.all([
+        jget('/draft/' + chosen.draft_id),
+        jget('/draft/' + chosen.draft_id + '/picks'),
+      ]);
+      picks = picks || [];
+    }
+
+    state.drafts = drafts;
+    state.users = users;
+    state.draft = draft;
+    state.picks = picks.slice().sort((a, b) => a.pick_no - b.pick_no);
+    state.manualMarks = LS.get('marks.' + draft.draft_id, {});
+    state.lastSync = new Date();
+    renderAll();
+  } catch (e) {
+    showError('Sync failed: ' + e.message +
+      (location.protocol === 'file:' ? '\nIf this is a CORS/network error while opened as a local file, serve the folder instead: npx serve draft-tool' : ''));
+  } finally {
+    btn.disabled = false; btn.innerHTML = '&#8635; Refresh';
+  }
+}
+
+// Mock drafts (and drafts in leagues you don't own) often have no usable
+// /league/{id}/users endpoint. Fall back to resolving each participant's
+// individual public profile — this picks up real human names (including
+// your own) but leaves Sleeper's synthetic bot IDs unresolved, which is
+// fine: slotOwnerName() already falls back to "Slot N" for those.
+async function resolveUsersIndividually(draftOrder) {
+  const ids = Object.keys(draftOrder || {});
+  if (!ids.length) return [];
+  const results = await Promise.all(ids.map(id => jget('/user/' + id).catch(() => null)));
+  return results.filter(Boolean).map(u => ({
+    user_id: u.user_id, display_name: u.display_name, metadata: {},
+  }));
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBar');
+  el.style.display = msg ? 'block' : 'none';
+  el.textContent = msg;
+}
+
+/* ---------------- derived draft math ---------------- */
+function draftDims() {
+  const d = state.draft;
+  if (!d) return null;
+  const teams = (d.settings && d.settings.teams) || Object.keys(d.draft_order || {}).length || 12;
+  const rounds = (d.settings && d.settings.rounds) || 15;
+  const reversal = (d.settings && d.settings.reversal_round) || 0;
+  return { teams, rounds, reversal, type: d.type };
+}
+
+// slot (1..teams) that owns overall pick n (1-based) for snake/linear drafts
+function slotForPick(n, dims) {
+  const r = Math.ceil(n / dims.teams);
+  const idx = (n - 1) % dims.teams; // 0-based within round
+  if (dims.type === 'linear') return idx + 1;
+  // snake, with optional third-round-reversal style setting
+  let reversed = (r % 2 === 0);
+  if (dims.reversal > 0 && r >= dims.reversal) reversed = !reversed;
+  return reversed ? dims.teams - idx : idx + 1;
+}
+
+function slotOwnerName(slot) {
+  const d = state.draft;
+  if (!d) return 'Slot ' + slot;
+  const order = d.draft_order || {};
+  const uid = Object.keys(order).find(u => order[u] === slot);
+  if (!uid) return 'Slot ' + slot;
+  const u = state.users.find(x => x.user_id === uid);
+  if (!u) return 'Slot ' + slot;
+  return (u.metadata && u.metadata.team_name) || u.display_name || ('Slot ' + slot);
+}
+
+function pickPlayerName(p) {
+  const m = p.metadata || {};
+  return ((m.first_name || '') + ' ' + (m.last_name || '')).trim() || ('player ' + p.player_id);
+}
+
+// Build lookup: normalized picked-player name -> pick
+function pickIndex() {
+  const map = new Map();
+  for (const p of state.picks) map.set(normName(pickPlayerName(p)), p);
+  return map;
+}
+
+/* ---------------- rendering ---------------- */
+function renderAll() {
+  renderHeader();
+  renderAvailable();
+  renderBoard();
+  renderMyTeam();
+  renderSettings();
+}
+
+function renderHeader() {
+  const meta = document.getElementById('draftMetaLine');
+  const status = document.getElementById('statusLine');
+  const sync = document.getElementById('syncNote');
+  const d = state.draft;
+  if (!d) {
+    meta.textContent = 'no draft loaded yet — hit Refresh';
+    status.innerHTML = ''; sync.textContent = '';
+    return;
+  }
+  const dims = draftDims();
+  meta.textContent = (d.metadata && d.metadata.name ? d.metadata.name + ' — ' : '') +
+    dims.teams + ' teams × ' + dims.rounds + ' rounds, ' + (d.type || 'snake') +
+    (dims.reversal ? ' (reversal rd ' + dims.reversal + ')' : '') + ' — status: ' + d.status;
+
+  const total = dims.teams * dims.rounds;
+  const made = state.picks.length;
+  let html = '<span><b>' + made + '</b>/' + total + ' picks</span>';
+  if (made < total && d.status !== 'complete') {
+    const next = made + 1;
+    const slot = slotForPick(next, dims);
+    const rd = Math.ceil(next / dims.teams);
+    html += '<span class="clock">On the clock: ' + esc(slotOwnerName(slot)) +
+      ' (rd ' + rd + ', pick ' + next + ')</span>';
+    if (state.mySlot) {
+      const mine = nextMyPick(next, dims);
+      if (mine === null) html += '<span class="mine">no picks left for you</span>';
+      else if (mine === next) html += '<span class="mine">&#9733; YOU ARE UP</span>';
+      else html += '<span class="mine">' + (mine - next) + ' picks until yours (#' + mine + ')</span>';
+    }
+  } else if (made >= total || d.status === 'complete') {
+    html += '<span class="mine">draft complete</span>';
+  }
+  status.innerHTML = html;
+  sync.textContent = state.lastSync ? 'synced ' + state.lastSync.toLocaleTimeString() : '';
+}
+
+function nextMyPick(fromPick, dims) {
+  const mySlot = parseInt(state.mySlot, 10);
+  if (!Number.isFinite(mySlot)) return null;
+  const total = dims.teams * dims.rounds;
+  for (let n = fromPick; n <= total; n++) if (slotForPick(n, dims) === mySlot) return n;
+  return null;
+}
+
+// "Will they be there?" — a heuristic, not a modeled probability, since ADP
+// is a single point estimate (no per-player variance from Sleeper). The
+// margin widens proportionally with ADP (10%, floor 2 picks) since ADP gets
+// noisier deep in a draft; players are compared against your next pick.
+function availabilityTag(adp, myNextPick) {
+  if (adp === null || myNextPick === null) return null;
+  const margin = Math.max(2, Math.round(adp * 0.10));
+  if (adp <= myNextPick - margin) return 'gone';
+  if (adp >= myNextPick + margin) return 'there';
+  return 'toss-up';
+}
+const AVAIL_TAG_LABEL = { gone: 'LIKELY GONE', 'toss-up': 'TOSS-UP', there: 'LIKELY THERE' };
+const AVAIL_TAG_SHORT = { gone: 'G', 'toss-up': '?', there: '✓' };
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function isDrafted(row, idx) {
+  if (state.manualMarks[row.norm]) return { manual: true };
+  const p = idx.get(row.norm);
+  if (!p) return null;
+  // if both sides know a position and they disagree, don't cross off (two players, same name)
+  const ppos = normPos(p.metadata && p.metadata.position);
+  if (row.pos && ppos && row.pos !== ppos) return null;
+  return { pick: p };
+}
+
+function renderAvailable() {
+  const body = document.getElementById('availBody');
+  const idx = pickIndex();
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+  const q = state.search.trim().toLowerCase();
+  const hasTiers = state.rankings.some(r => r.tier !== null);
+  const hasAdp = state.rankings.some(r => r.adp !== null);
+  const myNextPick = dims ? nextMyPick(state.picks.length + 1, dims) : null;
+
+  document.querySelector('table.ranks').classList.toggle('has-adp', hasAdp);
+  const explainer = document.getElementById('adpExplainer');
+  explainer.textContent = hasAdp
+    ? (myNextPick !== null
+        ? 'ADP column is real Sleeper average draft position. "At your pick" compares it to your next pick (#' + myNextPick + ') — an estimate, not a guarantee: likely gone means ADP is well before your pick, likely there well after, toss-up in between (margin widens the deeper the ADP).'
+        : 'ADP column is real Sleeper average draft position. Set "I am" in Settings to see gone/toss-up/there predictions against your next pick.')
+    : '';
+
+  const frag = document.createDocumentFragment();
+  let shown = 0, availCount = 0, lastTier = null;
+  for (const row of state.rankings) {
+    const hit = isDrafted(row, idx);
+    if (!hit) availCount++;
+    if (state.posFilter !== 'ALL' && row.pos !== state.posFilter) continue;
+    if (q && !row.name.toLowerCase().includes(q)) continue;
+    if (state.hideDrafted && hit) continue;
+
+    const tr = document.createElement('tr');
+    let cls = '';
+    if (hit) {
+      cls = 'drafted';
+      if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
+    }
+    tr.className = cls;
+    // explicit (overall) tiers break the ALL view; derived positional tiers
+    // break the view when it's filtered to that one position. lastTier===null
+    // means this is the first visible row — a boundary line there is noise.
+    if (hasTiers && row.tier !== null && lastTier !== null && row.tier !== lastTier && state.posFilter === 'ALL' && !q) {
+      tr.classList.add('tier-break');
+    }
+    if (!hasTiers && state.posFilter !== 'ALL' && !q && lastTier !== null &&
+        row.posTier !== null && row.posTier !== undefined && row.posTier !== lastTier) {
+      tr.classList.add('tier-break');
+    }
+    lastTier = hasTiers ? row.tier : (state.posFilter !== 'ALL' ? row.posTier : lastTier);
+
+    let statusHtml = '<span class="mutednote">available</span>';
+    if (hit && hit.manual) statusHtml = '<span class="pickedby">marked drafted (manual)</span>';
+    else if (hit && hit.pick) {
+      const p = hit.pick;
+      const owner = dims ? slotOwnerName(slotForPick(p.pick_no, dims)) : '';
+      statusHtml = '<span class="pickedby">#' + p.pick_no + ' — ' + esc(owner) + '</span>';
+    }
+
+    let adpTagHtml = '<span class="mutednote">—</span>';
+    if (!hit) {
+      const tag = availabilityTag(row.adp, myNextPick);
+      if (tag) adpTagHtml = '<span class="avail-tag ' + tag + '">' + AVAIL_TAG_LABEL[tag] + '</span>';
+    }
+
+    const posCellHtml =
+      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span>' +
+      (row.posRank ? '<span class="posrk">' + row.posRank + '</span>' : '') +
+      (!hasTiers && row.posTier ? ' <span class="tierchip">T' + row.posTier + '</span>' : '');
+
+    tr.innerHTML =
+      '<td class="rk">' + row.rank + (hasTiers && row.tier !== null ? ' <span class="tierlabel">t' + row.tier + '</span>' : '') + '</td>' +
+      '<td><span class="pname" data-norm="' + esc(row.norm) + '">' + esc(row.name) + '</span></td>' +
+      '<td>' + posCellHtml + '</td>' +
+      '<td class="mutednote">' + esc(row.team || '') + '</td>' +
+      '<td class="adpcol adpval">' + (row.adp !== null ? row.adp.toFixed(1) : '—') + '</td>' +
+      '<td class="adpcol">' + adpTagHtml + '</td>' +
+      '<td>' + statusHtml + '</td>';
+    frag.appendChild(tr);
+    shown++;
+  }
+  body.replaceChildren(frag);
+  document.getElementById('availCount').textContent =
+    state.rankings.length ? (availCount + ' of ' + state.rankings.length + ' still available') : 'no rankings loaded — see the Rankings tab';
+
+  body.querySelectorAll('.pname').forEach(el => el.addEventListener('click', () => {
+    const n = el.dataset.norm;
+    const idx2 = pickIndex();
+    if (idx2.has(n)) return; // synced picks can't be un-drafted by hand
+    if (state.manualMarks[n]) delete state.manualMarks[n]; else state.manualMarks[n] = true;
+    if (state.draft) LS.set('marks.' + state.draft.draft_id, state.manualMarks);
+    renderAvailable(); renderMyTeam(); renderBoardSidebar();
+  }));
+}
+
+// Best-available list shown alongside the board grid, so you don't have to
+// switch tabs mid-draft. Shares the same position/search/hide-drafted state
+// as the Best Available tab (kept in sync — see wireFilterControls below).
+function renderBoardSidebar() {
+  const list = document.getElementById('boardAvailList');
+  const idx = pickIndex();
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+  const q = state.search.trim().toLowerCase();
+  const myNextPick = dims ? nextMyPick(state.picks.length + 1, dims) : null;
+
+  const hasTiers = state.rankings.some(r => r.tier !== null);
+  const frag = document.createDocumentFragment();
+  let availCount = 0, lastPosTier = null;
+  for (const row of state.rankings) {
+    const hit = isDrafted(row, idx);
+    if (!hit) availCount++;
+    if (state.posFilter !== 'ALL' && row.pos !== state.posFilter) continue;
+    if (q && !row.name.toLowerCase().includes(q)) continue;
+    if (state.hideDrafted && hit) continue;
+
+    const li = document.createElement('li');
+    let cls = '';
+    if (hit) {
+      cls = 'drafted';
+      if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
+    }
+    li.className = cls;
+    if (!hasTiers && state.posFilter !== 'ALL' && !q && lastPosTier !== null &&
+        row.posTier !== null && row.posTier !== undefined && row.posTier !== lastPosTier) {
+      li.classList.add('tier-break');
+    }
+    if (state.posFilter !== 'ALL') lastPosTier = row.posTier;
+    let tagHtml = '';
+    if (!hit) {
+      const tag = availabilityTag(row.adp, myNextPick);
+      if (tag) tagHtml = '<span class="avail-tag ' + tag + '" title="' + AVAIL_TAG_LABEL[tag] + '">' + AVAIL_TAG_SHORT[tag] + '</span>';
+    }
+    li.innerHTML =
+      '<span class="rk">' + row.rank + '</span>' +
+      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + (row.posRank || '') + '</span>' +
+      '<span class="nm">' + esc(row.name) + '</span>' + tagHtml;
+    frag.appendChild(li);
+  }
+  list.replaceChildren(frag);
+  document.getElementById('boardAvailCount').textContent =
+    state.rankings.length ? (availCount + ' of ' + state.rankings.length + ' available') : 'no rankings loaded';
+}
+
+function renderBoard() {
+  renderBoardSidebar();
+  const head = document.getElementById('boardHead');
+  const body = document.getElementById('boardBody');
+  const note = document.getElementById('boardNote');
+  const dims = draftDims();
+  if (!dims) { head.innerHTML = ''; body.innerHTML = ''; note.textContent = 'Refresh to load the draft.'; return; }
+  if (state.draft.type === 'auction') {
+    head.innerHTML = ''; body.innerHTML = '';
+    note.textContent = 'Auction draft — board view not applicable; use Best Available and My Team.';
+    return;
+  }
+  note.textContent = '';
+  const mySlot = parseInt(state.mySlot, 10);
+  const rankByNorm = new Map(state.rankings.map(r => [r.norm, r.rank]));
+
+  let h = '<tr><th></th>';
+  for (let s = 1; s <= dims.teams; s++) {
+    h += '<th class="' + (s === mySlot ? 'me' : '') + '" title="' + esc(slotOwnerName(s)) + '">' +
+      s + ' · ' + esc(slotOwnerName(s)) + '</th>';
+  }
+  head.innerHTML = h + '</tr>';
+
+  const byPickNo = new Map(state.picks.map(p => [p.pick_no, p]));
+  const nextPick = state.picks.length + 1;
+  const frag = document.createDocumentFragment();
+  for (let r = 1; r <= dims.rounds; r++) {
+    const tr = document.createElement('tr');
+    let cells = '<th>R' + r + '</th>';
+    for (let s = 1; s <= dims.teams; s++) {
+      // overall pick number for (round r, slot s)
+      let n = null;
+      for (let k = (r - 1) * dims.teams + 1; k <= r * dims.teams; k++) {
+        if (slotForPick(k, dims) === s) { n = k; break; }
+      }
+      const p = byPickNo.get(n);
+      const pos = p ? normPos(p.metadata && p.metadata.position) : '';
+      const cls = [pos, n === nextPick && state.draft.status !== 'complete' ? 'onclock' : '', s === mySlot ? 'mycol' : '']
+        .filter(Boolean).join(' ');
+      let inner = '<div class="cell"><div class="pk">' + n + '</div>';
+      if (p) {
+        const rk = rankByNorm.get(normName(pickPlayerName(p)));
+        inner += '<div class="nm">' + esc(pickPlayerName(p)) + '</div>' +
+          '<div class="rknote">' + (pos || '') + (rk ? ' · my rk ' + rk : '') + '</div>';
+      }
+      inner += '</div>';
+      cells += '<td class="' + cls + '">' + inner + '</td>';
+    }
+    tr.innerHTML = cells;
+    frag.appendChild(tr);
+  }
+  body.replaceChildren(frag);
+}
+
+function renderMyTeam() {
+  const picksEl = document.getElementById('myPicksList');
+  const upEl = document.getElementById('myUpcomingList');
+  const unEl = document.getElementById('unmatchedList');
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+
+  picksEl.innerHTML = ''; upEl.innerHTML = ''; unEl.innerHTML = '';
+
+  if (dims && Number.isFinite(mySlot)) {
+    const mine = state.picks.filter(p => slotForPick(p.pick_no, dims) === mySlot);
+    if (!mine.length) picksEl.innerHTML = '<li class="mutednote">none yet</li>';
+    for (const p of mine) {
+      const pos = normPos(p.metadata && p.metadata.position);
+      picksEl.insertAdjacentHTML('beforeend',
+        '<li><span class="pos ' + (pos || 'NA') + '">' + (pos || '—') + '</span> ' +
+        esc(pickPlayerName(p)) + ' <span class="mutednote">rd ' + p.round + ' · #' + p.pick_no + '</span></li>');
+    }
+    const upcoming = [];
+    for (let n = state.picks.length + 1; n <= dims.teams * dims.rounds; n++) {
+      if (slotForPick(n, dims) === mySlot) upcoming.push(n);
+    }
+    if (!upcoming.length) upEl.innerHTML = '<li class="mutednote">none left</li>';
+    for (const n of upcoming.slice(0, 8)) {
+      upEl.insertAdjacentHTML('beforeend',
+        '<li>#' + n + ' <span class="mutednote">rd ' + Math.ceil(n / dims.teams) +
+        ' · ' + (n - state.picks.length - 1) + ' picks away</span></li>');
+    }
+  } else {
+    picksEl.innerHTML = '<li class="mutednote">pick who you are in Settings</li>';
+  }
+
+  // picks that didn't match any ranking row
+  const known = new Set(state.rankings.map(r => r.norm));
+  const unmatched = state.picks.filter(p => !known.has(normName(pickPlayerName(p))));
+  if (!unmatched.length) unEl.innerHTML = '<li class="mutednote">every pick matched your rankings</li>';
+  for (const p of unmatched) {
+    const pos = normPos(p.metadata && p.metadata.position);
+    unEl.insertAdjacentHTML('beforeend',
+      '<li class="warnrow"><span class="pos ' + (pos || 'NA') + '">' + (pos || '—') + '</span> ' +
+      esc(pickPlayerName(p)) + ' <span class="mutednote">#' + p.pick_no + '</span></li>');
+  }
+}
+
+function renderSettings() {
+  document.getElementById('draftLinkInput').value = state.draftLink;
+  document.getElementById('leagueIdInput').value = state.leagueId;
+
+  const ds = document.getElementById('draftSelect');
+  ds.innerHTML = '';
+  if (!state.drafts.length) ds.innerHTML = '<option value="">— refresh to load drafts —</option>';
+  else {
+    for (const d of state.drafts) {
+      const opt = document.createElement('option');
+      opt.value = d.draft_id;
+      opt.textContent = (d.metadata && d.metadata.name ? d.metadata.name + ' — ' : '') +
+        d.season + ' ' + d.type + ' (' + d.status + ')';
+      if (state.draft && d.draft_id === state.draft.draft_id) opt.selected = true;
+      ds.appendChild(opt);
+    }
+  }
+
+  const ms = document.getElementById('mySlotSelect');
+  ms.innerHTML = '<option value="">— not set —</option>';
+  const dims = draftDims();
+  if (dims) {
+    for (let s = 1; s <= dims.teams; s++) {
+      const opt = document.createElement('option');
+      opt.value = String(s);
+      opt.textContent = 'Slot ' + s + ' — ' + slotOwnerName(s);
+      if (String(s) === String(state.mySlot)) opt.selected = true;
+      ms.appendChild(opt);
+    }
+  }
+}
+
+/* ---------------- rankings tab ---------------- */
+function applyRankings(text) {
+  state.rankingsText = text;
+  LS.set('rankingsText', text);
+  const { rows, note } = parseRankings(text);
+  state.rankings = rows;
+  document.getElementById('rankingsNote').textContent = note;
+  const prev = document.getElementById('rankingsPreview');
+  prev.innerHTML = '';
+  for (const r of rows.slice(0, 15)) {
+    prev.insertAdjacentHTML('beforeend',
+      '<li><span class="mutednote">' + r.rank + (r.tier !== null ? ' · t' + r.tier : '') + '</span> ' +
+      esc(r.name) + ' <span class="pos ' + (r.pos || 'NA') + '">' + (r.pos || '—') + '</span> ' +
+      '<span class="mutednote">' + esc(r.team) + '</span></li>');
+  }
+  if (rows.length > 15) prev.insertAdjacentHTML('beforeend', '<li class="mutednote">… ' + (rows.length - 15) + ' more</li>');
+  renderAvailable(); renderMyTeam(); renderBoard();
+}
+
+/* ---------------- wiring ---------------- */
+document.getElementById('refreshBtn').addEventListener('click', refresh);
+
+document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + b.dataset.view));
+}));
+
+// Best Available's filters (position/search/hide-drafted) are mirrored in the
+// Draft Board sidebar — both sets of controls read/write the same state and
+// stay in sync no matter which one you touch.
+const POSITIONS = ['ALL', 'QB', 'RB', 'WR', 'TE', 'K', 'DEF'];
+function buildPosChips(containerId) {
+  const el = document.getElementById(containerId);
+  for (const p of POSITIONS) {
+    const b = document.createElement('button');
+    b.textContent = p;
+    b.dataset.pos = p;
+    b.addEventListener('click', () => {
+      state.posFilter = p;
+      syncFilterControls();
+      renderAvailable(); renderBoardSidebar();
+    });
+    el.appendChild(b);
+  }
+}
+function syncFilterControls() {
+  document.querySelectorAll('#posChips button, #boardPosChips button')
+    .forEach(b => b.classList.toggle('on', b.dataset.pos === state.posFilter));
+  for (const id of ['searchBox', 'boardSearchBox']) {
+    const el = document.getElementById(id);
+    if (el.value !== state.search) el.value = state.search;
+  }
+  document.getElementById('hideDrafted').checked = state.hideDrafted;
+  document.getElementById('boardHideDrafted').checked = state.hideDrafted;
+}
+buildPosChips('posChips');
+buildPosChips('boardPosChips');
+syncFilterControls();
+
+for (const id of ['searchBox', 'boardSearchBox']) {
+  document.getElementById(id).addEventListener('input', e => {
+    state.search = e.target.value;
+    syncFilterControls();
+    renderAvailable(); renderBoardSidebar();
+  });
+}
+for (const id of ['hideDrafted', 'boardHideDrafted']) {
+  document.getElementById(id).addEventListener('change', e => {
+    state.hideDrafted = e.target.checked; LS.set('hideDrafted', state.hideDrafted);
+    syncFilterControls();
+    renderAvailable(); renderBoardSidebar();
+  });
+}
+
+document.getElementById('applyRankings').addEventListener('click', () =>
+  applyRankings(document.getElementById('rankingsText').value));
+document.getElementById('rankingsFile').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => { document.getElementById('rankingsText').value = rd.result; applyRankings(rd.result); };
+  rd.readAsText(f);
+});
+document.getElementById('resetRankings').addEventListener('click', () => {
+  // Pasted/uploaded rankings persist in localStorage and outlive a code
+  // update — this clears that override so a newer shipped default (e.g. a
+  // refreshed ADP pull) actually takes effect instead of silently losing
+  // to whatever was saved from a previous visit.
+  document.getElementById('rankingsText').value = DEFAULT_RANKINGS_CSV;
+  applyRankings(DEFAULT_RANKINGS_CSV);
+});
+
+document.getElementById('draftLinkInput').addEventListener('change', e => {
+  state.draftLink = e.target.value.trim(); LS.set('draftLink', state.draftLink);
+});
+document.getElementById('leagueIdInput').addEventListener('change', e => {
+  state.leagueId = e.target.value.trim(); LS.set('leagueId', state.leagueId);
+});
+document.getElementById('draftSelect').addEventListener('change', e => {
+  state.draftId = e.target.value; LS.set('draftId', state.draftId); refresh();
+});
+document.getElementById('mySlotSelect').addEventListener('change', e => {
+  state.mySlot = e.target.value; LS.set('mySlot', state.mySlot); renderAll();
+});
+
+/* ---------------- boot ---------------- */
+document.getElementById('rankingsText').value = state.rankingsText;
+if (state.rankingsText) applyRankings(state.rankingsText);
+renderHeader();
+renderSettings();
+</script>
+</body>
+</html>
