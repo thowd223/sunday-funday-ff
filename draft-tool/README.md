@@ -109,6 +109,12 @@ browser — it persists in localStorage), and if you also want the file that shi
 fresh browser/computer updated, ask Claude to re-embed the new CSV into `index.html` and
 replace `rankings.csv` to match.
 
+**Whatever's pasted/saved in your browser always wins over the shipped default** —
+that's what makes your own edits stick between visits, but it also means pulling a code
+update (e.g. a newer ADP pull) won't actually show up for you until you clear that
+override. Hit **Reset to shipped default** on the Rankings tab to drop back to whatever
+this version of the tool ships with.
+
 ## Reusing for another league
 
 Change the league ID in the Settings tab — that's it. Works for any Sleeper league,

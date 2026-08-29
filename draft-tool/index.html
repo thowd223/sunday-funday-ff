@@ -222,6 +222,7 @@
       <div class="toolbar" style="margin-top:8px">
         <button class="primary" id="applyRankings">Apply rankings</button>
         <input type="file" id="rankingsFile" accept=".csv,.tsv,.txt" style="color:var(--muted)">
+        <button id="resetRankings" title="Discards whatever's pasted/saved and reloads the rankings shipped with this version of the tool">Reset to shipped default</button>
         <span class="mutednote" id="rankingsNote"></span>
       </div>
     </div>
@@ -1301,6 +1302,14 @@ document.getElementById('rankingsFile').addEventListener('change', e => {
   const rd = new FileReader();
   rd.onload = () => { document.getElementById('rankingsText').value = rd.result; applyRankings(rd.result); };
   rd.readAsText(f);
+});
+document.getElementById('resetRankings').addEventListener('click', () => {
+  // Pasted/uploaded rankings persist in localStorage and outlive a code
+  // update — this clears that override so a newer shipped default (e.g. a
+  // refreshed ADP pull) actually takes effect instead of silently losing
+  // to whatever was saved from a previous visit.
+  document.getElementById('rankingsText').value = DEFAULT_RANKINGS_CSV;
+  applyRankings(DEFAULT_RANKINGS_CSV);
 });
 
 document.getElementById('draftLinkInput').addEventListener('change', e => {
