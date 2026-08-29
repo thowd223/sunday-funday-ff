@@ -21,6 +21,16 @@ npx serve draft-tool
 The only network traffic is read-only GETs to `api.sleeper.app` when you hit Refresh.
 Your rankings never leave the browser — everything is kept in localStorage.
 
+### On your phone
+
+Works the same way — get `index.html` onto the phone (AirDrop/share the file, or a
+cloud-drive/GitHub link) and open it from your phone's browser or Files app; no app
+install, no server. The layout is responsive: the tab bar wraps, the board and its
+best-available sidebar stack instead of sitting side by side, Settings goes to a single
+column, and both the rankings table and the board grid scroll horizontally within
+themselves so nothing gets clipped. If you're using `npx serve` instead of opening the
+file directly, your phone needs to be on the same network as the machine running it.
+
 ## Draft-day flow
 
 It ships with rankings already loaded (a 332-player half-PPR seasonal set, `rankings.csv`

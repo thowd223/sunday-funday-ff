@@ -28,7 +28,8 @@
   button.primary { background: var(--accent); border-color: var(--accent); color: #08131f; font-weight: 700; }
   button:disabled { opacity: .5; cursor: default; }
   input[type=text], select, textarea { font: inherit; background: var(--bg); color: var(--text);
-    border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px;
+    max-width: 100%; box-sizing: border-box; } /* caps any fixed inline width on narrow screens */
   input[type=text]:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
   textarea { width: 100%; min-height: 180px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
   a { color: var(--accent); }
@@ -99,7 +100,8 @@
   .avail-tag.there { background: rgba(63,185,106,.16); color: var(--good); }
   #boardAvailList .avail-tag { font-size: 9px; padding: 0 4px; margin-left: auto; flex: 0 0 auto; }
 
-  .boardwrap { overflow-x: auto; }
+  .boardwrap, .tablewrap { overflow-x: auto; }
+  .tablewrap table.ranks { width: max-content; min-width: 100%; }
   table.board { border-collapse: collapse; font-size: 12px; }
   table.board th { padding: 6px 8px; color: var(--muted); font-size: 11px; border: 1px solid var(--border);
     background: var(--panel); white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
@@ -137,6 +139,25 @@
   .settings-grid label { color: var(--muted); }
   .warnrow { color: var(--warn); }
   code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+
+  /* Phone-width layout: the desktop assumptions (fixed-width sidebar sitting
+     beside the board, a two-column settings grid, a single-row tab strip)
+     don't fit a ~390px viewport — they were forcing the whole page to
+     scroll horizontally, cutting off Settings and the Draft Board. Stack
+     instead of squeezing sideways; wide tables (ranks, board) still get
+     their own horizontal scroll via .tablewrap/.boardwrap. */
+  @media (max-width: 820px) {
+    header { padding: 10px 12px; gap: 10px; }
+    header h1 { font-size: 15px; }
+    nav.tabs { flex-wrap: wrap; padding: 6px 12px 0; top: 0; position: static; }
+    main { padding: 12px; }
+    .board-layout { flex-direction: column; }
+    .board-sidebar { flex: 1 1 auto; width: 100%; position: static; max-height: 50vh; }
+    .settings-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .settings-grid label { margin-top: 6px; }
+    .cols { gap: 12px; }
+    .cols > div, .cols > .panel { min-width: 0 !important; width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -170,10 +191,12 @@
     <label class="check"><input type="checkbox" id="hideDrafted"> hide drafted</label>
     <span class="mutednote" id="availCount"></span>
   </div>
-  <table class="ranks">
-    <thead><tr><th></th><th>Player</th><th>Pos</th><th>Team</th><th class="adpcol">ADP</th><th class="adpcol">At your pick</th><th>Status</th></tr></thead>
-    <tbody id="availBody"></tbody>
-  </table>
+  <div class="tablewrap">
+    <table class="ranks">
+      <thead><tr><th></th><th>Player</th><th>Pos</th><th>Team</th><th class="adpcol">ADP</th><th class="adpcol">At your pick</th><th>Status</th></tr></thead>
+      <tbody id="availBody"></tbody>
+    </table>
+  </div>
   <p class="mutednote" style="max-width:760px">Click a player's name to manually toggle them drafted/undrafted —
   use this if a Sleeper pick didn't auto-match your spelling. Manual marks are remembered per draft.</p>
   <p class="mutednote" style="max-width:760px" id="adpExplainer"></p>
