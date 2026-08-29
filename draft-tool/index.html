@@ -199,16 +199,23 @@
 
 <section class="view" id="view-settings">
   <div class="settings-grid">
-    <label>Sleeper league ID</label>
+    <label>Draft link or ID</label>
+    <span><input type="text" id="draftLinkInput" style="width:420px"
+      placeholder="e.g. https://sleeper.com/beta/draft/nfl/1399261781234364416">
+      <div class="mutednote" style="margin-top:4px">Paste any Sleeper draft URL (or just the ID) to point
+      at that exact draft — <b>this works for mock drafts too</b>, which aren't tied to a real league.
+      Takes priority over the league ID below when set.</div></span>
+    <label>— or — Sleeper league ID</label>
     <span><input type="text" id="leagueIdInput" style="width:220px">
-      <span class="mutednote">2026 Sunday Funday is prefilled</span></span>
+      <span class="mutednote">2026 Sunday Funday is prefilled; auto-picks that league's latest draft
+      when no draft link is set above</span></span>
     <label>Draft</label>
     <select id="draftSelect" style="max-width:420px"><option value="">— refresh to load drafts —</option></select>
     <label>I am</label>
     <select id="mySlotSelect" style="max-width:420px"><option value="">— refresh to load teams —</option></select>
     <label></label>
-    <span class="mutednote">Everything (rankings, league, manual marks) is saved in this browser's
-    localStorage — nothing is uploaded anywhere. The only network calls are read-only GETs to
+    <span class="mutednote">Everything (rankings, league/draft link, manual marks) is saved in this
+    browser's localStorage — nothing is uploaded anywhere. The only network calls are read-only GETs to
     <code>api.sleeper.app</code> when you hit Refresh.</span>
   </div>
 </section>
@@ -566,8 +573,9 @@ const DEFAULT_RANKINGS_CSV = `Rank,"Full Name","Team Abbrev",Position,"Auction V
 332,"Will Reichard",MIN,K,0,-,144.5,16,-,-`;
 
 const state = {
+  draftLink: LS.get('draftLink', ''),      // pasted URL or ID — a specific draft (mock or real), takes priority
   leagueId: LS.get('leagueId', DEFAULT_LEAGUE),
-  draftId: LS.get('draftId', ''),          // '' = auto (most recent)
+  draftId: LS.get('draftId', ''),          // '' = auto (most recent), only used when draftLink is empty
   mySlot: LS.get('mySlot', ''),            // draft slot number as string
   rankingsText: LS.get('rankingsText', DEFAULT_RANKINGS_CSV),
   rankings: [],                            // parsed rows
@@ -701,30 +709,64 @@ async function jget(path) {
   return res.json();
 }
 
+// Accepts a pasted Sleeper draft URL (any path shape) or a bare draft ID.
+// Sleeper draft/league/user IDs are long numeric snowflakes — grab the
+// longest digit run, preferring the URL's final path segment if it's numeric.
+function parseDraftIdInput(raw) {
+  if (!raw) return '';
+  const s = raw.trim();
+  const lastSeg = s.split(/[/?#]/).filter(Boolean).pop() || '';
+  if (/^\d{6,}$/.test(lastSeg)) return lastSeg;
+  const matches = s.match(/\d{6,}/g);
+  if (!matches) return '';
+  return matches.reduce((a, b) => (b.length > a.length ? b : a));
+}
+
 async function refresh() {
   const btn = document.getElementById('refreshBtn');
   btn.disabled = true; btn.textContent = 'Syncing…';
   showError('');
   try {
-    const league = state.leagueId.trim();
-    if (!league) throw new Error('Set a Sleeper league ID in Settings first.');
+    const directId = parseDraftIdInput(state.draftLink);
+    let draft, picks, users, drafts;
 
-    const [drafts, users] = await Promise.all([
-      jget('/league/' + league + '/drafts'),
-      jget('/league/' + league + '/users'),
-    ]);
-    state.drafts = drafts || [];
-    state.users = users || [];
-    if (!state.drafts.length) throw new Error('Sleeper returned no drafts for league ' + league + ' — has the draft been created yet?');
+    if (directId) {
+      // A specific draft link/ID — works for mock drafts, which have no real
+      // league behind them, as well as any other draft you're not the owner of.
+      draft = await jget('/draft/' + directId);
+      if (!draft || !draft.draft_id) throw new Error('No draft found for "' + state.draftLink + '" — check the link/ID and try again.');
+      picks = (await jget('/draft/' + directId + '/picks')) || [];
+      drafts = [draft];
+      users = [];
+      if (draft.league_id) {
+        try { users = (await jget('/league/' + draft.league_id + '/users')) || []; }
+        catch (e) { users = []; } // mock-draft "leagues" often don't expose a real users list
+      }
+      if (!users.length) users = await resolveUsersIndividually(draft.draft_order);
+    } else {
+      const league = state.leagueId.trim();
+      if (!league) throw new Error('Set a Sleeper league ID, or a draft link/ID, in Settings first.');
 
-    let chosen = state.drafts.find(d => d.draft_id === state.draftId);
-    if (!chosen) chosen = state.drafts[0]; // most recent first
-    const [draft, picks] = await Promise.all([
-      jget('/draft/' + chosen.draft_id),
-      jget('/draft/' + chosen.draft_id + '/picks'),
-    ]);
+      [drafts, users] = await Promise.all([
+        jget('/league/' + league + '/drafts'),
+        jget('/league/' + league + '/users'),
+      ]);
+      drafts = drafts || []; users = users || [];
+      if (!drafts.length) throw new Error('Sleeper returned no drafts for league ' + league + ' — has the draft been created yet?');
+
+      let chosen = drafts.find(d => d.draft_id === state.draftId);
+      if (!chosen) chosen = drafts[0]; // most recent first
+      [draft, picks] = await Promise.all([
+        jget('/draft/' + chosen.draft_id),
+        jget('/draft/' + chosen.draft_id + '/picks'),
+      ]);
+      picks = picks || [];
+    }
+
+    state.drafts = drafts;
+    state.users = users;
     state.draft = draft;
-    state.picks = (picks || []).slice().sort((a, b) => a.pick_no - b.pick_no);
+    state.picks = picks.slice().sort((a, b) => a.pick_no - b.pick_no);
     state.manualMarks = LS.get('marks.' + draft.draft_id, {});
     state.lastSync = new Date();
     renderAll();
@@ -734,6 +776,20 @@ async function refresh() {
   } finally {
     btn.disabled = false; btn.innerHTML = '&#8635; Refresh';
   }
+}
+
+// Mock drafts (and drafts in leagues you don't own) often have no usable
+// /league/{id}/users endpoint. Fall back to resolving each participant's
+// individual public profile — this picks up real human names (including
+// your own) but leaves Sleeper's synthetic bot IDs unresolved, which is
+// fine: slotOwnerName() already falls back to "Slot N" for those.
+async function resolveUsersIndividually(draftOrder) {
+  const ids = Object.keys(draftOrder || {});
+  if (!ids.length) return [];
+  const results = await Promise.all(ids.map(id => jget('/user/' + id).catch(() => null)));
+  return results.filter(Boolean).map(u => ({
+    user_id: u.user_id, display_name: u.display_name, metadata: {},
+  }));
 }
 
 function showError(msg) {
@@ -1012,6 +1068,7 @@ function renderMyTeam() {
 }
 
 function renderSettings() {
+  document.getElementById('draftLinkInput').value = state.draftLink;
   document.getElementById('leagueIdInput').value = state.leagueId;
 
   const ds = document.getElementById('draftSelect');
@@ -1098,6 +1155,9 @@ document.getElementById('rankingsFile').addEventListener('change', e => {
   rd.readAsText(f);
 });
 
+document.getElementById('draftLinkInput').addEventListener('change', e => {
+  state.draftLink = e.target.value.trim(); LS.set('draftLink', state.draftLink);
+});
 document.getElementById('leagueIdInput').addEventListener('change', e => {
   state.leagueId = e.target.value.trim(); LS.set('leagueId', state.leagueId);
 });

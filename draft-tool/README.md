@@ -36,11 +36,23 @@ it and Best Available is populated immediately, no setup step required.
    - or plain lines like `1. Ja'Marr Chase WR CIN`,
    - or just one player name per line (rank = row order).
    Tiers, positions, and teams are all optional.
-2. **Settings tab** — the 2026 Sunday Funday league ID (`1313676998056378368`) is
-   prefilled; pick which team is *you* (used for "picks until yours", your column
-   highlight, and the My Team tab). The latest draft is auto-selected on first refresh.
+2. **Settings tab** — either paste a **draft link or ID** (works for mock drafts, and
+   any other draft not tied to your usual league), or leave that blank and use the
+   **league ID** instead (the 2026 Sunday Funday league, `1313676998056378368`, is
+   prefilled — it auto-picks that league's latest draft). Pick which team is *you*
+   (used for "picks until yours", your column highlight, and the My Team tab).
 3. Hit **Refresh** whenever you want to sync — after every pick, or whenever. Nothing
    polls in the background; it only talks to Sleeper when you click.
+
+### Mock drafts
+
+Paste the draft's URL straight from your browser, e.g.
+`https://sleeper.com/beta/draft/nfl/1399261781234364416` — any shape of Sleeper draft
+link works, or just the numeric ID on its own. Mock drafts aren't tied to a real league,
+so team names come from Sleeper's public per-user profile lookup instead of a league's
+roster list: your own name resolves correctly, but Sleeper's AI-filled bot opponents
+have synthetic IDs that don't resolve to a name, so they just show as "Slot N" — picks
+and matching still work identically either way.
 
 ## What each tab shows
 
