@@ -62,6 +62,9 @@ and matching still work identically either way.
 - **Draft Board** — the full round-by-slot grid, snake-aware (including a
   `reversal_round` setting if the draft has one), color-coded by position, with each
   picked player annotated with *your* rank for them. The on-the-clock cell is outlined.
+  A Best Available list sits alongside it (position filter, search, hide-drafted) so you
+  never have to leave the board to check rankings — its filters are the same ones as the
+  Best Available tab, kept in sync whichever one you use.
 - **My Team** — your roster so far, your upcoming pick numbers, and a "drafted but not
   in my rankings" list so name mismatches never silently hide a taken player.
 - **Rankings / Settings** — input and configuration, both persisted in localStorage.

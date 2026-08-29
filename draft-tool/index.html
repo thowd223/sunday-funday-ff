@@ -100,6 +100,18 @@
   table.board td.mycol .cell { box-shadow: inset 3px 0 0 var(--good); }
   table.board td .rknote { font-size: 10px; color: var(--muted); }
 
+  .board-layout { display: flex; gap: 16px; align-items: flex-start; }
+  .board-sidebar { flex: 0 0 300px; position: sticky; top: 74px; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .board-sidebar .toolbar { margin-bottom: 8px; }
+  .board-sidebar input[type=text] { width: 100%; margin-bottom: 8px; }
+  .board-sidebar label.check { margin-bottom: 8px; }
+  #boardAvailList { max-height: 55vh; overflow-y: auto; }
+  #boardAvailList li { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid #1d2430; font-size: 12.5px; }
+  #boardAvailList li.drafted { opacity: .35; text-decoration: line-through; }
+  #boardAvailList li.mine { opacity: 1; text-decoration: none; color: var(--good); font-weight: 600; }
+  #boardAvailList .rk { color: var(--muted); width: 24px; flex: 0 0 24px; font-variant-numeric: tabular-nums; }
+  #boardAvailList .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   .cols { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
   .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
   .panel h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
@@ -152,8 +164,20 @@
 </section>
 
 <section class="view" id="view-board">
-  <div class="boardwrap"><table class="board"><thead id="boardHead"></thead><tbody id="boardBody"></tbody></table></div>
-  <p class="mutednote" id="boardNote"></p>
+  <div class="board-layout">
+    <div style="flex: 1; min-width: 0">
+      <div class="boardwrap"><table class="board"><thead id="boardHead"></thead><tbody id="boardBody"></tbody></table></div>
+      <p class="mutednote" id="boardNote"></p>
+    </div>
+    <aside class="panel board-sidebar">
+      <h3>Best Available</h3>
+      <div class="toolbar"><div class="chips" id="boardPosChips"></div></div>
+      <input type="text" id="boardSearchBox" placeholder="Search player…">
+      <label class="check"><input type="checkbox" id="boardHideDrafted"> hide drafted</label>
+      <p class="mutednote" id="boardAvailCount" style="margin-bottom:6px"></p>
+      <ul class="plain" id="boardAvailList"></ul>
+    </aside>
+  </div>
 </section>
 
 <section class="view" id="view-myteam">
@@ -966,11 +990,49 @@ function renderAvailable() {
     if (idx2.has(n)) return; // synced picks can't be un-drafted by hand
     if (state.manualMarks[n]) delete state.manualMarks[n]; else state.manualMarks[n] = true;
     if (state.draft) LS.set('marks.' + state.draft.draft_id, state.manualMarks);
-    renderAvailable(); renderMyTeam();
+    renderAvailable(); renderMyTeam(); renderBoardSidebar();
   }));
 }
 
+// Best-available list shown alongside the board grid, so you don't have to
+// switch tabs mid-draft. Shares the same position/search/hide-drafted state
+// as the Best Available tab (kept in sync — see wireFilterControls below).
+function renderBoardSidebar() {
+  const list = document.getElementById('boardAvailList');
+  const idx = pickIndex();
+  const dims = draftDims();
+  const mySlot = parseInt(state.mySlot, 10);
+  const q = state.search.trim().toLowerCase();
+
+  const frag = document.createDocumentFragment();
+  let availCount = 0;
+  for (const row of state.rankings) {
+    const hit = isDrafted(row, idx);
+    if (!hit) availCount++;
+    if (state.posFilter !== 'ALL' && row.pos !== state.posFilter) continue;
+    if (q && !row.name.toLowerCase().includes(q)) continue;
+    if (state.hideDrafted && hit) continue;
+
+    const li = document.createElement('li');
+    let cls = '';
+    if (hit) {
+      cls = 'drafted';
+      if (hit.pick && dims && Number.isFinite(mySlot) && slotForPick(hit.pick.pick_no, dims) === mySlot) cls += ' mine';
+    }
+    li.className = cls;
+    li.innerHTML =
+      '<span class="rk">' + row.rank + '</span>' +
+      '<span class="pos ' + (row.pos || 'NA') + '">' + (row.pos || '—') + '</span>' +
+      '<span class="nm">' + esc(row.name) + '</span>';
+    frag.appendChild(li);
+  }
+  list.replaceChildren(frag);
+  document.getElementById('boardAvailCount').textContent =
+    state.rankings.length ? (availCount + ' of ' + state.rankings.length + ' available') : 'no rankings loaded';
+}
+
 function renderBoard() {
+  renderBoardSidebar();
   const head = document.getElementById('boardHead');
   const body = document.getElementById('boardBody');
   const note = document.getElementById('boardNote');
@@ -1126,24 +1188,52 @@ document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('cl
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + b.dataset.view));
 }));
 
+// Best Available's filters (position/search/hide-drafted) are mirrored in the
+// Draft Board sidebar — both sets of controls read/write the same state and
+// stay in sync no matter which one you touch.
 const POSITIONS = ['ALL', 'QB', 'RB', 'WR', 'TE', 'K', 'DEF'];
-const chips = document.getElementById('posChips');
-for (const p of POSITIONS) {
-  const b = document.createElement('button');
-  b.textContent = p;
-  b.classList.toggle('on', p === state.posFilter);
-  b.addEventListener('click', () => {
-    state.posFilter = p;
-    chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
-    renderAvailable();
-  });
-  chips.appendChild(b);
+function buildPosChips(containerId) {
+  const el = document.getElementById(containerId);
+  for (const p of POSITIONS) {
+    const b = document.createElement('button');
+    b.textContent = p;
+    b.dataset.pos = p;
+    b.addEventListener('click', () => {
+      state.posFilter = p;
+      syncFilterControls();
+      renderAvailable(); renderBoardSidebar();
+    });
+    el.appendChild(b);
+  }
 }
+function syncFilterControls() {
+  document.querySelectorAll('#posChips button, #boardPosChips button')
+    .forEach(b => b.classList.toggle('on', b.dataset.pos === state.posFilter));
+  for (const id of ['searchBox', 'boardSearchBox']) {
+    const el = document.getElementById(id);
+    if (el.value !== state.search) el.value = state.search;
+  }
+  document.getElementById('hideDrafted').checked = state.hideDrafted;
+  document.getElementById('boardHideDrafted').checked = state.hideDrafted;
+}
+buildPosChips('posChips');
+buildPosChips('boardPosChips');
+syncFilterControls();
 
-document.getElementById('searchBox').addEventListener('input', e => { state.search = e.target.value; renderAvailable(); });
-const hideCb = document.getElementById('hideDrafted');
-hideCb.checked = state.hideDrafted;
-hideCb.addEventListener('change', e => { state.hideDrafted = e.target.checked; LS.set('hideDrafted', state.hideDrafted); renderAvailable(); });
+for (const id of ['searchBox', 'boardSearchBox']) {
+  document.getElementById(id).addEventListener('input', e => {
+    state.search = e.target.value;
+    syncFilterControls();
+    renderAvailable(); renderBoardSidebar();
+  });
+}
+for (const id of ['hideDrafted', 'boardHideDrafted']) {
+  document.getElementById(id).addEventListener('change', e => {
+    state.hideDrafted = e.target.checked; LS.set('hideDrafted', state.hideDrafted);
+    syncFilterControls();
+    renderAvailable(); renderBoardSidebar();
+  });
+}
 
 document.getElementById('applyRankings').addEventListener('click', () =>
   applyRankings(document.getElementById('rankingsText').value));
