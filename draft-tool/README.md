@@ -69,6 +69,28 @@ and matching still work identically either way.
   in my rankings" list so name mismatches never silently hide a taken player.
 - **Rankings / Settings** — input and configuration, both persisted in localStorage.
 
+## ADP and "will they be there?" predictions
+
+The shipped rankings have real Sleeper half-PPR ADP merged in for 224 of the 332
+players (skill positions — kickers/DSTs and deep bench players aren't in Sleeper's ADP
+data at all, so those show "—"). Sleeper doesn't expose ADP through its API, documented
+or otherwise — this was pulled by hand from Sleeper's own ADP page and matched into
+`rankings.csv` by player name; see the `adp` column there for provenance if you ever
+need to redo it.
+
+Once ADP is present and you've set **I am** in Settings, Best Available adds an
+**At your pick** column: **Likely Gone** / **Toss-Up** / **Likely There**, comparing
+each undrafted player's ADP against your actual next pick number (recomputed live as
+picks come in). This is a heuristic, not a real probability model — Sleeper doesn't
+publish per-player variance, so the tool uses a margin that widens proportionally with
+ADP (10%, floor of 2 picks) as a stand-in for "ADP gets noisier the deeper you go." The
+board sidebar shows the same call as a compact badge (G / ? / ✓).
+
+If you paste your own rankings with a populated `ADP` column (exact header match —
+`ADP Trend` and similar are ignored), the same prediction activates automatically for
+those; no ADP column just means the feature quietly doesn't show, same as any other
+rankings source that doesn't carry it.
+
 ## Name matching
 
 Picks are matched to your rankings by normalized name (case, punctuation, and
